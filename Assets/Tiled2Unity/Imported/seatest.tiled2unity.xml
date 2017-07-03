@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/3/2017 3:38:56 PM-->
+<!--Last exported: 7/3/2017 5:18:18 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="seatest_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="seatest_mesh_0002" material="RPGpack_sheet" />
   <Prefab name="seatest" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="2" numTilesWide="100" numTilesHigh="100" tileWidth="32" tileHeight="32" exportScale="1" mapWidthInPixels="3200" mapHeightInPixels="3200" backgroundColor="#808080" scale=".1">
     <GameObject name="Sea" x="0" y="0" z="0">
       <TileLayer offsetX="0" offsetY="0" />
-      <GameObject name="RPGpack_sheet" mesh="seatest_mesh_0001" sortingLayerName="" sortingOrder="0" opacity="1" />
+      <GameObject name="RPGpack_sheet" mesh="seatest_mesh_0001" sortingLayerName="background" sortingOrder="0" opacity="1" />
     </GameObject>
-    <GameObject name="Island" x="0" y="0" z="0">
+    <GameObject name="Island" x="0" y="0" z="0" layer="ground">
       <TileLayer offsetX="0" offsetY="0" />
-      <GameObject name="RPGpack_sheet" mesh="seatest_mesh_0002" sortingLayerName="" sortingOrder="1" opacity="1" />
+      <GameObject name="RPGpack_sheet" mesh="seatest_mesh_0002" sortingLayerName="Island" sortingOrder="1" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
           <Path>1952,-1344 2016,-1344 2016,-1312 2400,-1312 2400,-1184 2272,-1184 2272,-1152 2144,-1152 2144,-1056 2016,-1056 2016,-1024 1696,-1024 1696,-992 1600,-992 1600,-928 992,-928 992,-896 960,-896 960,-928 896,-928 896,-1024 672,-1024 672,-1152 768,-1152 768,-1248 800,-1248 800,-1280 704,-1280 704,-1312 640,-1312 640,-1344 608,-1344 608,-1440 704,-1440 704,-1504 640,-1504 640,-1536 448,-1536 448,-1568 384,-1568 384,-1664 896,-1664 896,-1696 800,-1696 800,-1792 960,-1792 960,-1824 1312,-1824 1312,-1792 1600,-1792 1600,-1760 1760,-1760 1760,-1728 1920,-1728 1920,-1696 1952,-1696 1952,-1600 2016,-1600 2016,-1568 2176,-1568 2176,-1504 2336,-1504 2336,-1408 1952,-1408</Path>
