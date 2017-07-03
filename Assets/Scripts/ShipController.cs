@@ -9,6 +9,7 @@ public class ShipController : MonoBehaviour {
     public float acceleration = 5;
     public float brakespeed = 2;
     public float maxspeed = 10;
+    public float maxbackwardspeed = 2;
     public float torque = 2;
     // Use this for initialization
     void Start () {
@@ -40,7 +41,7 @@ public class ShipController : MonoBehaviour {
         if (Input.GetKey(KeyCode.S))
         {
             Debug.Log("Adding force");
-            applyContinuousForce(brakespeed, -transform.up, 0);
+            applyContinuousForce(brakespeed, -transform.up, maxbackwardspeed);
         }
 
         if (Input.GetKey(KeyCode.A))
