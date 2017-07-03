@@ -40,7 +40,7 @@ public class ShipController : MonoBehaviour {
         if (Input.GetKey(KeyCode.S))
         {
             Debug.Log("Adding force");
-            applyContinuousForce(breakspeed, -transform.up, 0);
+            applyContinuousForce(brakespeed, -transform.up, 0);
         }
 
         if (Input.GetKey(KeyCode.A))
