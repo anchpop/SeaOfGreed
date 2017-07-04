@@ -17,16 +17,24 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 	}
+
+    RaycastHit2D boatSearch(int iterations)
+    {
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        
+        
+
         var input_x = Input.GetAxisRaw("Horizontal"); 
         var input_y = Input.GetAxisRaw("Vertical");
 
-
+        
         bool isWalking = (input_x != 0) || (input_y != 0);
 
-        var xToOffset = transform.right * input_x ;
+        var xToOffset = transform.right * input_x;
         var yToOffset = transform.up * input_y;
 
         // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds

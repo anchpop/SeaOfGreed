@@ -257,7 +257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50.600006, y: -48.800003}
+  m_AnchoredPosition: {x: -50.599976, y: -48.800003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &526569595
@@ -363,7 +363,7 @@ SpriteRenderer:
   m_SortingLayerID: -1407443927
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c1c5a49968d9da9459ca14b79786c7a0, type: 3}
+  m_Sprite: {fileID: 21300004, guid: bdc5dc3809e095e45a3941423dd9336a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -379,8 +379,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717409629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.5, y: -15.88, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 32.22, y: -15.04, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -417,7 +417,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.68, y: 2.67}
+    oldSize: {x: 0.85, y: 2.07}
     newSize: {x: 1.68, y: 2.67}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -425,13 +425,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.87244034, y: -0.08151531}
-      - {x: -0.4939804, y: -1.2052431}
-      - {x: 0.6076546, y: -1.2994928}
-      - {x: 0.75349426, y: -1.086299}
-      - {x: 0.7231426, y: 0.41701412}
-      - {x: 0.24603462, y: 1.0898552}
-      - {x: -0.33862686, y: 1.335}
+    - - {x: -0.42700958, y: 0.019065857}
+      - {x: -0.40776825, y: -0.65923023}
+      - {x: 0.004163742, y: -1.0552244}
+      - {x: 0.43737984, y: -0.6408682}
+      - {x: 0.42139816, y: 0.6469145}
+      - {x: 0.0017642975, y: 1.0323801}
+      - {x: -0.43920708, y: 0.674036}
 --- !u!1 &1109171899
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,14 +893,14 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1870539819
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1870539818}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1
