@@ -62,8 +62,10 @@ public class PlayerController : MonoBehaviour {
 
     void dockShip(Vector3 position)
     {
+        shipBorded = null;
         transform.position = position;
-        transform.parent = null;
+        transform.SetParent(null);
+        transform.rotation = Quaternion.identity;
         boarded = false;
         shipBorded = null;
 
