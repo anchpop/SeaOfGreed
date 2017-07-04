@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        var input_x = Input.GetAxisRaw("Horizontal");
+        var input_x = Input.GetAxisRaw("Horizontal"); 
         var input_y = Input.GetAxisRaw("Vertical");
 
 
@@ -21,7 +21,9 @@ public class PlayerController : MonoBehaviour {
         var xToOffset = transform.right * input_x ;
         var yToOffset = transform.up * input_y;
 
-        RaycastHit2D x_ray = Physics2D.Raycast(transform.position, xToOffset, width);
+        // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
+        // This way the player won't be able to slide past some walls
+        RaycastHit2D x_ray = Physics2D.Raycast(transform.position, xToOffset, width); 
         RaycastHit2D y_ray = Physics2D.Raycast(transform.position, yToOffset, height);
         //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
         var xOffset = (!x_ray) ? xToOffset : Vector3.zero;
