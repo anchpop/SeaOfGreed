@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/3/2017 10:11:48 PM-->
+<!--Last exported: 7/3/2017 11:18:41 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="seatest_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="seatest_mesh_0002" material="RPGpack_sheet" />
@@ -27,7 +27,6 @@
       <GameObject name="Collision">
         <PolygonCollider2D>
           <Path>1504,-992 1504,-736 1376,-736 1376,-992</Path>
-          <Path>1440,-832 1440,-768 1472,-768 1472,-832</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
