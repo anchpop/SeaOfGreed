@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour {
     public LayerMask dockRaycastMask;
     public LayerMask boatRaycastMask;
 
+	public GameObject boardText;
+	public GameObject dockText;
+	public GameObject wheelText;
+
+
     // Use this for initialization
     void Start () {
 	}
@@ -44,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     void grabWheel()
     {
         wheelGrabbed = true;
+		wheelText.SetActive (false);
         transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
     }
 
@@ -58,6 +64,7 @@ public class PlayerController : MonoBehaviour {
         transform.SetParent(ship.transform);
         boarded = true;
         shipBorded = ship;
+		boardText.SetActive (false);
     }
 
     void dockShip(Vector3 position)
@@ -68,15 +75,20 @@ public class PlayerController : MonoBehaviour {
         transform.rotation = Quaternion.identity;
         boarded = false;
         shipBorded = null;
+		dockText.SetActive (false);
 
     }
 
     // Update is called once per frame
     void Update () {
-
+		
         RaycastHit2D boatFound = boatSearch(1);
+		if (!boatFound) {
+			boardText.SetActive (false);
+		}
         if (!shipBorded && boatFound)
         {
+			boardText.SetActive (true);
             if (Input.GetKeyDown(KeyCode.V))
             {
                 boardShip(boatFound.collider.gameObject);
@@ -84,24 +96,29 @@ public class PlayerController : MonoBehaviour {
         }
         else if (shipBorded)
         {
+			
             var dockFound = dockSearch(1);
-            if (dockFound) Debug.Log(dockFound.transform.position);
-            if (!wheelGrabbed && getDistanceToWheel() < minDistanceToGrabWheel)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    grabWheel();
-                }
-            }
-            else if (wheelGrabbed && Input.GetKeyDown(KeyCode.E))
-            {
-                releaseWheel();
-            }
-            else if (dockFound && Input.GetKeyDown(KeyCode.V))
-            {
-                Debug.Log(dockFound.point);
-                dockShip(dockFound.point);
-            }
+            if (dockFound) Debug.Log("Dock Found: " + dockFound.transform.position);
+			var distanceToWheel = getDistanceToWheel ();
+			if (!wheelGrabbed && distanceToWheel > minDistanceToGrabWheel) {
+				wheelText.SetActive (false);
+			}
+			else if (!wheelGrabbed && distanceToWheel < minDistanceToGrabWheel) {
+				wheelText.SetActive (true);
+				if (Input.GetKeyDown (KeyCode.E)) {
+					grabWheel ();
+				}
+			} else if (wheelGrabbed && Input.GetKeyDown (KeyCode.E)) {
+				releaseWheel ();
+			}
+			if (dockFound && !wheelGrabbed) {
+				dockText.SetActive (true);
+				if (Input.GetKeyDown(KeyCode.V))
+           		{
+                	Debug.Log(dockFound.point);
+                	dockShip(dockFound.point);
+            	}
+			}
         }
 
         if (wheelGrabbed)
