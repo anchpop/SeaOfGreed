@@ -32,27 +32,21 @@ public class ShipController : MonoBehaviour {
         // body.velocity = new Vector2(Sign(body.velocity.x) * maxRunVel, body.velocity.y); // bring us straight to the maximum speed  
     }
 
+    public void accelerate()
+    {
+        applyContinuousForce(acceleration, transform.up, maxspeed);
+    }
+    public void brake()
+    {
+        applyContinuousForce(brakespeed, -transform.up, maxbackwardspeed);
+    }
+
+    public void turn(float direction)
+    {
+        body.AddTorque(direction * torque);
+    }
+
     // Update is called once per frame
     void Update () { 
-        if (Input.GetKey(KeyCode.W)) {
-            Debug.Log("Adding force");
-            applyContinuousForce(acceleration, transform.up, maxspeed);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            Debug.Log("Adding force");
-            applyContinuousForce(brakespeed, -transform.up, maxbackwardspeed);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("Adding torque");
-            body.AddTorque(torque);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("Adding torque");
-            body.AddTorque(-torque);
-        }
     }
 }
