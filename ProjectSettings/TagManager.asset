@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Ships
+  - Ground
+  - Dock
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 999002771
+    locked: 0
+  - name: Island
+    uniqueID: 2422631801
+    locked: 0
+  - name: Vessels
+    uniqueID: 2887523369
+    locked: 0
+  - name: Dock
+    uniqueID: 3067815719
+    locked: 0
+  - name: Characters
+    uniqueID: 3103674705
     locked: 0

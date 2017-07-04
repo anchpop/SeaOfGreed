@@ -10,7 +10,6 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     public Transform target;
     new Camera camera;
-	public bool RotateWithPlayer;
 
 
     void Start()
@@ -31,13 +30,6 @@ public class FollowPlayer : MonoBehaviour
             moveCameraToPlayer(dampTime, maxDistance);
         }
         targetOldPosition = target.transform.position;
-		if (RotateWithPlayer) {
-			transform.rotation = target.rotation;
-		}
-		// This doesnt work
-		else {
-			transform.rotation.Set (0f, 0f, 0f, 1f);
-		}
     }
 
     Vector3 SuperSmoothLerp(Vector3 followerOldPos, Vector3 targetOldPos, Vector3 targetNewPos, float timeElapsed, float lerpRate)
