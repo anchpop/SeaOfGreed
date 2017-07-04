@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, boardShipRange, boatRaycastMask);
         return hit;
     }
+    RaycastHit2D dockSearch(int iterations)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, boardShipRange, dockRaycastMask);
+        return hit;
+    }
 
     float getDistanceToWheel()
     {
@@ -55,6 +60,15 @@ public class PlayerController : MonoBehaviour {
         shipBorded = ship;
     }
 
+    void dockShip(Vector3 position)
+    {
+        transform.position = position;
+        transform.parent = null;
+        boarded = false;
+        shipBorded = null;
+
+    }
+
     // Update is called once per frame
     void Update () {
 
@@ -66,8 +80,10 @@ public class PlayerController : MonoBehaviour {
                 boardShip(boatFound.collider.gameObject);
             }
         }
-        if (shipBorded)
+        else if (shipBorded)
         {
+            var dockFound = dockSearch(1);
+            if (dockFound) Debug.Log(dockFound.transform.position);
             if (!wheelGrabbed && getDistanceToWheel() < minDistanceToGrabWheel)
             {
                 if (Input.GetKeyDown(KeyCode.E))
@@ -78,6 +94,11 @@ public class PlayerController : MonoBehaviour {
             else if (wheelGrabbed && Input.GetKeyDown(KeyCode.E))
             {
                 releaseWheel();
+            }
+            else if (dockFound && Input.GetKeyDown(KeyCode.V))
+            {
+                Debug.Log(dockFound.point);
+                dockShip(dockFound.point);
             }
         }
 
