@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Assertions;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -59,39 +60,6 @@ public class PlayerController : MonoBehaviour {
         return Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
     }
 
-    void grabWheel()
-    {
-        newState = states.steeringShip;
-		wheelText.SetActive(false);
-        transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
-    }
-
-    void releaseWheel()
-    {
-        newState = states.boardedShip;
-    }
-
-    void boardShip(GameObject ship)
-    {
-        newState = states.boardedShip;
-        transform.position = ship.transform.position;
-        transform.SetParent(ship.transform);
-        shipBorded = ship;
-		boardText.SetActive (false);
-    }
-
-    void dockShip(Vector3 position)
-    {
-        shipBorded = null;
-        transform.position = position;
-        transform.SetParent(null);
-        transform.rotation = Quaternion.identity;
-        newState = states.onLand;
-        shipBorded = null;
-		dockText.SetActive (false);
-
-    }
-
     void walkAccordingToUserInput()
     {
         var input_x = Input.GetAxisRaw("Horizontal");
@@ -136,7 +104,7 @@ public class PlayerController : MonoBehaviour {
                 boardText.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.V))
                 {
-                    boardShip(boatFound.collider.gameObject);
+                    onLandToBoardedShip(boatFound.collider.gameObject);
                 }
             }
 
@@ -156,7 +124,7 @@ public class PlayerController : MonoBehaviour {
                 wheelText.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    grabWheel();
+                    boardedShipToSteeringShip();
                 }
             }
             if (dockFound)
@@ -165,7 +133,7 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetKeyDown(KeyCode.V))
                 {
                     Debug.Log(dockFound.point);
-                    dockShip(dockFound.point);
+                    boardedShipToOnLand(dockFound.point);
                 }
             }
 
@@ -193,8 +161,46 @@ public class PlayerController : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-                releaseWheel();
+                steeringShipToBoardedShip();
             }
         }
+    }
+
+    // state transitions
+    void boardedShipToSteeringShip()
+    {
+        Assert.IsTrue(state == states.boardedShip);
+        newState = states.steeringShip;
+        wheelText.SetActive(false);
+        transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
+    }
+
+    void steeringShipToBoardedShip()
+    {
+        Assert.IsTrue(state == states.steeringShip);
+        newState = states.boardedShip;
+    }
+
+    void onLandToBoardedShip(GameObject ship)
+    {
+        Assert.IsTrue(state == states.onLand);
+        newState = states.boardedShip;
+        transform.position = ship.transform.position;
+        transform.SetParent(ship.transform);
+        shipBorded = ship;
+        boardText.SetActive(false);
+    }
+
+    void boardedShipToOnLand(Vector3 position)
+    {
+        Assert.IsTrue(state == states.boardedShip);
+        shipBorded = null;
+        transform.position = position;
+        transform.SetParent(null);
+        transform.rotation = Quaternion.identity;
+        newState = states.onLand;
+        shipBorded = null;
+        dockText.SetActive(false);
+
     }
 }
