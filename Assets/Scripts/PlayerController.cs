@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour {
         if (state == states.boardedShip)
         {
             var dockFound = dockSearch(1);
-            if (dockFound) Debug.Log("Dock Found: " + dockFound.transform.position);
+            
             var distanceToWheel = getDistanceToWheel();
             if (distanceToWheel > minDistanceToGrabWheel)
             {
