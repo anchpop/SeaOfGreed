@@ -363,7 +363,7 @@ SpriteRenderer:
   m_SortingLayerID: -1407443927
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300004, guid: bdc5dc3809e095e45a3941423dd9336a, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 95c5ab93c0137b9488c2db9cd6267d25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -379,9 +379,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717409629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.22, y: -15.04, z: 0}
+  m_LocalPosition: {x: 33.35, y: -13.63, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1269198611}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -401,6 +402,7 @@ MonoBehaviour:
   maxspeed: 1.9
   maxbackwardspeed: 2
   torque: 1.15
+  wheelMarker: {fileID: 1269198610}
 --- !u!60 &717409634
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -417,7 +419,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.85, y: 2.07}
+    oldSize: {x: 1.78, y: 4.33}
     newSize: {x: 1.68, y: 2.67}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -425,13 +427,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.42700958, y: 0.019065857}
-      - {x: -0.40776825, y: -0.65923023}
-      - {x: 0.004163742, y: -1.0552244}
-      - {x: 0.43737984, y: -0.6408682}
-      - {x: 0.42139816, y: 0.6469145}
-      - {x: 0.0017642975, y: 1.0323801}
-      - {x: -0.43920708, y: 0.674036}
+    - - {x: -0.8896475, y: -1.2831721}
+      - {x: -0.57911587, y: -1.6530433}
+      - {x: -0.012969971, y: -2.168981}
+      - {x: 0.86574745, y: -1.343391}
+      - {x: 0.93544006, y: 1.3665724}
+      - {x: 0.01889801, y: 2.1975408}
+      - {x: -0.901844, y: 1.3765597}
 --- !u!1 &1109171899
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +671,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.1
+  orthographic size: 4.06
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -710,8 +712,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 0.81
-  dampTime: 0.15
+  dampTime: 5
   target: {fileID: 1870539820}
+--- !u!1 &1269198610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1269198611}
+  m_Layer: 8
+  m_Name: Wheel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1269198611
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269198610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.18, y: 0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 717409632}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1441695735
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,14 +923,14 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1870539819
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1870539818}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1
@@ -942,7 +972,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1870539818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.14, y: -16.25, z: 0}
+  m_LocalPosition: {x: 27.99, y: -17.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1117884086}
@@ -982,6 +1012,7 @@ MonoBehaviour:
   height: 0.19
   boardShipRange: 10
   dockShipRange: 10
+  minDistanceToGrabWheel: 0.5
   walkRaycastMask:
     serializedVersion: 2
     m_Bits: 1792
