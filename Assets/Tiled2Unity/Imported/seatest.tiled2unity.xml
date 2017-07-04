@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/3/2017 7:54:09 PM-->
+<!--Last exported: 7/3/2017 8:51:23 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="seatest_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="seatest_mesh_0002" material="RPGpack_sheet" />
@@ -10,7 +10,7 @@
       <TileLayer offsetX="0" offsetY="0" />
       <GameObject name="RPGpack_sheet" mesh="seatest_mesh_0001" sortingLayerName="background" sortingOrder="0" opacity="1" />
     </GameObject>
-    <GameObject name="Island" x="0" y="0" z="0" layer="ground">
+    <GameObject name="Island" x="0" y="0" z="0" layer="Ground">
       <TileLayer offsetX="0" offsetY="0" />
       <GameObject name="RPGpack_sheet" mesh="seatest_mesh_0002" sortingLayerName="Island" sortingOrder="1" opacity="1" />
       <GameObject name="Collision">
