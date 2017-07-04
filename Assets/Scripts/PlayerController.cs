@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour {
     public float boardShipRange = 10;
     public float dockShipRange = 10;
 
+    bool boarded = false;
+    GameObject shipBorded;
+
     public LayerMask walkRaycastMask;
     public LayerMask dockRaycastMask;
     public LayerMask boatRaycastMask;
@@ -20,13 +23,39 @@ public class PlayerController : MonoBehaviour {
 
     RaycastHit2D boatSearch(int iterations)
     {
-
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, boardShipRange, boatRaycastMask);
+        return hit;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-        
+
+    float getDistanceToWheel()
+    {
+        return Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
+    }
+
+    void boardShip(GameObject ship)
+    {
+        transform.position = ship.transform.position;
+        transform.SetParent(ship.transform);
+        boarded = true;
+        shipBorded = ship;
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        RaycastHit2D boatFound = boatSearch(1);
+        if (!shipBorded && boatFound)
+        {
+            Debug.Log("boatFound");
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                boardShip(boatFound.collider.gameObject);
+            }
+        }
+        if (shipBorded)
+        {
+            getDistanceToWheel();
+        }
 
         var input_x = Input.GetAxisRaw("Horizontal"); 
         var input_y = Input.GetAxisRaw("Vertical");

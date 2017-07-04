@@ -11,6 +11,8 @@ public class ShipController : MonoBehaviour {
     public float maxspeed = 10;
     public float maxbackwardspeed = 2;
     public float torque = 2;
+
+    public GameObject wheelMarker;
     // Use this for initialization
     void Start () {
         body = GetComponent<Rigidbody2D>();
