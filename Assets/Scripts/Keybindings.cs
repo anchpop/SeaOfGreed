@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AssemblyCSharp
+namespace SeaOfGreed
 {
 	public static class Keybindings
 	{

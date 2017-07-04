@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine;
 
+namespace SeaOfGreed{
 public class PlayerController : MonoBehaviour {
     enum states
     {
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		Keybindings.Load()
+		Keybindings.Load ();
         anim = GetComponent<Animator>();
 	}
 
@@ -204,4 +205,5 @@ public class PlayerController : MonoBehaviour {
         dockText.SetActive(false);
 
     }
+}
 }
