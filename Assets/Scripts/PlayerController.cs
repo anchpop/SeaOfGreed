@@ -15,6 +15,14 @@ namespace SeaOfGreed{
             jumpingToShip,
             steeringShip,
         }
+        enum helpText
+        {
+            boardText,
+            dockText,
+            wheelText,
+            none,
+        }
+        helpText helpTextToDisplay = helpText.none;
         states state = states.onLand;
         states newState = states.noState;
 
@@ -108,6 +116,20 @@ namespace SeaOfGreed{
                 transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
         }
 
+        void displayHelpText()
+        {
+            boardText.SetActive(false);
+            dockText.SetActive(false);
+            wheelText.SetActive(false);
+
+            if (helpTextToDisplay == helpText.wheelText)
+                wheelText.SetActive(true);
+            else if (helpTextToDisplay == helpText.boardText)
+                boardText.SetActive(true);
+            else if (helpTextToDisplay == helpText.dockText)
+                dockText.SetActive(true);
+        }
+
         // Update is called once per frame
         void Update () {
             if (newState != states.noState)
@@ -115,17 +137,14 @@ namespace SeaOfGreed{
                 state = newState;
                 newState = states.noState;
             }
+            helpTextToDisplay = helpText.none;
 
             if (state == states.onLand)
             {
                 RaycastHit2D boatFound = boatSearch(12);
-                if (!boatFound)
-                {
-                    boardText.SetActive(false);
-                }
                 if (boatFound)
                 {
-                    boardText.SetActive(true);
+                    helpTextToDisplay = helpText.boardText;
                     if (Input.GetKeyDown(Keybindings.enterShip))
                     {
                         onLandToBoardedShip(boatFound.collider.gameObject);
@@ -139,40 +158,31 @@ namespace SeaOfGreed{
                 var dockFound = dockSearch(12);
             
                 var distanceToWheel = getDistanceToWheel();
+                if (dockFound)
+                {
+                    helpTextToDisplay = helpText.dockText;
+                    if (Input.GetKeyDown(Keybindings.enterShip))
+                        boardedShipToOnLand(dockFound.point);
+                }
                 if (distanceToWheel > minDistanceToGrabWheel)
                 {
                     wheelText.SetActive(false);
                 }
                 else if (distanceToWheel < minDistanceToGrabWheel)
                 {
+                    helpTextToDisplay = helpText.wheelText;
                     if (Input.GetKeyDown(Keybindings.use))
-                    {
                         boardedShipToSteeringShip();
-                    }
-                }
-                if (dockFound)
-                {
-                    if (Input.GetKeyDown(Keybindings.enterShip))
-                    {
-                        boardedShipToOnLand(dockFound.point);
-                    }
                 }
 
-                if (distanceToWheel < minDistanceToGrabWheel)
-                {
-                    wheelText.SetActive(true);
-                    dockText.SetActive(false);
-                }   
-                else
-                {
-                    wheelText.SetActive(false);
-                    if (dockFound)
-                        dockText.SetActive(true);
-                    else
-                        dockText.SetActive(false);
-                }
+                
 
                 walkAccordingToUserInput();
+            }
+            else
+            {
+                wheelText.SetActive(false);
+                dockText.SetActive(false);
             }
 
             if (state == states.steeringShip)
@@ -210,6 +220,8 @@ namespace SeaOfGreed{
 				sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg );
 
 			}
+
+            displayHelpText();
         }
 
         // state transitions
@@ -259,7 +271,6 @@ namespace SeaOfGreed{
             transform.position = ship.transform.position;
             transform.SetParent(ship.transform);
             shipBorded = ship;
-            boardText.SetActive(false);
         }
 
         void boardedShipToSteeringShip()
