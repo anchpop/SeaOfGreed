@@ -145,7 +145,7 @@ namespace SeaOfGreed{
                     if (Input.GetKeyDown(Keybindings.enterShip))
                     {
                         Debug.Log(dockFound.point);
-                        boardedShipToOnLand(transform.position, dockFound.point);
+                        boardedShipToOnLand(dockFound.point);
                     }
                 }
 
