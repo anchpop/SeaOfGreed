@@ -1211,6 +1211,7 @@ MonoBehaviour:
   dockShipRange: 10
   dockOffset: 0.5
   jumpTime: 0.59
+  jumpScale: 0.18
   minDistanceToGrabWheel: 0.5
   groundRaycastMask:
     serializedVersion: 2
