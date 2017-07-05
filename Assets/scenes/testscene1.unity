@@ -650,6 +650,7 @@ MonoBehaviour:
   - {fileID: 1216877896}
   - {fileID: 1289790428}
   - {fileID: 136827553}
+  - {fileID: 854415478}
   - {fileID: 313711556}
   - {fileID: 1017054109}
   - {fileID: 546528373}
@@ -657,7 +658,6 @@ MonoBehaviour:
   - {fileID: 811846657}
   - {fileID: 1451836210}
   - {fileID: 556740071}
-  - {fileID: 854415478}
   - {fileID: 1988609271}
   - {fileID: 1552372090}
   - {fileID: 751526746}
@@ -1508,6 +1508,7 @@ GameObject:
   - component: {fileID: 1870539819}
   - component: {fileID: 1870539821}
   - component: {fileID: 1870539822}
+  - component: {fileID: 1870539823}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1598,24 +1599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af1ad52d0ca7a343b43edf02dff6fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 2
-  width: 0.12
-  height: 0.19
-  boardShipRange: 4.61
-  dockShipRange: 3.62
-  dockOffset: 0
-  jumpTime: 0.59
-  jumpScale: 0.18
-  minDistanceToGrabWheel: 0.5
-  groundRaycastMask:
-    serializedVersion: 2
-    m_Bits: 1536
-  dockRaycastMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  boatRaycastMask:
-    serializedVersion: 2
-    m_Bits: 256
   boardText: {fileID: 359339931}
   dockText: {fileID: 1280218577}
   wheelText: {fileID: 2100009331}
@@ -1623,6 +1606,36 @@ MonoBehaviour:
   walkingCameraSize: 4
   interactingCameraSize: 6
   cameraEaseTime: 2
+  driver: {fileID: 1870539823}
+--- !u!114 &1870539823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870539818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84613f924d2b22244bfb9d69c5cae457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardShipRange: 10
+  dockShipRange: 10
+  dockOffset: 0.5
+  jumpTime: 1
+  jumpScale: 3
+  minDistanceToGrabWheel: 0.5
+  walkSpeed: 2
+  width: 0.12
+  height: 0.12
+  groundRaycastMask:
+    serializedVersion: 2
+    m_Bits: 512
+  dockRaycastMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  boatRaycastMask:
+    serializedVersion: 2
+    m_Bits: 256
   sprite: {fileID: 1865421334}
 --- !u!1 &1988609270
 GameObject:

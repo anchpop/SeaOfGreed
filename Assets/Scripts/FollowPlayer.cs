@@ -22,7 +22,7 @@ namespace SeaOfGreed{
 	        transform.position = target.transform.position;
 	        targetOldPosition = transform.position;
 			controller = target.GetComponent<PlayerController> ();
-			controller.StateChanged += controller_StateChanged;
+			controller.driver.StateChanged += driver_StateChanged;
 
 	    }
 			
@@ -65,14 +65,16 @@ namespace SeaOfGreed{
 	        
 	    }
 
-		private void controller_StateChanged(PlayerController sender, StateChangedEventArgs e){
-			if (e.beforeState == states.boardedShip && e.afterState == states.steeringShip) {
-				LeanTween.cancel(sender.mainCamera.gameObject);
-				LeanTween.value(sender.mainCamera.gameObject, val => sender.mainCamera.orthographicSize = val, sender.mainCamera.orthographicSize, sender.interactingCameraSize, sender.cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
-			}
-			if (e.beforeState == states.steeringShip && e.afterState == states.boardedShip) {
-				LeanTween.cancel(sender.mainCamera.gameObject);
-				LeanTween.value(sender.mainCamera.gameObject, val => sender.mainCamera.orthographicSize = val, sender.mainCamera.orthographicSize, sender.walkingCameraSize, sender.cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
+		private void driver_StateChanged(PlayerDriver sender, StateChangedEventArgs e){
+			if (sender.controller != null) {
+				if (e.beforeState == states.boardedShip && e.afterState == states.steeringShip) {
+					LeanTween.cancel (sender.controller.mainCamera.gameObject);
+					LeanTween.value (sender.controller.mainCamera.gameObject, val => sender.controller.mainCamera.orthographicSize = val, sender.controller.mainCamera.orthographicSize, sender.controller.interactingCameraSize, sender.controller.cameraEaseTime).setEase (LeanTweenType.easeInOutQuad);
+				}
+				if (e.beforeState == states.steeringShip && e.afterState == states.boardedShip) {
+					LeanTween.cancel (sender.controller.mainCamera.gameObject);
+					LeanTween.value (sender.controller.mainCamera.gameObject, val => sender.controller.mainCamera.orthographicSize = val, sender.controller.mainCamera.orthographicSize, sender.controller.walkingCameraSize, sender.controller.cameraEaseTime).setEase (LeanTweenType.easeInOutQuad);
+				}
 			}
 		}
 	}
