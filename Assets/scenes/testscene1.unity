@@ -1153,7 +1153,7 @@ SpriteRenderer:
   m_SortingLayerID: -1191292591
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e278d5e620245646a6b434878105346, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46dfa22b58425c8498389defc19cd1a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1170,7 +1170,7 @@ Transform:
   m_GameObject: {fileID: 1870539818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.99, y: -17.81, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 1865421335}
   m_Father: {fileID: 0}
@@ -1212,9 +1212,9 @@ MonoBehaviour:
   dockOffset: 0.5
   jumpTime: 0.59
   minDistanceToGrabWheel: 0.5
-  walkRaycastMask:
+  groundRaycastMask:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 1536
   dockRaycastMask:
     serializedVersion: 2
     m_Bits: 1024
