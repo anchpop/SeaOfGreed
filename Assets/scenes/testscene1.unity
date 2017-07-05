@@ -1222,6 +1222,9 @@ MonoBehaviour:
   boardText: {fileID: 359339931}
   dockText: {fileID: 1280218577}
   wheelText: {fileID: 2100009331}
+  mainCamera: {fileID: 1126675439}
+  walkingCameraSize: 4
+  interactingCameraSize: 6
 --- !u!1 &2100009331
 GameObject:
   m_ObjectHideFlags: 0
