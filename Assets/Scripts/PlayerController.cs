@@ -24,6 +24,7 @@ namespace SeaOfGreed{
 
         public float boardShipRange = 10;
         public float dockShipRange = 10;
+        public float dockOffset = .5f;
         public float jumpTime = 1;
 
 
@@ -144,7 +145,6 @@ namespace SeaOfGreed{
                     dockText.SetActive(true);
                     if (Input.GetKeyDown(Keybindings.enterShip))
                     {
-                        Debug.Log(dockFound.point);
                         boardedShipToOnLand(dockFound.point);
                     }
                 }
@@ -179,14 +179,16 @@ namespace SeaOfGreed{
         }
 
         // state transitions
-        void boardedShipToOnLand2(Vector3 fromFocation, Vector3 closestDock)
+        void boardedShipToOnLand2(Vector3 closestDock) // this was a test of the animations, didn't work lol
         {
+            var fromLocation = transform.position;
             // get the location to jump to by extending the line between fromLocation and closestDock
-            var jumpVector = closestDock - fromFocation;
-            var toLocation = closestDock + (jumpVector.normalized * (jumpVector.magnitude));
+            var jumpVector = closestDock - fromLocation;
+            var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
 
             newState = states.jumpingToLand;
-            LeanTween.value(gameObject, pos => transform.position = pos, fromFocation, toLocation, jumpTime).setEase(LeanTweenType.linear);
+            LeanTween.value(gameObject, pos => { transform.position = pos; if (pos == toLocation) Debug.Log("??");  }, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo);
+
         }
 
         void boardedShipToSteeringShip()
