@@ -39,7 +39,42 @@ namespace SeaOfGreed{
             var input_y = Input.GetAxisRaw("Vertical");
 
             driver.walkInDirection(new Vector3(input_x, input_y));
-            
+        }
+
+        void steerShipAccordingToUserInput()
+        {
+            driver.sprite.transform.localRotation = Quaternion.identity;
+            var shipController = driver.shipBorded.GetComponent<ShipController>();
+            if (Input.GetKey(Keybindings.shipForward))
+            {
+                shipController.accelerate();
+            }
+            if (Input.GetKey(Keybindings.shipReverse))
+            {
+                shipController.brake();
+            }
+            if (Input.GetKey(Keybindings.shipLeft))
+            {
+                shipController.turn(1);
+            }
+            if (Input.GetKey(Keybindings.shipRight))
+            {
+                shipController.turn(-1);
+            }
+            if (Input.GetKeyDown(Keybindings.use))
+            {
+                driver.steeringShipToBoardedShip();
+            }
+        }
+
+        void lookTowardsMouse()
+        {
+            if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip)
+            {
+                var mousePos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCamera.transform.position.z - transform.position.z));
+                Vector3 diff = (mousePos - driver.sprite.transform.position);
+                driver.lookInDirection(diff);
+            }
         }
 
         void displayHelpText()
@@ -58,98 +93,32 @@ namespace SeaOfGreed{
 
         // Update is called once per frame
         void Update () {
-			Debug.Log (driver.state);
-            if (driver.newState != states.noState)
+            if (driver.state == states.boardedShip || driver.state == states.onLand)
             {
-                driver.state = driver.newState;
-                driver.newState = states.noState;
-            }
-            helpTextToDisplay = helpText.none;
-
-            if (driver.state == states.onLand)
-            {
-                RaycastHit2D boatFound = driver.boatSearch(12);
-                if (boatFound)
-                {
-                    helpTextToDisplay = helpText.boardText;
-                    if (Input.GetKeyDown(Keybindings.enterShip))
-                    {
-                        driver.onLandToBoardedShip(boatFound.collider.gameObject);
-                    }
-                }
-
                 walkAccordingToUserInput();
             }
-            if (driver.state == states.boardedShip)
+            if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip)
             {
-				var dockFound = driver.dockSearch(12);
-            
-				var distanceToWheel = driver.getDistanceToWheel();
-                if (dockFound)
-                {
-                    helpTextToDisplay = helpText.dockText;
-                    if (Input.GetKeyDown(Keybindings.enterShip))
-						driver.boardedShipToOnLand(dockFound.point);
-                }
-				if (distanceToWheel > driver.minDistanceToGrabWheel)
-                {
-					wheelText.SetActive (false);
-                }
-				else if (distanceToWheel < driver.minDistanceToGrabWheel)
-                {
-                    helpTextToDisplay = helpText.wheelText;
-                    if (Input.GetKeyDown(Keybindings.use))
-						driver.boardedShipToSteeringShip();
-                }
-
-                
-
-                walkAccordingToUserInput();
-            }
-            else
-            {
-				wheelText.SetActive (false);
-				dockText.SetActive (false);
+                lookTowardsMouse();
             }
 
-			if (driver.state == states.steeringShip)
+            if (driver.state == states.onLand && driver.canBoardShip() && Input.GetKeyDown(Keybindings.enterShip))
             {
-				//sprite.transform.rotation = shipBorded.transform.rotation;
-				driver.sprite.transform.localRotation = Quaternion.identity;
-				var shipController = driver.shipBorded.GetComponent<ShipController>();
-                if (Input.GetKey(Keybindings.shipForward))
-                {
-                    shipController.accelerate();
-                }
-                if (Input.GetKey(Keybindings.shipReverse))
-                {
-                    shipController.brake();
-                }
-                if (Input.GetKey(Keybindings.shipLeft))
-                {
-                    shipController.turn(1);
-                }
-                if (Input.GetKey(Keybindings.shipRight))
-                {
-                    shipController.turn(-1);
-                }
-                if (Input.GetKeyDown(Keybindings.use))
-                {
-					driver.steeringShipToBoardedShip();
-                }
+                driver.boardShipHelper();
             }
-			if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
-				//var mousePosition = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
-				//transform.up = Input.mousePosition - transform.position;
-				//Vector3 diff = sprite.transform.InverseTransformPoint(Input.mousePosition);
-				var mousePos = mainCamera.ScreenToWorldPoint (new Vector3(Input.mousePosition.x,Input.mousePosition.y, mainCamera.transform.position.z-transform.position.z));
-				Vector3 diff = (mousePos - driver.sprite.transform.position); 
-				var tan = Mathf.Atan2 ( diff.x, diff.y );
-				driver.sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg );
+            if (driver.state == states.boardedShip && driver.canDockShip() && Input.GetKeyDown(Keybindings.enterShip))
+            {
+                driver.dockShipHelper();
+            }
+            if (driver.state == states.boardedShip && driver.canGrabWheel() && Input.GetKeyDown(Keybindings.use))
+            {
+                driver.grabWheelHelper();
+            }
+            if (driver.state == states.steeringShip)
+            {
+                steerShipAccordingToUserInput();
+            }
 
-			}
-
-            displayHelpText();
         }
 
 

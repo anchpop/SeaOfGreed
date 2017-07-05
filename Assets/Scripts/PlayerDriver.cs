@@ -14,7 +14,7 @@ namespace SeaOfGreed{
 		public float dockOffset = .5f;
 		public float jumpTime = 1;
 		public float jumpScale = 3;
-		public float minDistanceToGrabWheel = .5f;
+		public float maxDistanceToGrabWheel = .5f;
 
 		public float walkSpeed = 2;
 		public float width = .12f;
@@ -44,8 +44,20 @@ namespace SeaOfGreed{
 		
 		// Update is called once per frame
 		void Update () {
-			
-		}
+            Debug.Log(state);
+            if (newState != states.noState)
+            {
+                state = newState;
+                newState = states.noState;
+            }
+            
+            if (state == states.steeringShip)
+            {
+                //sprite.transform.rotation = shipBorded.transform.rotation;
+
+            }
+            
+        }
 
 		internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
 		{
@@ -67,12 +79,50 @@ namespace SeaOfGreed{
 			return raysearch(transform.position, dockShipRange, iterations, dockRaycastMask);
 		}
 
-		internal float getDistanceToWheel()
+        public void boardShipHelper()
+        {
+            Assert.IsTrue(state == states.onLand);
+            onLandToBoardedShip(boatSearch(12).collider.gameObject);
+        }
+        public bool canBoardShip()
+        {
+            Assert.IsTrue(state == states.onLand);
+            return boatSearch(12);
+        }
+
+        public void dockShipHelper()
+        {
+            Assert.IsTrue(state == states.boardedShip);
+            boardedShipToOnLand(dockSearch(12).point);
+        }
+        public bool canDockShip()
+        {
+            Assert.IsTrue(state == states.boardedShip);
+            return boatSearch(12);
+        }
+        public void grabWheelHelper()
+        {
+            Assert.IsTrue(state == states.boardedShip);
+            boardedShipToSteeringShip();
+        }
+        public bool canGrabWheel()
 		{
-			return Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
+            Assert.IsTrue(state == states.boardedShip);
+            float distanceToWheel = Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
+            bool closeEnoughToGrabWheel = distanceToWheel <= maxDistanceToGrabWheel;
+
+            return closeEnoughToGrabWheel;
 		}
 
-        
+
+        public void lookInDirection(Vector3 direction)
+        {
+            
+            var tan = Mathf.Atan2(direction.x, direction.y);
+            sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+
+        }
+
         public void walkInDirection(Vector3 direction)
         {
             bool isWalking = (direction.x != 0) || (direction.y != 0);
@@ -93,7 +143,7 @@ namespace SeaOfGreed{
         }
 
 		// state transitions
-		internal void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
+		public void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
 		{
 
 			var fromLocation = transform.position;
@@ -131,7 +181,7 @@ namespace SeaOfGreed{
 
 		}
 
-		internal void onLandToBoardedShip(GameObject ship)
+		public void onLandToBoardedShip(GameObject ship)
 		{
 			var fromLocation = transform.position;
 			var toLocation = ship.GetComponent<ShipController>().getClosestBoardingPoint(transform.position);
@@ -161,7 +211,7 @@ namespace SeaOfGreed{
 			seq.append(() => jumpingToShipToBoardedShip(ship, toLocation));
 		}
 
-		internal void jumpingToShipToBoardedShip(GameObject ship, Vector3 location)
+		public void jumpingToShipToBoardedShip(GameObject ship, Vector3 location)
 		{
 			Assert.IsTrue(state == states.jumpingToShip);
 			transform.rotation = ship.transform.rotation;
@@ -171,7 +221,7 @@ namespace SeaOfGreed{
 			shipBorded = ship;
 		}
 
-		internal void boardedShipToSteeringShip()
+		public void boardedShipToSteeringShip()
 		{
 			Assert.IsTrue(state == states.boardedShip);
 			newState = states.steeringShip;
@@ -182,7 +232,7 @@ namespace SeaOfGreed{
 			//LeanTween.value(walkingCameraSize, interactingCameraSize)
 		}
 
-		internal void steeringShipToBoardedShip()
+		public void steeringShipToBoardedShip()
 		{
 			StateChanged (this, new StateChangedEventArgs (states.steeringShip, states.boardedShip));
 
@@ -191,7 +241,7 @@ namespace SeaOfGreed{
 		}
 
 
-		internal void jumpingToLandToOnLand()
+		public void jumpingToLandToOnLand()
 		{
 			Assert.IsTrue(state == states.jumpingToLand);
 			shipBorded = null;
