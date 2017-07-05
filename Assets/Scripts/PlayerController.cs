@@ -43,6 +43,11 @@ namespace SeaOfGreed{
         public float interactingCameraSize = 6;
         public float cameraEaseTime = 2;
 
+		private Vector3 v_diff;
+		private float atan2;
+
+		public GameObject sprite;
+
         Animator anim;
     
         GameObject shipBorded;
@@ -197,6 +202,16 @@ namespace SeaOfGreed{
                     steeringShipToBoardedShip();
                 }
             }
+			if (state == states.boardedShip || state == states.onLand) {
+				//var mousePosition = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+				//transform.up = Input.mousePosition - transform.position;
+				//Vector3 diff = sprite.transform.InverseTransformPoint(Input.mousePosition);
+				var mousePos = Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x,Input.mousePosition.y, Camera.main.transform.position.z-transform.position.z));
+				Vector3 diff = (mousePos - sprite.transform.position); 
+				var tan = Mathf.Atan2 ( diff.x, diff.y );
+				sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg );
+
+			}
         }
 
         // state transitions
