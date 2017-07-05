@@ -92,7 +92,7 @@ namespace SeaOfGreed{
         public bool canDockShip()
         {
             Assert.IsTrue(state == states.boardedShip);
-            return boatSearch(12);
+            return dockSearch(12);
         }
         public void grabWheelHelper()
         {

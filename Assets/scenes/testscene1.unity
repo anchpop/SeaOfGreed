@@ -1718,8 +1718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84613f924d2b22244bfb9d69c5cae457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardShipRange: 10
-  dockShipRange: 10
+  boardShipRange: 5
+  dockShipRange: 3
   dockOffset: 0.5
   jumpTime: 1
   jumpScale: 0.6

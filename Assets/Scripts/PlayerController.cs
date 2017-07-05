@@ -83,11 +83,11 @@ namespace SeaOfGreed{
             dockText.SetActive(false);
             wheelText.SetActive(false);
 
-            if (helpTextToDisplay == helpText.wheelText)
+            if (driver.state == states.boardedShip && driver.canGrabWheel())
                 wheelText.SetActive(true);
-            else if (helpTextToDisplay == helpText.boardText)
+            else if (driver.state == states.onLand && driver.canBoardShip())
                 boardText.SetActive(true);
-            else if (helpTextToDisplay == helpText.dockText)
+            else if (driver.state == states.boardedShip && driver.canDockShip())
                 dockText.SetActive(true);
         }
 
@@ -100,6 +100,10 @@ namespace SeaOfGreed{
             if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip)
             {
                 lookTowardsMouse();
+            }
+            if (driver.state == states.onLand || driver.state == states.boardedShip)
+            {
+                displayHelpText();
             }
 
             if (driver.state == states.onLand && driver.canBoardShip() && Input.GetKeyDown(Keybindings.enterShip))
@@ -118,6 +122,8 @@ namespace SeaOfGreed{
             {
                 steerShipAccordingToUserInput();
             }
+
+            
 
         }
 
