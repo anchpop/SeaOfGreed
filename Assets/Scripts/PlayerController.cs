@@ -188,7 +188,7 @@ namespace SeaOfGreed{
 
             if (state == states.steeringShip)
             {
-				sprite.transform.rotation = shipBorded.transform.rotation;
+				//sprite.transform.rotation = shipBorded.transform.rotation;
                 var shipController = shipBorded.GetComponent<ShipController>();
                 if (Input.GetKey(Keybindings.shipForward))
                 {
@@ -296,7 +296,6 @@ namespace SeaOfGreed{
             newState = states.steeringShip;
             wheelText.SetActive(false);
             transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
-			sprite.transform.rotation = shipBorded.transform.rotation;
             LeanTween.cancel(mainCamera.gameObject);
             LeanTween.value(mainCamera.gameObject, val => mainCamera.orthographicSize = val, mainCamera.orthographicSize, interactingCameraSize, cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
             //LeanTween.value(walkingCameraSize, interactingCameraSize)
