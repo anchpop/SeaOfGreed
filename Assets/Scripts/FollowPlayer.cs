@@ -52,7 +52,7 @@ namespace SeaOfGreed{
 	        Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
 	        Vector3 destination = transform.position + delta;
 	        //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
-			transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime == 0 ? .2f : Time.deltaTime, dampTime);
+	        transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime, dampTime);
 	        transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
 			//transform.rotation = target.rotation;
 				

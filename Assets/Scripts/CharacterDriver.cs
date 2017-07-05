@@ -44,7 +44,7 @@ namespace SeaOfGreed{
 		
 		// Update is called once per frame
 		void Update () {
-            //Debug.Log(state);
+            Debug.Log(state);
             if (newState != states.noState)
             {
                 state = newState;
