@@ -11,11 +11,28 @@ public class ShipController : MonoBehaviour {
     public float maxspeed = 10;
     public float maxbackwardspeed = 2;
     public float torque = 2;
+    public List<Transform> boardingPoints;
 
     public GameObject wheelMarker;
     // Use this for initialization
     void Start () {
         body = GetComponent<Rigidbody2D>();
+    }
+
+    Vector3 getClosestBoardingPoint(Vector3 position)
+    {
+        int closestPoint = 0;
+        float closestDistSqr = (position - boardingPoints[0].position).sqrMagnitude;
+        for (int boardingPointIndex = 1; boardingPointIndex < boardingPoints.Count; boardingPointIndex++)
+        {
+            var newDist = (position - boardingPoints[boardingPointIndex].position).sqrMagnitude;
+            if (newDist < closestDistSqr)
+            {
+                closestDistSqr = newDist;
+                closestPoint = boardingPointIndex;
+            }
+        } 
+        return boardingPoints[closestPoint].position;
     }
 
     private void applyContinuousForce(float speed, Vector3 force, float maxVelocity, float minVelocity = 0)
