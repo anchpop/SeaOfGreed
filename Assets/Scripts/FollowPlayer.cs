@@ -53,6 +53,7 @@ public class FollowPlayer : MonoBehaviour
             var difference = transform.position - destination;
             transform.position = destination + difference.normalized * maxDist;
         }
-
+        transform.rotation = target.transform.rotation;
+        
     }
 }

@@ -1209,6 +1209,8 @@ MonoBehaviour:
   height: 0.19
   boardShipRange: 10
   dockShipRange: 10
+  dockOffset: 0.5
+  jumpTime: 0.59
   minDistanceToGrabWheel: 0.5
   walkRaycastMask:
     serializedVersion: 2
@@ -1225,6 +1227,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1126675439}
   walkingCameraSize: 4
   interactingCameraSize: 6
+  cameraEaseTime: 2
 --- !u!1 &2100009331
 GameObject:
   m_ObjectHideFlags: 0
