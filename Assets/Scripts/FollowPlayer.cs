@@ -12,6 +12,7 @@ public class FollowPlayer : MonoBehaviour
     new Camera camera;
 
 
+
     void Start()
     {
         camera = GetComponent<Camera>();
@@ -30,6 +31,7 @@ public class FollowPlayer : MonoBehaviour
             moveCameraToPlayer(dampTime, maxDistance);
         }
         targetOldPosition = target.transform.position;
+
     }
 
     Vector3 SuperSmoothLerp(Vector3 followerOldPos, Vector3 targetOldPos, Vector3 targetNewPos, float timeElapsed, float lerpRate)
@@ -47,14 +49,14 @@ public class FollowPlayer : MonoBehaviour
         //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime, dampTime);
         transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
-		transform.rotation = target.rotation;
+		//transform.rotation = target.rotation;
 			
         if ((transform.position - destination).magnitude > maxDist)
         {
             var difference = transform.position - destination;
             transform.position = destination + difference.normalized * maxDist;
         }
-        transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, .1f * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, 1.5f * Time.deltaTime);
         
     }
 }

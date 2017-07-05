@@ -208,11 +208,19 @@ namespace SeaOfGreed{
             var jumpVector = closestDock - fromLocation;
             var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
 
+			var fromRotation = shipBorded.transform.rotation;
+
             newState = states.jumpingToLand;
 
             var seq = LeanTween.sequence();
-            seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo));
+
+
+
+			seq.append(LeanTween.value(gameObject, (pos) => {transform.position = pos;}, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo));
+			//LeanTween.value(gameObject, (rotz) => {transform.rotation.Set(transform.rotation.x, transform.rotation.y, rotz, transform.rotation.w);}, fromRotation.z, Quaternion.identity.z, jumpTime).setEase(LeanTweenType.easeInOutExpo);
             seq.append(() => jumpingToLandToOnLand());
+
+			
 
         }
 
@@ -220,10 +228,13 @@ namespace SeaOfGreed{
         {
             var fromLocation = transform.position;
             var toLocation = ship.transform.position;
+
+
             newState = states.jumpingToShip;
 
             var seq = LeanTween.sequence();
             seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo));
+
             seq.append(() => jumpingToShipToBoardedShip(ship));
         }
 
@@ -262,9 +273,9 @@ namespace SeaOfGreed{
         void jumpingToLandToOnLand()
         {
             Assert.IsTrue(state == states.jumpingToLand);
-            shipBorded = null;
-            transform.SetParent(null);
-            transform.rotation = Quaternion.identity;
+			shipBorded = null;
+			transform.SetParent(null);
+			transform.rotation = Quaternion.identity;
             newState = states.onLand;
             shipBorded = null;
             dockText.SetActive(false);
