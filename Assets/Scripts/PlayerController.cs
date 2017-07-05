@@ -9,8 +9,10 @@ namespace SeaOfGreed{
         {
             noState,
             onLand,
+            jumpingToLand,
             swimming,
             boardedShip,
+            jumpingToShip,
             steeringShip,
         }
         states state = states.onLand;
@@ -22,6 +24,8 @@ namespace SeaOfGreed{
 
         public float boardShipRange = 10;
         public float dockShipRange = 10;
+        public float jumpTime = 1;
+
 
         public float minDistanceToGrabWheel = .5f;
 
@@ -141,7 +145,7 @@ namespace SeaOfGreed{
                     if (Input.GetKeyDown(Keybindings.enterShip))
                     {
                         Debug.Log(dockFound.point);
-                        boardedShipToOnLand(dockFound.point);
+                        boardedShipToOnLand(transform.position, dockFound.point);
                     }
                 }
 
@@ -175,6 +179,16 @@ namespace SeaOfGreed{
         }
 
         // state transitions
+        void boardedShipToOnLand2(Vector3 fromFocation, Vector3 closestDock)
+        {
+            // get the location to jump to by extending the line between fromLocation and closestDock
+            var jumpVector = closestDock - fromFocation;
+            var toLocation = closestDock + (jumpVector.normalized * (jumpVector.magnitude));
+
+            newState = states.jumpingToLand;
+            LeanTween.value(gameObject, pos => transform.position = pos, fromFocation, toLocation, jumpTime).setEase(LeanTweenType.linear);
+        }
+
         void boardedShipToSteeringShip()
         {
             Assert.IsTrue(state == states.boardedShip);
