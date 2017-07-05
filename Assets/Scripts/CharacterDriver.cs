@@ -12,7 +12,7 @@ namespace SeaOfGreed{
 		public float boardShipRange = 10;
 		public float dockShipRange = 10;
 		public float dockOffset = .5f;
-		public float jumpTime = 1;
+		public float jumpSpeed = 10;
 		public float jumpScale = 3;
 		public float maxDistanceToGrabWheel = .5f;
 
@@ -144,8 +144,11 @@ namespace SeaOfGreed{
 			// get the location to jump to by extending the line between fromLocation and closestDock
 			var jumpVector = closestDock - fromLocation;
 			var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
+            var jumpDistance = (fromLocation - toLocation).magnitude;
+            var jumpTime = jumpDistance / jumpSpeed;
 
-			var fromRotation = shipBorded.transform.rotation;
+
+            var fromRotation = shipBorded.transform.rotation;
 
 			newState = states.jumpingToLand;
 
@@ -156,8 +159,8 @@ namespace SeaOfGreed{
             LeanTween.value(gameObject,
                 (time) => {
                     transform.localScale = new Vector3(
-                    originalScale.x + myMath.parabolicScaleCalc(time, jumpScale),
-                    originalScale.y + myMath.parabolicScaleCalc(time, jumpScale),
+                    originalScale.x + myMath.parabolicScaleCalc(time, jumpScale * jumpTime),
+                    originalScale.y + myMath.parabolicScaleCalc(time, jumpScale * jumpTime),
                     originalScale.z);
                 },
                 -1, 1, jumpTime)
@@ -179,8 +182,10 @@ namespace SeaOfGreed{
 		{
 			var fromLocation = transform.position;
 			var toLocation = ship.GetComponent<ShipController>().getClosestBoardingPoint(transform.position);
+            var jumpDistance = (fromLocation - toLocation).magnitude;
+            var jumpTime = jumpDistance / jumpSpeed;
 
-			var originalScale = transform.localScale;
+            var originalScale = transform.localScale;
 
 
 			newState = states.jumpingToShip;
