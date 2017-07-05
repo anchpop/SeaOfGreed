@@ -51,12 +51,6 @@ namespace SeaOfGreed{
                 newState = states.noState;
             }
             
-            if (state == states.steeringShip)
-            {
-                //sprite.transform.rotation = shipBorded.transform.rotation;
-
-            }
-            
         }
 
 		internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
