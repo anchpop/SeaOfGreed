@@ -5,16 +5,7 @@ using UnityEngine;
 
 namespace SeaOfGreed{
     public class PlayerController : MonoBehaviour {
-        enum states
-        {
-            noState,
-            onLand,
-            jumpingToLand,
-            swimming,
-            boardedShip,
-            jumpingToShip,
-            steeringShip,
-        }
+        
         enum helpText
         {
             boardText,
@@ -22,8 +13,9 @@ namespace SeaOfGreed{
             wheelText,
             none,
         }
+
         helpText helpTextToDisplay = helpText.none;
-        states state = states.onLand;
+		internal states state = states.onLand;
         states newState = states.noState;
 
         public float walkSpeed = 2;
@@ -58,6 +50,9 @@ namespace SeaOfGreed{
     
         GameObject shipBorded;
     
+
+		public delegate void StateChangedEventHandler(PlayerController sender, StateChangedEventArgs e);
+		public event StateChangedEventHandler StateChanged;
     
 
 
@@ -216,7 +211,7 @@ namespace SeaOfGreed{
 				//var mousePosition = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 				//transform.up = Input.mousePosition - transform.position;
 				//Vector3 diff = sprite.transform.InverseTransformPoint(Input.mousePosition);
-				var mousePos = Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x,Input.mousePosition.y, Camera.main.transform.position.z-transform.position.z));
+				var mousePos = mainCamera.ScreenToWorldPoint (new Vector3(Input.mousePosition.x,Input.mousePosition.y, mainCamera.transform.position.z-transform.position.z));
 				Vector3 diff = (mousePos - sprite.transform.position); 
 				var tan = Mathf.Atan2 ( diff.x, diff.y );
 				sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg );
@@ -242,15 +237,17 @@ namespace SeaOfGreed{
 
             var originalScale = transform.localScale;
 
+			// sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
+			var seq = LeanTween.sequence();
+			// move the character to their destination
+			seq.append(LeanTween.value(gameObject, (pos) => {transform.position = pos;}, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
+			//LeanTween.value(gameObject, (rotz) => {transform.rotation.Set(transform.rotation.x, transform.rotation.y, rotz, transform.rotation.w);}, fromRotation.z, Quaternion.identity.z, jumpTime).setEase(LeanTweenType.easeInOutExpo);
+			seq.append(jumpingToLandToOnLand);
+
             // scale the character so they look like they're jumping
             LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
 
-            // sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
-            var seq = LeanTween.sequence();
-            // move the character to their destination
-            seq.append(LeanTween.value(gameObject, (pos) => {transform.position = pos;}, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
-            //LeanTween.value(gameObject, (rotz) => {transform.rotation.Set(transform.rotation.x, transform.rotation.y, rotz, transform.rotation.w);}, fromRotation.z, Quaternion.identity.z, jumpTime).setEase(LeanTweenType.easeInOutExpo);
-            seq.append(jumpingToLandToOnLand);
+
 
 			
 
@@ -294,15 +291,14 @@ namespace SeaOfGreed{
 			helpTextToDisplay = helpText.none;
             transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
 			//sprite.transform.localRotation = shipBorded.GetComponent<ShipController>().wheelMarker.transform.rotation;
-            LeanTween.cancel(mainCamera.gameObject);
-            LeanTween.value(mainCamera.gameObject, val => mainCamera.orthographicSize = val, mainCamera.orthographicSize, interactingCameraSize, cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
+			StateChanged(this, new StateChangedEventArgs(states.boardedShip, states.steeringShip));
+
             //LeanTween.value(walkingCameraSize, interactingCameraSize)
         }
 
         void steeringShipToBoardedShip()
         {
-            LeanTween.cancel(mainCamera.gameObject);
-            LeanTween.value(mainCamera.gameObject, val => mainCamera.orthographicSize = val, mainCamera.orthographicSize, walkingCameraSize, cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
+			StateChanged (this, new StateChangedEventArgs (states.steeringShip, states.boardedShip));
 
             Assert.IsTrue(state == states.steeringShip);
             newState = states.boardedShip;

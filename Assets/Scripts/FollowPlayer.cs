@@ -1,62 +1,79 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FollowPlayer : MonoBehaviour
-{
-    public float maxDistance = 3;
-    public float dampTime = 0.15f;
-    float zDistFromTarget = -.5f;
-    private Vector3 targetOldPosition;
-    private Vector3 velocity = Vector3.zero;
-    public Transform target;
-    new Camera camera;
+namespace SeaOfGreed{
+	public class FollowPlayer : MonoBehaviour
+	{
+	    public float maxDistance = 3;
+	    public float dampTime = 0.15f;
+	    float zDistFromTarget = -.5f;
+	    private Vector3 targetOldPosition;
+	    private Vector3 velocity = Vector3.zero;
+		public Transform target = null;
+		private PlayerController controller;
+	    new Camera camera;
 
 
 
-    void Start()
-    {
-        camera = GetComponent<Camera>();
-        //moveCameraToPlayer(0, 0);
-        transform.position = target.transform.position;
-        targetOldPosition = transform.position;
-    }
+	    void Start()
+	    {
+	        camera = GetComponent<Camera>();
+	        //moveCameraToPlayer(0, 0);
+	        transform.position = target.transform.position;
+	        targetOldPosition = transform.position;
+			controller = target.GetComponent<PlayerController> ();
+			controller.StateChanged += controller_StateChanged;
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        //velocity = (transform.position - oldPosition) * Time.deltaTime;
-        if (target)
-        {
-            moveCameraToPlayer(dampTime, maxDistance);
-        }
-        targetOldPosition = target.transform.position;
-
-    }
-
-    Vector3 SuperSmoothLerp(Vector3 followerOldPos, Vector3 targetOldPos, Vector3 targetNewPos, float timeElapsed, float lerpRate)
-    {
-        Vector3 f = followerOldPos - targetOldPos + (targetNewPos - targetOldPos) / (lerpRate * timeElapsed);
-        return targetNewPos - (targetNewPos - targetOldPos) / (lerpRate * timeElapsed) + f * Mathf.Exp(-lerpRate * timeElapsed);
-    }
-
-
-    void moveCameraToPlayer(float dampTime, float maxDist)
-    {
-        Vector3 point = camera.WorldToViewportPoint(target.position);
-        Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
-        Vector3 destination = transform.position + delta;
-        //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
-        transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime, dampTime);
-        transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
-		//transform.rotation = target.rotation;
+	    }
 			
-        if ((transform.position - destination).magnitude > maxDist)
-        {
-            var difference = transform.position - destination;
-            transform.position = destination + difference.normalized * maxDist;
-        }
-        transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, 1.5f * Time.deltaTime);
-        
-    }
+
+
+	    // Update is called once per frame
+	    void Update()
+	    {
+			if (target)
+	        {
+	            moveCameraToPlayer(dampTime, maxDistance);
+	        }
+	        targetOldPosition = target.transform.position;
+
+	    }
+
+	    Vector3 SuperSmoothLerp(Vector3 followerOldPos, Vector3 targetOldPos, Vector3 targetNewPos, float timeElapsed, float lerpRate)
+	    {
+	        Vector3 f = followerOldPos - targetOldPos + (targetNewPos - targetOldPos) / (lerpRate * timeElapsed);
+	        return targetNewPos - (targetNewPos - targetOldPos) / (lerpRate * timeElapsed) + f * Mathf.Exp(-lerpRate * timeElapsed);
+	    }
+
+
+	    void moveCameraToPlayer(float dampTime, float maxDist)
+	    {
+	        Vector3 point = camera.WorldToViewportPoint(target.position);
+	        Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+	        Vector3 destination = transform.position + delta;
+	        //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+	        transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime, dampTime);
+	        transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
+			//transform.rotation = target.rotation;
+				
+	        if ((transform.position - destination).magnitude > maxDist)
+	        {
+	            var difference = transform.position - destination;
+	            transform.position = destination + difference.normalized * maxDist;
+	        }
+	        transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, 1.5f * Time.deltaTime);
+	        
+	    }
+
+		private void controller_StateChanged(PlayerController sender, StateChangedEventArgs e){
+			if (e.beforeState == states.boardedShip && e.afterState == states.steeringShip) {
+				LeanTween.cancel(sender.mainCamera.gameObject);
+				LeanTween.value(sender.mainCamera.gameObject, val => sender.mainCamera.orthographicSize = val, sender.mainCamera.orthographicSize, sender.interactingCameraSize, sender.cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
+			}
+			if (e.beforeState == states.steeringShip && e.afterState == states.boardedShip) {
+				LeanTween.cancel(sender.mainCamera.gameObject);
+				LeanTween.value(sender.mainCamera.gameObject, val => sender.mainCamera.orthographicSize = val, sender.mainCamera.orthographicSize, sender.walkingCameraSize, sender.cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
+			}
+		}
+	}
 }
