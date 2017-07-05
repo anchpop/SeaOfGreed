@@ -65,7 +65,7 @@ namespace SeaOfGreed{
 	        
 	    }
 
-		private void driver_StateChanged(PlayerDriver sender, StateChangedEventArgs e){
+		private void driver_StateChanged(CharacterDriver sender, StateChangedEventArgs e){
 			if (sender.controller != null) {
 				if (e.beforeState == states.boardedShip && e.afterState == states.steeringShip) {
 					LeanTween.cancel (sender.controller.mainCamera.gameObject);

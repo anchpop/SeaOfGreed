@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace SeaOfGreed{
-	public class PlayerDriver : MonoBehaviour {
+	public class CharacterDriver : MonoBehaviour {
 
 		internal states state = states.onLand;
 		internal states newState = states.noState;
@@ -32,7 +32,7 @@ namespace SeaOfGreed{
 		internal PlayerController controller;
 
 
-		public delegate void StateChangedEventHandler(PlayerDriver sender, StateChangedEventArgs e);
+		public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 		public event StateChangedEventHandler StateChanged;
 
 

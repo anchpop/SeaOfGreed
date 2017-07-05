@@ -1647,7 +1647,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1870539820}
-  - component: {fileID: 1870539819}
   - component: {fileID: 1870539821}
   - component: {fileID: 1870539822}
   - component: {fileID: 1870539823}
@@ -1658,47 +1657,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!212 &1870539819
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1870539818}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1191292591
-  m_SortingLayer: 5
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 46dfa22b58425c8498389defc19cd1a6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.5, y: 0.5}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
 --- !u!4 &1870539820
 Transform:
   m_ObjectHideFlags: 0
@@ -1764,11 +1722,11 @@ MonoBehaviour:
   dockShipRange: 10
   dockOffset: 0.5
   jumpTime: 1
-  jumpScale: 0.5
-  minDistanceToGrabWheel: 0.5
+  jumpScale: 0.6
+  maxDistanceToGrabWheel: 0.5
   walkSpeed: 2
-  width: 0.12
-  height: 0.12
+  width: 0.15
+  height: 0.15
   groundRaycastMask:
     serializedVersion: 2
     m_Bits: 1536

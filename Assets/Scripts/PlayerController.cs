@@ -25,12 +25,12 @@ namespace SeaOfGreed{
         public float interactingCameraSize = 6;
         public float cameraEaseTime = 2;
 
-		public PlayerDriver driver;
+		public CharacterDriver driver;
 
         // Use this for initialization
         void Start () {
 		    Keybindings.Load ();
-			driver = gameObject.GetComponent<PlayerDriver> ();
+			driver = gameObject.GetComponent<CharacterDriver> ();
 	    }    
 
         void walkAccordingToUserInput()
