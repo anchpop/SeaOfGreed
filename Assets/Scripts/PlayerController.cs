@@ -212,7 +212,7 @@ namespace SeaOfGreed{
                     steeringShipToBoardedShip();
                 }
             }
-			if (state == states.boardedShip || state == states.onLand) {
+			if (state == states.boardedShip || state == states.onLand || state == states.jumpingToLand || state == states.jumpingToShip) {
 				//var mousePosition = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 				//transform.up = Input.mousePosition - transform.position;
 				//Vector3 diff = sprite.transform.InverseTransformPoint(Input.mousePosition);
