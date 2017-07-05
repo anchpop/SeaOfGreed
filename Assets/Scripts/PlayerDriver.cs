@@ -89,19 +89,26 @@ namespace SeaOfGreed{
 
 			var originalScale = transform.localScale;
 
-			// sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
-			var seq = LeanTween.sequence();
+            // scale the character so they look like they're jumping
+            LeanTween.value(gameObject,
+                (time) => {
+                    transform.localScale = new Vector3(
+                    originalScale.x + myMath.parabolicScaleCalc(time, jumpScale),
+                    originalScale.y + myMath.parabolicScaleCalc(time, jumpScale),
+                    originalScale.z);
+                },
+                -1, 1, jumpTime)
+                .setEase(LeanTweenType.linear);
+
+            // sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
+            var seq = LeanTween.sequence();
 			// move the character to their destination
-			seq.append(LeanTween.value(gameObject, (pos) => {transform.position = pos;}, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
+			seq.append(LeanTween.value(gameObject, 
+                (pos) => transform.position = pos, 
+                fromLocation, toLocation, jumpTime)
+                .setEase(LeanTweenType.linear));
 			//LeanTween.value(gameObject, (rotz) => {transform.rotation.Set(transform.rotation.x, transform.rotation.y, rotz, transform.rotation.w);}, fromRotation.z, Quaternion.identity.z, jumpTime).setEase(LeanTweenType.easeInOutExpo);
 			seq.append(jumpingToLandToOnLand);
-
-			// scale the character so they look like they're jumping
-			LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
-
-
-
-
 
 		}
 
@@ -116,10 +123,19 @@ namespace SeaOfGreed{
 			newState = states.jumpingToShip;
 
 			// scale the character so they look like they're jumping
-			LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
+			LeanTween.value(gameObject, 
+                (time) => {
+                    transform.localScale = new Vector3(
+                        originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), 
+                        originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), 
+                        originalScale.z); }, 
+                -1, 1, jumpTime)
+                .setEase(LeanTweenType.linear);
 
 			// sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
-			var seq = LeanTween.sequence(); LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
+			var seq = LeanTween.sequence();
+
+            //LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
 			// move the character to their destination
 			seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
 

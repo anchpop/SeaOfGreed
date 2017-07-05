@@ -1622,7 +1622,7 @@ MonoBehaviour:
   dockShipRange: 10
   dockOffset: 0.5
   jumpTime: 1
-  jumpScale: 3
+  jumpScale: 0.5
   minDistanceToGrabWheel: 0.5
   walkSpeed: 2
   width: 0.12
