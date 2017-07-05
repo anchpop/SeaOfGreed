@@ -43,9 +43,6 @@ namespace SeaOfGreed{
         public float interactingCameraSize = 6;
         public float cameraEaseTime = 2;
 
-		private Vector3 v_diff;
-		private float atan2;
-
 		public GameObject sprite;
 
         Animator anim;
