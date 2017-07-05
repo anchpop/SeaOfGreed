@@ -57,15 +57,23 @@ namespace SeaOfGreed{
             anim = GetComponent<Animator>();
 	    }
 
+        RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * 1 / iterations), range, mask);
+            for (int iteration = 1; iteration < iterations;  iterations++)
+            {
+                hit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * iteration/iterations), range, mask);
+            }
+            return hit;
+        }
+
         RaycastHit2D boatSearch(int iterations)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, boardShipRange, boatRaycastMask);
-            return hit;
+            return raysearch(transform.position, boardShipRange, iterations, boatRaycastMask);
         }
         RaycastHit2D dockSearch(int iterations)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, boardShipRange, dockRaycastMask);
-            return hit;
+            return raysearch(transform.position, dockShipRange, iterations, dockRaycastMask);
         }
 
         float getDistanceToWheel()
@@ -107,7 +115,7 @@ namespace SeaOfGreed{
 
             if (state == states.onLand)
             {
-                RaycastHit2D boatFound = boatSearch(1);
+                RaycastHit2D boatFound = boatSearch(12);
                 if (!boatFound)
                 {
                     boardText.SetActive(false);
@@ -125,7 +133,7 @@ namespace SeaOfGreed{
             }
             if (state == states.boardedShip)
             {
-                var dockFound = dockSearch(1);
+                var dockFound = dockSearch(12);
             
                 var distanceToWheel = getDistanceToWheel();
                 if (distanceToWheel > minDistanceToGrabWheel)
