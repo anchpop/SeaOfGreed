@@ -47,7 +47,8 @@ public class FollowPlayer : MonoBehaviour
         //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime, dampTime);
         transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
-
+		transform.rotation = target.rotation;
+			
         if ((transform.position - destination).magnitude > maxDist)
         {
             var difference = transform.position - destination;
