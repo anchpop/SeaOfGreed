@@ -38,23 +38,8 @@ namespace SeaOfGreed{
             var input_x = Input.GetAxisRaw("Horizontal");
             var input_y = Input.GetAxisRaw("Vertical");
 
-
-            bool isWalking = (input_x != 0) || (input_y != 0);
-
-            var xToOffset = transform.right * input_x;
-            var yToOffset = transform.up * input_y;
-
-            // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
-            // This way the player won't be able to slide past some walls
-			RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, driver.width, (driver.state == states.onLand) ? driver.groundRaycastMask : driver.boatRaycastMask);
-			RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, driver.height, (driver.state == states.onLand) ? driver.groundRaycastMask : driver.boatRaycastMask);
-            //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
-            var xOffset = (x_ray) ? xToOffset : Vector3.zero;
-            var yOffset = (y_ray) ? yToOffset : Vector3.zero;
-
-
-            if (isWalking)
-                driver.transform.position += ((xOffset) + (yOffset)).normalized * driver.walkSpeed * Time.deltaTime;
+            driver.walkInDirection(new Vector3(input_x, input_y));
+            
         }
 
         void displayHelpText()

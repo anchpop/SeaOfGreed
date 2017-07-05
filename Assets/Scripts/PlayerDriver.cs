@@ -72,7 +72,25 @@ namespace SeaOfGreed{
 			return Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
 		}
 
+        
+        public void walkInDirection(Vector3 direction)
+        {
+            bool isWalking = (direction.x != 0) || (direction.y != 0);
 
+            var xToOffset = transform.right * direction.x;
+            var yToOffset = transform.up * direction.y;
+
+            // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
+            // This way the player won't be able to slide past some walls
+            RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
+            RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
+            //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
+            var xOffset = (x_ray) ? xToOffset : Vector3.zero;
+            var yOffset = (y_ray) ? yToOffset : Vector3.zero;
+
+            if (isWalking)
+                transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+        }
 
 		// state transitions
 		internal void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
