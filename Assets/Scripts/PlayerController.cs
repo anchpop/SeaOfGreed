@@ -214,6 +214,7 @@ namespace SeaOfGreed{
         void onLandToBoardedShip(GameObject ship)
         {
             Assert.IsTrue(state == states.onLand);
+            transform.rotation = ship.transform.rotation;
             newState = states.boardedShip;
             transform.position = ship.transform.position;
             transform.SetParent(ship.transform);
