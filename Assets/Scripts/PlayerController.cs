@@ -179,15 +179,19 @@ namespace SeaOfGreed{
         }
 
         // state transitions
-        void boardedShipToOnLand2(Vector3 closestDock) // this was a test of the animations, didn't work lol
+        void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
         {
+
             var fromLocation = transform.position;
             // get the location to jump to by extending the line between fromLocation and closestDock
             var jumpVector = closestDock - fromLocation;
             var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
 
             newState = states.jumpingToLand;
-            LeanTween.value(gameObject, pos => { transform.position = pos; if (pos == toLocation) Debug.Log("??");  }, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo);
+
+            var seq = LeanTween.sequence();
+            seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo));
+            seq.append(() => jumpingToLandToOnLand());
 
         }
 
@@ -222,11 +226,10 @@ namespace SeaOfGreed{
             boardText.SetActive(false);
         }
 
-        void boardedShipToOnLand(Vector3 position)
+        void jumpingToLandToOnLand()
         {
-            Assert.IsTrue(state == states.boardedShip);
+            Assert.IsTrue(state == states.jumpingToLand);
             shipBorded = null;
-            transform.position = position;
             transform.SetParent(null);
             transform.rotation = Quaternion.identity;
             newState = states.onLand;
