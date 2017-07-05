@@ -195,6 +195,28 @@ namespace SeaOfGreed{
 
         }
 
+        void onLandToBoardedShip(GameObject ship)
+        {
+            var fromLocation = transform.position;
+            var toLocation = ship.transform.position;
+            newState = states.jumpingToShip;
+
+            var seq = LeanTween.sequence();
+            seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo));
+            seq.append(() => jumpingToShipToBoardedShip(ship));
+        }
+
+        void jumpingToShipToBoardedShip(GameObject ship)
+        {
+            Assert.IsTrue(state == states.jumpingToShip);
+            transform.rotation = ship.transform.rotation;
+            newState = states.boardedShip;
+            transform.position = ship.transform.position;
+            transform.SetParent(ship.transform);
+            shipBorded = ship;
+            boardText.SetActive(false);
+        }
+
         void boardedShipToSteeringShip()
         {
             Assert.IsTrue(state == states.boardedShip);
@@ -215,16 +237,6 @@ namespace SeaOfGreed{
             newState = states.boardedShip;
         }
 
-        void onLandToBoardedShip(GameObject ship)
-        {
-            Assert.IsTrue(state == states.onLand);
-            transform.rotation = ship.transform.rotation;
-            newState = states.boardedShip;
-            transform.position = ship.transform.position;
-            transform.SetParent(ship.transform);
-            shipBorded = ship;
-            boardText.SetActive(false);
-        }
 
         void jumpingToLandToOnLand()
         {
