@@ -134,7 +134,6 @@ namespace SeaOfGreed{
                 }
                 else if (distanceToWheel < minDistanceToGrabWheel)
                 {
-                    wheelText.SetActive(true);
                     if (Input.GetKeyDown(Keybindings.use))
                     {
                         boardedShipToSteeringShip();
@@ -142,11 +141,24 @@ namespace SeaOfGreed{
                 }
                 if (dockFound)
                 {
-                    dockText.SetActive(true);
                     if (Input.GetKeyDown(Keybindings.enterShip))
                     {
                         boardedShipToOnLand(dockFound.point);
                     }
+                }
+
+                if (distanceToWheel < minDistanceToGrabWheel)
+                {
+                    wheelText.SetActive(true);
+                    dockText.SetActive(false);
+                }
+                else
+                {
+                    wheelText.SetActive(false);
+                    if (dockFound)
+                        dockText.SetActive(true);
+                    else
+                        dockText.SetActive(false);
                 }
 
                 walkAccordingToUserInput();
