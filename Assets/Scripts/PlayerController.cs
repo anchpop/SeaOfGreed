@@ -167,7 +167,7 @@ namespace SeaOfGreed{
                 }
                 if (distanceToWheel > minDistanceToGrabWheel)
                 {
-                    wheelText.SetActive(false);
+					wheelText.SetActive (false);
                 }
                 else if (distanceToWheel < minDistanceToGrabWheel)
                 {
@@ -182,8 +182,8 @@ namespace SeaOfGreed{
             }
             else
             {
-                wheelText.SetActive(false);
-                dockText.SetActive(false);
+				wheelText.SetActive (false);
+				dockText.SetActive (false);
             }
 
             if (state == states.steeringShip)
@@ -242,10 +242,6 @@ namespace SeaOfGreed{
 
             var originalScale = transform.localScale;
 
-
-
-            
-
             // scale the character so they look like they're jumping
             LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
 
@@ -295,7 +291,7 @@ namespace SeaOfGreed{
         {
             Assert.IsTrue(state == states.boardedShip);
             newState = states.steeringShip;
-            wheelText.SetActive(false);
+			helpTextToDisplay = helpText.none;
             transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
 			//sprite.transform.localRotation = shipBorded.GetComponent<ShipController>().wheelMarker.transform.rotation;
             LeanTween.cancel(mainCamera.gameObject);
@@ -321,7 +317,9 @@ namespace SeaOfGreed{
 			transform.rotation = Quaternion.identity;
             newState = states.onLand;
             shipBorded = null;
-            dockText.SetActive(false);
+
         }
+
+
     }
 }
