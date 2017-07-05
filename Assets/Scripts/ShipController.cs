@@ -19,13 +19,13 @@ public class ShipController : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
     }
 
-    Vector3 getClosestBoardingPoint(Vector3 position)
+    public Vector3 getClosestBoardingPoint(Vector3 position)
     {
         int closestPoint = 0;
-        float closestDistSqr = (position - boardingPoints[0].position).sqrMagnitude;
+        float closestDistSqr = (position - boardingPoints[0].transform.position).sqrMagnitude;
         for (int boardingPointIndex = 1; boardingPointIndex < boardingPoints.Count; boardingPointIndex++)
         {
-            var newDist = (position - boardingPoints[boardingPointIndex].position).sqrMagnitude;
+            var newDist = (position - boardingPoints[boardingPointIndex].transform.position).sqrMagnitude;
             if (newDist < closestDistSqr)
             {
                 closestDistSqr = newDist;

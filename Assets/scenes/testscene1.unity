@@ -647,20 +647,20 @@ MonoBehaviour:
   maxbackwardspeed: 2
   torque: 1.15
   boardingPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1216877896}
+  - {fileID: 1289790428}
+  - {fileID: 136827553}
+  - {fileID: 313711556}
+  - {fileID: 1017054109}
+  - {fileID: 546528373}
+  - {fileID: 2013994639}
+  - {fileID: 811846657}
+  - {fileID: 1451836210}
+  - {fileID: 556740071}
+  - {fileID: 854415478}
+  - {fileID: 1988609271}
+  - {fileID: 1552372090}
+  - {fileID: 751526746}
   wheelMarker: {fileID: 1269198610}
 --- !u!60 &717409634
 PolygonCollider2D:

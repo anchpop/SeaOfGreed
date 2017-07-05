@@ -259,7 +259,7 @@ namespace SeaOfGreed{
         void onLandToBoardedShip(GameObject ship)
         {
             var fromLocation = transform.position;
-            var toLocation = ship.transform.position;
+            var toLocation = ship.GetComponent<ShipController>().getClosestBoardingPoint(transform.position);
 
             var originalScale = transform.localScale;
 
@@ -274,15 +274,15 @@ namespace SeaOfGreed{
             // move the character to their destination
             seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
 
-            seq.append(() => jumpingToShipToBoardedShip(ship));
+            seq.append(() => jumpingToShipToBoardedShip(ship, toLocation));
         }
 
-        void jumpingToShipToBoardedShip(GameObject ship)
+        void jumpingToShipToBoardedShip(GameObject ship, Vector3 location)
         {
             Assert.IsTrue(state == states.jumpingToShip);
             transform.rotation = ship.transform.rotation;
             newState = states.boardedShip;
-            transform.position = ship.transform.position;
+            transform.position = location;
             transform.SetParent(ship.transform);
             shipBorded = ship;
         }
