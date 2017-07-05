@@ -60,9 +60,10 @@ namespace SeaOfGreed{
         RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
         {
             RaycastHit2D hit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * 1 / iterations), range, mask);
-            for (int iteration = 1; iteration < iterations;  iterations++)
+            for (int iteration = 1; iteration < iterations;  iteration++)
             {
                 hit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * iteration/iterations), range, mask);
+                if (hit) return hit;
             }
             return hit;
         }
