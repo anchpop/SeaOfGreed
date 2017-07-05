@@ -179,16 +179,42 @@ namespace SeaOfGreed{
         }
 
         // state transitions
-        void boardedShipToOnLand2(Vector3 closestDock) // this was a test of the animations, didn't work lol
+        void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
         {
+
             var fromLocation = transform.position;
             // get the location to jump to by extending the line between fromLocation and closestDock
             var jumpVector = closestDock - fromLocation;
             var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
 
             newState = states.jumpingToLand;
-            LeanTween.value(gameObject, pos => { transform.position = pos; if (pos == toLocation) Debug.Log("??");  }, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo);
 
+            var seq = LeanTween.sequence();
+            seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo));
+            seq.append(() => jumpingToLandToOnLand());
+
+        }
+
+        void onLandToBoardedShip(GameObject ship)
+        {
+            var fromLocation = transform.position;
+            var toLocation = ship.transform.position;
+            newState = states.jumpingToShip;
+
+            var seq = LeanTween.sequence();
+            seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.easeInOutExpo));
+            seq.append(() => jumpingToShipToBoardedShip(ship));
+        }
+
+        void jumpingToShipToBoardedShip(GameObject ship)
+        {
+            Assert.IsTrue(state == states.jumpingToShip);
+            transform.rotation = ship.transform.rotation;
+            newState = states.boardedShip;
+            transform.position = ship.transform.position;
+            transform.SetParent(ship.transform);
+            shipBorded = ship;
+            boardText.SetActive(false);
         }
 
         void boardedShipToSteeringShip()
@@ -211,22 +237,11 @@ namespace SeaOfGreed{
             newState = states.boardedShip;
         }
 
-        void onLandToBoardedShip(GameObject ship)
-        {
-            Assert.IsTrue(state == states.onLand);
-            transform.rotation = ship.transform.rotation;
-            newState = states.boardedShip;
-            transform.position = ship.transform.position;
-            transform.SetParent(ship.transform);
-            shipBorded = ship;
-            boardText.SetActive(false);
-        }
 
-        void boardedShipToOnLand(Vector3 position)
+        void jumpingToLandToOnLand()
         {
-            Assert.IsTrue(state == states.boardedShip);
+            Assert.IsTrue(state == states.jumpingToLand);
             shipBorded = null;
-            transform.position = position;
             transform.SetParent(null);
             transform.rotation = Quaternion.identity;
             newState = states.onLand;
