@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine;
 using TeamUtility.IO;
+using UnityEngine.SceneManagement;
 
 namespace SeaOfGreed{
     public class PlayerController : MonoBehaviour {
@@ -98,7 +99,12 @@ namespace SeaOfGreed{
             {
                 walkAccordingToUserInput();
             }
-                displayHelpText();
+            displayHelpText();
+
+            if (InputManager.GetButtonDown("Use"))
+            {
+                SceneManager.LoadScene("roomscene1", LoadSceneMode.Additive);
+            }
 
 			if (driver.state == states.onLand && driver.canBoardShip() && InputManager.GetButtonDown("Enter Ship"))
             {
