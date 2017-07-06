@@ -22,7 +22,6 @@ namespace SeaOfGreed
 					Pause ();
 				} else {
 					Unpause ();
-
 				}
 			}
 		}
@@ -30,11 +29,13 @@ namespace SeaOfGreed
 		public void Pause(){
 			canvas.enabled = true;
 			Time.timeScale = 0f;
+			paused = true;
 		}
 
 		public void Unpause(){
 			canvas.enabled = false;
 			Time.timeScale = 1f;
+			paused = false;
 		}
 
 		public void Quit(){
