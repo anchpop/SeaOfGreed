@@ -11,4 +11,8 @@ public class ControlOptions : MonoBehaviour {
 		canvas = GetComponent<Canvas> ();
 
 	}
+
+	public void Load(){
+
+	}
 }

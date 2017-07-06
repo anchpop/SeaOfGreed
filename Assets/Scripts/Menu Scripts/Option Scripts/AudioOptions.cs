@@ -12,4 +12,8 @@ public class AudioOptions : MonoBehaviour {
 
 	}
 
+	public void Load(){
+
+	}
+
 }

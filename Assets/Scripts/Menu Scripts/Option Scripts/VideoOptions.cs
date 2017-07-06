@@ -11,4 +11,8 @@ public class VideoOptions : MonoBehaviour {
 		canvas = GetComponent<Canvas> ();
 
 	}
+
+	public void Load(){
+
+	}
 }

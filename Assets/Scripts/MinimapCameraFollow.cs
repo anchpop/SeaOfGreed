@@ -1,28 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AssemblyCSharp
+namespace SeaOfGreed
 {
 	public class MinimapCameraFollow : MonoBehaviour
 	{
-		public Transform player;
+		public CharacterDriver player;
 		public Vector3 offset;
-		public bool RotateWithPlayer;
-
-		
-
+		public static bool RotateWithPlayer;
+		public static bool RotateWithShip;
 
 		public void Start(){
 			
 		}
 
 		public void Update() {
-			transform.position = player.position + offset;
-			if (RotateWithPlayer) {
-				transform.rotation = player.rotation;
+			transform.position = player.transform.position + offset;
+			if (player.state == states.steeringShip && RotateWithShip) {
+				transform.rotation = player.shipBorded.transform.rotation;
+			}else if (player.state != states.steeringShip && RotateWithPlayer) {
+				transform.rotation = player.sprite.transform.rotation;
 			} else {
 				//Doesnt work
-				transform.rotation.Set (0f, 0f, 0f, 1f);
+				transform.rotation = Quaternion.identity;
 			}
 		}
 	}

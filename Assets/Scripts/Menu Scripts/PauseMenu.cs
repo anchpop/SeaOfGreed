@@ -67,24 +67,28 @@ namespace SeaOfGreed
 		public void GameSettings(){
 			canvas.enabled = false;
 			optionsCanvas.enabled = false;
+			gameCanvas.gameObject.GetComponent<GameOptions> ().Load ();
 			gameCanvas.enabled = true;
 		}
 
 		public void VideoSettings(){
 			canvas.enabled = false;
 			optionsCanvas.enabled = false;
+			videoCanvas.gameObject.GetComponent<VideoOptions> ().Load ();
 			videoCanvas.enabled = true;
 		}
 
 		public void AudioSettings(){
 			canvas.enabled = false;
 			optionsCanvas.enabled = false;
+			audioCanvas.gameObject.GetComponent<AudioOptions> ().Load ();
 			audioCanvas.enabled = true;
 		}
 
 		public void ControlsSettings(){
 			canvas.enabled = false;
 			optionsCanvas.enabled = false;
+			controlsCanvas.gameObject.GetComponent<ControlOptions> ().Load ();
 			controlsCanvas.enabled = true;
 		}
 
