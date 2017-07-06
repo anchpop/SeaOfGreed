@@ -859,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50.599976, y: -48.800003}
+  m_AnchoredPosition: {x: -50.599976, y: -48.799988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &526569595
@@ -2834,7 +2834,7 @@ MonoBehaviour:
   dockText: {fileID: 1280218577}
   wheelText: {fileID: 2100009331}
   mainCamera: {fileID: 1126675439}
-  walkingCameraSize: 4
+  walkingCameraSize: 5
   interactingCameraSize: 6
   cameraEaseTime: 2
   driver: {fileID: 1870539823}
@@ -2856,7 +2856,7 @@ MonoBehaviour:
   jumpScale: 0.6
   maxDistanceToGrabWheel: 0.5
   walkSpeed: 2
-  sprintSpeed: 5
+  sprintSpeed: 4
   width: 0.15
   height: 0.15
   isSprinting: 0
