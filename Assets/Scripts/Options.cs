@@ -28,11 +28,15 @@ namespace SeaOfGreed
 		public class Game{
 			public bool MinimapRotateWithPlayer;
 			public bool MinimapRotateWithShip;
+			public bool DrawUI;
+			public float UIScale;
 
 
 			public void Defaults(){
 				MinimapRotateWithPlayer = false;
 				MinimapRotateWithShip = false;
+				DrawUI = true;
+				UIScale = 2f;
 			}
 		}
 

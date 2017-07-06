@@ -11,11 +11,14 @@ namespace SeaOfGreed
 		public static GameManager gameManager;
 		public static Options options;
 		void Awake(){
-			DontDestroyOnLoad (gameObject);	
+			if (gameManager != null && gameManager != this) {
+				Destroy (this.gameObject);
+			}
+			gameManager = this;
+			DontDestroyOnLoad (this.gameObject);
 		}
 
 		void Start(){
-			gameManager = this;
 			options = new Options ();
 			Load ();
 
@@ -38,6 +41,7 @@ namespace SeaOfGreed
 				options.Defaults ();
 			}
 		}
+
 	}
 }
 

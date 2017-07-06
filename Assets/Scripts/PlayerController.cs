@@ -35,8 +35,12 @@ namespace SeaOfGreed{
 
         void walkAccordingToUserInput()
         {
-            var input_x = InputManager.GetAxisRaw("Player Horizontal");
-            var input_y = InputManager.GetAxisRaw("Player Vertical");
+			var input_x_right = InputManager.GetButton ("Player Right") ? 1 : 0;
+			var input_x_left = InputManager.GetButton ("Player Left") ? 1 : 0;
+			var input_y_forward = InputManager.GetButton("Player Forward") ? 1 : 0;
+			var input_y_backward = InputManager.GetButton ("Player Backward") ? 1 : 0;
+			var input_x = input_x_right - input_x_left;
+			var input_y = input_y_forward - input_y_backward;
 
             driver.walkInDirection(new Vector3(input_x, input_y));
         }
@@ -124,7 +128,6 @@ namespace SeaOfGreed{
 			{
 				lookTowardsMouse();
 			}
-
 		}
     }
 }
