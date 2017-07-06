@@ -6,9 +6,9 @@ public class ShipController : MonoBehaviour {
 
     Rigidbody2D body;
 
-    public float acceleration = 5;
-    public float brakespeed = 2;
-    public float maxspeed = 10;
+    public float acceleration = 2;
+    public float brakespeed = 1.65f;
+    public float maxspeed = 5;
     public float maxbackwardspeed = 2;
     public float torque = 2;
     public List<Transform> boardingPoints;
