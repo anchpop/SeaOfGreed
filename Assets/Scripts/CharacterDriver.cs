@@ -35,12 +35,15 @@ namespace SeaOfGreed{
 		public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 		public event StateChangedEventHandler StateChanged;
 
+        Rigidbody2D body;
+
 
 		// Use this for initialization
 		void Start () {
 			anim = GetComponent<Animator>();
-			controller = gameObject.GetComponent<PlayerController> ();
-		}
+			controller = gameObject.GetComponent<PlayerController>();
+            body = gameObject.GetComponent<Rigidbody2D>();
+        }
 		
 		// Update is called once per frame
 		void Update () {
@@ -215,7 +218,8 @@ namespace SeaOfGreed{
 			Assert.IsTrue(state == states.jumpingToShip);
 			transform.rotation = ship.transform.rotation;
 			newState = states.boardedShip;
-			transform.position = location;
+            //body.MovePosition(location);
+		    transform.position = location;
 			transform.SetParent(ship.transform);
 			shipBorded = ship;
 		}

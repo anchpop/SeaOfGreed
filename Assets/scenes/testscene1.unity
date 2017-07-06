@@ -433,9 +433,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4376595813265154, guid: 6c9510cf9b34db3478bb59e2d1b35179, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4064007973864784, guid: 6c9510cf9b34db3478bb59e2d1b35179, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
@@ -827,6 +827,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b7000ffc12fd43b1920c127d22e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rooms:
+  - name: Overworld
+    description: The world with all the islands, etc.
+    room: {fileID: 1172311483300408, guid: 6c9510cf9b34db3478bb59e2d1b35179, type: 2}
+  - name: roomTest
+    description: ignore me :p
+    room: {fileID: 1776455178518260, guid: 337effe745174aa4f93aaecaceb91d67, type: 2}
 --- !u!224 &438177879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1127,7 +1134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50.599976, y: -48.800003}
+  m_AnchoredPosition: {x: -50.599976, y: -48.799988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &526569595
@@ -4069,6 +4076,7 @@ GameObject:
   - component: {fileID: 1870539821}
   - component: {fileID: 1870539822}
   - component: {fileID: 1870539823}
+  - component: {fileID: 1870539819}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4076,6 +4084,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!50 &1870539819
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870539818}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!4 &1870539820
 Transform:
   m_ObjectHideFlags: 0
