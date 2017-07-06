@@ -9,10 +9,12 @@ namespace SeaOfGreed
 	{
 		public bool paused = false;
 		private Canvas canvas;
+		public Canvas optionsCanvas;
 
 		void Start(){
 			canvas = GetComponent<Canvas> ();
 			canvas.enabled = false;
+			optionsCanvas.enabled = false;
 		}
 
 		void Update(){
@@ -34,12 +36,23 @@ namespace SeaOfGreed
 
 		public void Unpause(){
 			canvas.enabled = false;
+			optionsCanvas.enabled = false;
 			Time.timeScale = 1f;
 			paused = false;
 		}
 
 		public void Quit(){
 			SceneManager.LoadScene ("Menu");
+		}
+
+		public void Options(){
+			canvas.enabled = false;
+			optionsCanvas.enabled = true;
+		}
+
+		public void ReturnToMainMenu(){
+			canvas.enabled = true;
+			optionsCanvas.enabled = false;
 		}
 	}
 }
