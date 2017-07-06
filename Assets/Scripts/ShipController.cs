@@ -13,6 +13,9 @@ public class ShipController : MonoBehaviour {
     public float torque = 2;
     public List<Transform> boardingPoints;
 
+    public ParticleSystem particles;
+    public float speedThresholdForParticles = .3f;
+
     public GameObject wheelMarker;
     // Use this for initialization
     void Start () {
@@ -66,6 +69,13 @@ public class ShipController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () { 
+    void Update ()
+    {
+        if (body.velocity.magnitude > speedThresholdForParticles && !particles.isEmitting)
+        {
+            particles.Play();
+        }
+        else if (body.velocity.magnitude < speedThresholdForParticles && particles.isEmitting)
+            particles.Stop();
     }
 }
