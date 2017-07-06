@@ -56,6 +56,7 @@ namespace SeaOfGreed
 		}
 
 		public void Quit(){
+			GameManager.gameManager.Save ();
 			SceneManager.LoadScene ("Menu");
 		}
 

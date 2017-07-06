@@ -41,6 +41,7 @@ namespace SeaOfGreed{
 		public void ReturnToMainMenu(){
 			canvas.enabled = true;
 			optionsCanvas.enabled = false;
+			GameManager.gameManager.Save ();
 		}
 			
 		public void GameSettings(){

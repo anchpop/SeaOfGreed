@@ -19,18 +19,18 @@ namespace SeaOfGreed{
 		}
 
 		public void Load(){
-			MinimapWithPlayer.isOn = MinimapCameraFollow.RotateWithPlayer;
-			MinimapWithShip.isOn = MinimapCameraFollow.RotateWithShip;
+			MinimapWithPlayer.isOn = GameManager.options.MinimapRotateWithPlayer;
+			MinimapWithShip.isOn = GameManager.options.MinimapRotateWithShip;
 		}
 
 		public void OnMinimapWithPlayerChanged(bool value){
 			//Debug.Log ("ChangedPlayer" + value.ToString ());
-			MinimapCameraFollow.RotateWithPlayer = value;
+			GameManager.options.MinimapRotateWithPlayer = value;
 		}
 
 		public void OnMinimapWithShipChanged(bool value){
 			//Debug.Log ("ChangedShip" + value.ToString ());
-			MinimapCameraFollow.RotateWithShip = value;
+			GameManager.options.MinimapRotateWithShip = value;
 		}
 	}
 }

@@ -7,8 +7,6 @@ namespace SeaOfGreed
 	{
 		public CharacterDriver player;
 		public Vector3 offset;
-		public static bool RotateWithPlayer;
-		public static bool RotateWithShip;
 
 		public void Start(){
 			
@@ -16,9 +14,9 @@ namespace SeaOfGreed
 
 		public void Update() {
 			transform.position = player.transform.position + offset;
-			if (player.state == states.steeringShip && RotateWithShip) {
+			if (player.state == states.steeringShip && GameManager.options.MinimapRotateWithShip) {
 				transform.rotation = player.shipBorded.transform.rotation;
-			}else if (player.state != states.steeringShip && RotateWithPlayer) {
+			}else if (player.state != states.steeringShip && GameManager.options.MinimapRotateWithPlayer) {
 				transform.rotation = player.sprite.transform.rotation;
 			} else {
 				//Doesnt work
