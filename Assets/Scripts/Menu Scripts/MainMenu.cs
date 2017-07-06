@@ -80,5 +80,10 @@ namespace SeaOfGreed{
 			controlsCanvas.enabled = false;
 			canvas.enabled = false;
 		}
+
+		public void Quit(){
+			GameManager.gameManager.Save ();
+			Application.Quit();
+		}
 	}
 }
