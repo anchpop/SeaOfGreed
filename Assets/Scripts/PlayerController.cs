@@ -116,6 +116,12 @@ namespace SeaOfGreed{
             {
                 steerShipAccordingToUserInput();
             }
+			if (InputManager.GetButtonDown ("Sprint")) {
+				driver.isSprinting = true;
+			}	else if (InputManager.GetButtonUp ("Sprint")) {
+				driver.isSprinting = false;
+			}
+
 				
         }
 

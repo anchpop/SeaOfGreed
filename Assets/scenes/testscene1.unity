@@ -2323,6 +2323,20 @@ MonoBehaviour:
       type: 0
       axis: 0
       joystick: 0
+    - name: Sprint
+      description: go fast
+      positive: 304
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 1
+      sensitivity: 1
+      snap: 1
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
     isExpanded: 1
   playerOneDefault: Default
   playerTwoDefault: 
@@ -2842,8 +2856,10 @@ MonoBehaviour:
   jumpScale: 0.6
   maxDistanceToGrabWheel: 0.5
   walkSpeed: 2
+  sprintSpeed: 5
   width: 0.15
   height: 0.15
+  isSprinting: 0
   groundRaycastMask:
     serializedVersion: 2
     m_Bits: 1536

@@ -16,9 +16,12 @@ namespace SeaOfGreed{
 		public float jumpScale = 3;
 		public float maxDistanceToGrabWheel = .5f;
 
-		public float walkSpeed = 2;
+		public float walkSpeed = 2f;
+		public float sprintSpeed = 5f;
 		public float width = .12f;
 		public float height = .12f;
+
+		public bool isSprinting;
 
 		public LayerMask groundRaycastMask;
 		public LayerMask dockRaycastMask;
@@ -132,8 +135,14 @@ namespace SeaOfGreed{
             var xOffset = (x_ray) ? xToOffset : Vector3.zero;
             var yOffset = (y_ray) ? yToOffset : Vector3.zero;
 
-            if (isWalking)
-                transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+			if (isWalking) {
+				if (isSprinting) {
+					transform.position += ((xOffset) + (yOffset)).normalized * sprintSpeed * Time.deltaTime;
+				} else {
+					transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+				}
+
+			}
         }
 
 		// state transitions
