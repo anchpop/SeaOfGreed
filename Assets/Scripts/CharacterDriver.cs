@@ -23,27 +23,27 @@ namespace SeaOfGreed{
 		public LayerMask groundRaycastMask;
 		public LayerMask dockRaycastMask;
 		public LayerMask boatRaycastMask;
+        public LayerMask roomTransitionRaycastMask;
 
-		public GameObject sprite;
+        public GameObject sprite;
 
 		Animator anim;
 
 		internal GameObject shipBorded;
 		internal PlayerController controller;
 
+        public bool canSwitchIntoRooms = false;
+
 
 		public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 		public event StateChangedEventHandler StateChanged;
-
-        Rigidbody2D body;
 
 
 		// Use this for initialization
 		void Start () {
 			anim = GetComponent<Animator>();
-			controller = gameObject.GetComponent<PlayerController>();
-            body = gameObject.GetComponent<Rigidbody2D>();
-        }
+			controller = gameObject.GetComponent<PlayerController> ();
+		}
 		
 		// Update is called once per frame
 		void Update () {
@@ -112,6 +112,12 @@ namespace SeaOfGreed{
 		}
 
 
+        public void switchIntoRoom(RaycastHit2D roomswitchRaycast)
+        {
+            var polyline = roomswitchRaycast.collider.gameObject.GetComponent<Tiled2Unity.PolylineObject>();
+            Debug.Log("Switch into " + polyline.name);
+        }
+
         public void lookInDirection(Vector3 direction)
         {
             
@@ -120,29 +126,43 @@ namespace SeaOfGreed{
 
         }
 
+
         public void walkInDirection(Vector3 direction)
         {
             bool isWalking = (direction.x != 0) || (direction.y != 0);
-
-            var xToOffset = transform.right * direction.x;
-            var yToOffset = transform.up * direction.y;
-
-            // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
-            // This way the player won't be able to slide past some walls
-            RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
-            RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
-            //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
-            var xOffset = (x_ray) ? xToOffset : Vector3.zero;
-            var yOffset = (y_ray) ? yToOffset : Vector3.zero;
-
             if (isWalking)
+            {
+
+                var xToOffset = transform.right * direction.x;
+                var yToOffset = transform.up * direction.y;
+
+                // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
+                // This way the player won't be able to slide past some walls
+                RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
+                RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
+                //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
+                var xOffset = (x_ray) ? xToOffset : Vector3.zero;
+                var yOffset = (y_ray) ? yToOffset : Vector3.zero;
+
                 transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+
+                if (canSwitchIntoRooms)
+                {
+                    RaycastHit2D roomswitch_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, roomTransitionRaycastMask);
+                    RaycastHit2D roomswitch_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, roomTransitionRaycastMask);
+                
+                    if (roomswitch_x_ray)
+                        switchIntoRoom(roomswitch_x_ray);
+                    else if (roomswitch_y_ray)
+                        switchIntoRoom(roomswitch_y_ray);
+                }
+
+            }
         }
 
 		// state transitions
 		public void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
 		{
-
 			var fromLocation = transform.position;
 			// get the location to jump to by extending the line between fromLocation and closestDock
 			var jumpVector = closestDock - fromLocation;
@@ -218,8 +238,7 @@ namespace SeaOfGreed{
 			Assert.IsTrue(state == states.jumpingToShip);
 			transform.rotation = ship.transform.rotation;
 			newState = states.boardedShip;
-            //body.MovePosition(location);
-		    transform.position = location;
+			transform.position = location;
 			transform.SetParent(ship.transform);
 			shipBorded = ship;
 		}
