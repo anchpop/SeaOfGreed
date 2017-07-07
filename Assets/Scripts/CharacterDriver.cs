@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -36,6 +37,7 @@ namespace SeaOfGreed{
 		internal PlayerController controller;
 
         public bool canSwitchIntoRooms = true;
+        bool steppedOnRoomTransition = false;
 
 		public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 		public event StateChangedEventHandler StateChanged;
@@ -116,8 +118,17 @@ namespace SeaOfGreed{
 
         public void switchIntoRoom(RaycastHit2D roomswitchRaycast)
         {
-            var polyline = roomswitchRaycast.collider.gameObject.GetComponent<Tiled2Unity.PolylineObject>();
-            Debug.Log("Switch into " + polyline.name);
+            if (!steppedOnRoomTransition)
+            {
+                var marker = roomswitchRaycast.collider.gameObject.GetComponent<TransitionMarker>();
+                Debug.Log("Switch into " + marker.markerKey);
+                var assocs = manager.getTileAssociations(marker.markerKey);
+
+                // sort by which is closest to the player :)
+                assocs.Sort((assoc1, assoc2) => (assoc1.transform.position - transform.position).sqrMagnitude.CompareTo((assoc2.transform.position - transform.position).sqrMagnitude));
+                transform.position = assocs.Last().transform.position;
+                steppedOnRoomTransition = true;
+            }
         }
 
         public void lookInDirection(Vector3 direction)
@@ -152,11 +163,13 @@ namespace SeaOfGreed{
                 {
                     RaycastHit2D roomswitch_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, roomTransitionRaycastMask);
                     RaycastHit2D roomswitch_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, roomTransitionRaycastMask);
-                
+
                     if (roomswitch_x_ray)
                         switchIntoRoom(roomswitch_x_ray);
                     else if (roomswitch_y_ray)
                         switchIntoRoom(roomswitch_y_ray);
+                    else
+                        steppedOnRoomTransition = false;
                 }
 
             }

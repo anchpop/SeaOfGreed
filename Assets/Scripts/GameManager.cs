@@ -33,7 +33,7 @@ namespace SeaOfGreed
         public RoomData currentRoomPrefab;
 
         Dictionary<String, Vector2> roomPositions;
-        Dictionary<String, List<GameObject>> TileAssociations;
+        Dictionary<String, List<GameObject>> TileAssociations = new Dictionary<string, List<GameObject>>();
 
         public GameObject player;
 
@@ -71,18 +71,21 @@ namespace SeaOfGreed
             }
         }
 
-        void getTransitions()
+        void getTransitionAssociations()
         {
-            var markers = GameObject.FindGameObjectsWithTag("Transition");
+            var markers = GameObject.FindGameObjectsWithTag("TransitionMarker");
             for (int markerIndex = 0; markerIndex < markers.Length; markerIndex++)
             {
                 var marker = markers[markerIndex];
-                TileAssociations[marker.GetComponent<TransitionMarker>().markerKey].Add(marker);
+                var key = marker.GetComponent<TransitionMarker>().markerKey;
+                if (TileAssociations.ContainsKey(key)) TileAssociations[key].Add(marker);
+                else TileAssociations[key] = new List<GameObject> { marker };
             }
         }
 
 		void Start(){
             placeRooms();
+            getTransitionAssociations();
             gameManager = this;
 			options = new Options ();
 			Load ();
