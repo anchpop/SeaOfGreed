@@ -1,341 +1,369 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TeamUtility.IO;
 using UnityEngine;
-using TeamUtility.IO;
 using UnityEngine.UI;
 
-namespace SeaOfGreed{
-	public class ControlOptions : MonoBehaviour {
-		public Canvas parent;
-		private Canvas canvas;
+namespace SeaOfGreed {
 
-		public Button PlayerForward;
-		public Button PlayerBackward;
-		public Button PlayerLeft;
-		public Button PlayerRight;
-		public Button Sprint;
+    public class ControlOptions : MonoBehaviour {
+        public Canvas parent;
+        private Canvas canvas;
 
-		public Button ShipEnter;
-		public Button ShipAccelerate;
-		public Button ShipBrake;
-		public Button ShipLeft;
-		public Button ShipRight;
+        public Button PlayerForward;
+        public Button PlayerBackward;
+        public Button PlayerLeft;
+        public Button PlayerRight;
+        public Button Sprint;
 
-		public Button Use;
-		public Button Pause;
+        public Button ShipEnter;
+        public Button ShipAccelerate;
+        public Button ShipBrake;
+        public Button ShipLeft;
+        public Button ShipRight;
 
-		public bool isEditing = false;
+        public Button Use;
+        public Button Pause;
+        public Button Map;
+        public Button Quests;
 
+        public bool isEditing = false;
 
+        private void Start() {
+            canvas = GetComponent<Canvas>();
+            SetUpHandlers();
+            Load();
+        }
 
-		void Start(){
-			canvas = GetComponent<Canvas> ();
-			SetUpHandlers ();
-			Load ();
+        private void SetUpHandlers() {
+            PlayerForward.onClick.AddListener(OnPlayerForward);
+            PlayerBackward.onClick.AddListener(OnPlayerBackward);
+            PlayerLeft.onClick.AddListener(OnPlayerLeft);
+            PlayerRight.onClick.AddListener(OnPlayerRight);
+            Sprint.onClick.AddListener(OnSprint);
 
-		}
+            ShipEnter.onClick.AddListener(OnShipEnter);
+            ShipAccelerate.onClick.AddListener(OnShipAccelerate);
+            ShipBrake.onClick.AddListener(OnShipBrake);
+            ShipLeft.onClick.AddListener(OnShipLeft);
+            ShipRight.onClick.AddListener(OnShipRight);
 
-		void SetUpHandlers(){
-			PlayerForward.onClick.AddListener (OnPlayerForward);
-			PlayerBackward.onClick.AddListener(OnPlayerBackward);
-			PlayerLeft.onClick.AddListener(OnPlayerLeft);
-			PlayerRight.onClick.AddListener(OnPlayerRight);
-			Sprint.onClick.AddListener(OnSprint);
+            Use.onClick.AddListener(OnUse);
+            Pause.onClick.AddListener(OnPause);
+            Map.onClick.AddListener(OnMap);
+            Quests.onClick.AddListener(OnQuests);
+        }
 
+        public void Load() {
+            PlayerForward.interactable = true;
+            PlayerBackward.interactable = true;
+            PlayerLeft.interactable = true;
+            PlayerRight.interactable = true;
+            Sprint.interactable = true;
 
-			ShipEnter.onClick.AddListener (OnShipEnter);
-			ShipAccelerate.onClick.AddListener(OnShipAccelerate);
-			ShipBrake.onClick.AddListener(OnShipBrake);
-			ShipLeft.onClick.AddListener(OnShipLeft);
-			ShipRight.onClick.AddListener (OnShipRight);
+            ShipEnter.interactable = true;
+            ShipAccelerate.interactable = true;
+            ShipBrake.interactable = true;
+            ShipLeft.interactable = true;
+            ShipRight.interactable = true;
 
-			Use.onClick.AddListener (OnUse);
-			Pause.onClick.AddListener (OnPause);
+            Use.interactable = true;
+            Pause.interactable = true;
+            Map.interactable = true;
+            Quests.interactable = true;
 
-		}
+            var colors = PlayerForward.colors;
+            colors.colorMultiplier = 1f;
 
-		public void Load(){
-			PlayerForward.interactable = true;
-			PlayerBackward.interactable = true;
-			PlayerLeft.interactable = true;
-			PlayerRight.interactable = true;
-			Sprint.interactable = true;
+            PlayerForward.colors = colors;
+            PlayerBackward.colors = colors;
+            PlayerLeft.colors = colors;
+            PlayerRight.colors = colors;
+            Sprint.colors = colors;
 
-			ShipEnter.interactable = true;
-			ShipAccelerate.interactable = true;
-			ShipBrake.interactable = true;
-			ShipLeft.interactable = true;
-			ShipRight.interactable = true;
+            ShipEnter.colors = colors;
+            ShipAccelerate.colors = colors;
+            ShipBrake.colors = colors;
+            ShipLeft.colors = colors;
+            ShipRight.colors = colors;
 
-			Use.interactable = true;
-			Pause.interactable = true;
+            Use.colors = colors;
+            Pause.colors = colors;
+            Map.colors = colors;
+            Quests.colors = colors;
 
-			var colors = PlayerForward.colors;
-			colors.colorMultiplier = 1f;
+            PlayerForward.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Player Forward").positive.ToString();
+            PlayerBackward.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Player Backward").positive.ToString();
+            PlayerRight.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Player Right").positive.ToString();
+            PlayerLeft.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Player Left").positive.ToString();
+            Sprint.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Sprint").positive.ToString();
 
-			PlayerForward.colors = colors;
-			PlayerBackward.colors = colors;
-			PlayerLeft.colors = colors;
-			PlayerRight.colors = colors;
-			Sprint.colors = colors;
+            ShipEnter.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Enter Ship").positive.ToString();
+            ShipAccelerate.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Ship Accelerate").positive.ToString();
+            ShipBrake.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Ship Brake").positive.ToString();
+            ShipLeft.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Ship Left").positive.ToString();
+            ShipRight.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Ship Right").positive.ToString();
 
-			ShipEnter.colors = colors;
-			ShipAccelerate.colors = colors;
-			ShipBrake.colors = colors;
-			ShipLeft.colors = colors;
-			ShipRight.colors = colors;
+            Use.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Use").positive.ToString();
+            Pause.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Pause").positive.ToString();
+            Map.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Map").positive.ToString();
+            Quests.GetComponentInChildren<Text>().text = InputManager.GetAxisConfiguration("Default", "Quests").positive.ToString();
+        }
 
-			Use.interactable = true;
-			Pause.interactable = true;
+        private void AllUninteractable() {
+            PlayerForward.interactable = false;
+            PlayerBackward.interactable = false;
+            PlayerLeft.interactable = false;
+            PlayerRight.interactable = false;
+            Sprint.interactable = false;
 
-			PlayerForward.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Player Forward").positive.ToString ();
-			PlayerBackward.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Player Backward").positive.ToString ();
-			PlayerRight.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Player Right").positive.ToString ();
-			PlayerLeft.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Player Left").positive.ToString ();
-			Sprint.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Sprint").positive.ToString ();
+            ShipEnter.interactable = false;
+            ShipAccelerate.interactable = false;
+            ShipBrake.interactable = false;
+            ShipLeft.interactable = false;
+            ShipRight.interactable = false;
 
-			ShipEnter.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Enter Ship").positive.ToString ();
-			ShipAccelerate.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Ship Accelerate").positive.ToString ();
-			ShipBrake.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Ship Brake").positive.ToString ();
-			ShipLeft.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Ship Left").positive.ToString ();
-			ShipRight.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Ship Right").positive.ToString ();
+            Use.interactable = false;
+            Pause.interactable = false;
+            Map.interactable = false;
+            Quests.interactable = false;
+        }
 
-			Use.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Use").positive.ToString ();
-			Pause.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Pause").positive.ToString ();
-		}
+        private bool HandleKeyScan(ScanResult result) {
+            var axis = InputManager.GetAxisConfiguration("Default", result.userData.ToString());
+            axis.positive = result.key;
+            if (result.key != KeyCode.None) {
+                isEditing = false;
+                Debug.Log("isnt editing");
+            }
+            Load();
+            return true;
+        }
 
-		void AllUninteractable(){
-			PlayerForward.interactable = false;
-			PlayerBackward.interactable = false;
-			PlayerLeft.interactable = false;
-			PlayerRight.interactable = false;
-			Sprint.interactable = false;
+        public void OnPlayerForward() {
+            AllUninteractable();
 
-			ShipEnter.interactable = false;
-			ShipAccelerate.interactable = false;
-			ShipBrake.interactable = false;
-			ShipLeft.interactable = false;
-			ShipRight.interactable = false;
+            var colors = PlayerForward.colors;
+            colors.colorMultiplier = 5f;
+            PlayerForward.colors = colors;
 
-			Use.interactable = false;
-			Pause.interactable = false;
-		}
+            PlayerForward.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Player Forward";
+            settings.timeout = 20f;
+            isEditing = true;
+            Debug.Log("isediding");
+            InputManager.StartScan(settings, HandleKeyScan);
+        }
 
-		bool HandleKeyScan(ScanResult result){
-			
-			var axis = InputManager.GetAxisConfiguration ("Default" , result.userData.ToString());
-			axis.positive = result.key;
-			if (result.key != KeyCode.None) {
-				isEditing = false;
-				Debug.Log ("isnt editing");
-			}
-			Load ();
-			return true;
-		}
+        public void OnPlayerBackward() {
+            AllUninteractable();
+            var colors = PlayerBackward.colors;
+            colors.colorMultiplier = 5f;
+            PlayerBackward.colors = colors;
 
-		public void OnPlayerForward(){
-			AllUninteractable ();
+            PlayerBackward.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Player Backward";
+            settings.timeout = 20f;
+            isEditing = true;
+            InputManager.StartScan(settings, HandleKeyScan);
+        }
 
-			var colors = PlayerForward.colors;
-			colors.colorMultiplier = 5f;
-			PlayerForward.colors = colors;
+        public void OnPlayerLeft() {
+            AllUninteractable();
+            var colors = PlayerLeft.colors;
+            colors.colorMultiplier = 5f;
+            PlayerLeft.colors = colors;
 
-			PlayerForward.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Player Forward";
-			settings.timeout = 20f;
-			isEditing = true;
-			Debug.Log ("isediding");
-			InputManager.StartScan(settings, HandleKeyScan);
+            PlayerLeft.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Player Left";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-		}
+        public void OnPlayerRight() {
+            AllUninteractable();
+            var colors = PlayerRight.colors;
+            colors.colorMultiplier = 5f;
+            PlayerRight.colors = colors;
 
-		public void OnPlayerBackward(){
-			AllUninteractable ();
-			var colors = PlayerBackward.colors;
-			colors.colorMultiplier = 5f;
-			PlayerBackward.colors = colors;
+            PlayerRight.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Player Right";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-			PlayerBackward.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Player Backward";
-			settings.timeout = 20f;
-			isEditing = true;
-			InputManager.StartScan(settings, HandleKeyScan);
+        public void OnSprint() {
+            AllUninteractable();
 
-		}
+            var colors = PlayerForward.colors;
+            colors.colorMultiplier = 5f;
+            Sprint.colors = colors;
 
-		public void OnPlayerLeft(){
-			AllUninteractable ();
-			var colors = PlayerLeft.colors;
-			colors.colorMultiplier = 5f;
-			PlayerLeft.colors = colors;
+            Sprint.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Sprint";
+            settings.timeout = 20f;
+            isEditing = true;
+            Debug.Log("isediding");
+            InputManager.StartScan(settings, HandleKeyScan);
+        }
 
-			PlayerLeft.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Player Left";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-		}
+        public void OnShipEnter() {
+            AllUninteractable();
+            var colors = ShipEnter.colors;
+            colors.colorMultiplier = 5f;
+            ShipEnter.colors = colors;
 
-		public void OnPlayerRight(){
-			AllUninteractable ();
-			var colors = PlayerRight.colors;
-			colors.colorMultiplier = 5f;
-			PlayerRight.colors = colors;
+            ShipEnter.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Enter Ship";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-			PlayerRight.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Player Right";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-		}
+        public void OnShipAccelerate() {
+            AllUninteractable();
+            var colors = ShipAccelerate.colors;
+            colors.colorMultiplier = 5f;
+            ShipAccelerate.colors = colors;
 
-		public void OnSprint(){
-			AllUninteractable ();
+            ShipAccelerate.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Ship Accelerate";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-			var colors = PlayerForward.colors;
-			colors.colorMultiplier = 5f;
-			Sprint.colors = colors;
+        public void OnShipBrake() {
+            AllUninteractable();
+            var colors = ShipBrake.colors;
+            colors.colorMultiplier = 5f;
+            ShipBrake.colors = colors;
 
-			Sprint.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Sprint";
-			settings.timeout = 20f;
-			isEditing = true;
-			Debug.Log ("isediding");
-			InputManager.StartScan(settings, HandleKeyScan);
+            ShipBrake.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Ship Brake";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-		}
+        public void OnShipLeft() {
+            AllUninteractable();
+            var colors = ShipLeft.colors;
+            colors.colorMultiplier = 5f;
+            ShipLeft.colors = colors;
 
+            ShipLeft.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Ship Left";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
+        public void OnShipRight() {
+            AllUninteractable();
+            var colors = ShipRight.colors;
+            colors.colorMultiplier = 5f;
+            ShipRight.colors = colors;
 
+            ShipRight.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Ship Right";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-		public void OnShipEnter(){
-			AllUninteractable ();
-			var colors = ShipEnter.colors;
-			colors.colorMultiplier = 5f;
-			ShipEnter.colors = colors;
+        public void OnUse() {
+            AllUninteractable();
+            var colors = Use.colors;
+            colors.colorMultiplier = 5f;
+            Use.colors = colors;
 
-			ShipEnter.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Enter Ship";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
+            Use.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Use";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-		}
+        public void OnPause() {
+            AllUninteractable();
+            var colors = Pause.colors;
+            colors.colorMultiplier = 5f;
+            Pause.colors = colors;
 
-		public void OnShipAccelerate(){
-			AllUninteractable ();
-			var colors = ShipAccelerate.colors;
-			colors.colorMultiplier = 5f;
-			ShipAccelerate.colors = colors;
+            Pause.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Pause";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+            Debug.Log("Is editing");
+        }
 
-			ShipAccelerate.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Ship Accelerate";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-		}
+        public void OnMap() {
+            AllUninteractable();
+            var colors = Use.colors;
+            colors.colorMultiplier = 5f;
+            Map.colors = colors;
 
-		public void OnShipBrake(){
-			AllUninteractable ();
-			var colors = ShipBrake.colors;
-			colors.colorMultiplier = 5f;
-			ShipBrake.colors = colors;
+            Map.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.cancelScanButton = "Escape";
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Map";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+        }
 
-			ShipBrake.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Ship Brake";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-		}
+        public void OnQuests() {
+            AllUninteractable();
+            var colors = Pause.colors;
+            colors.colorMultiplier = 5f;
+            Quests.colors = colors;
 
-		public void OnShipLeft(){
-			AllUninteractable ();
-			var colors = ShipLeft.colors;
-			colors.colorMultiplier = 5f;
-			ShipLeft.colors = colors;
-
-			ShipLeft.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Ship Left";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-		}
-
-		public void OnShipRight(){
-			AllUninteractable ();
-			var colors = ShipRight.colors;
-			colors.colorMultiplier = 5f;
-			ShipRight.colors = colors;
-
-			ShipRight.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Ship Right";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-		}
-
-
-
-		public void OnUse(){
-			AllUninteractable ();
-			var colors = Use.colors;
-			colors.colorMultiplier = 5f;
-			Use.colors = colors;
-
-			Use.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.cancelScanButton = "Escape";
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Use";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-		}
-
-		public void OnPause(){
-			AllUninteractable ();
-			var colors = Pause.colors;
-			colors.colorMultiplier = 5f;
-			Pause.colors = colors;
-
-			Pause.GetComponentInChildren<Text> ().text = "";
-			ScanSettings settings = new ScanSettings ();
-			settings.scanFlags = ScanFlags.Key;
-			settings.userData = "Pause";
-			settings.timeout = 20f;
-			InputManager.StartScan(settings, HandleKeyScan);
-			isEditing = true;
-			Debug.Log ("Is editing");
-		}
-	}
+            Quests.GetComponentInChildren<Text>().text = "";
+            ScanSettings settings = new ScanSettings();
+            settings.scanFlags = ScanFlags.Key;
+            settings.userData = "Quests";
+            settings.timeout = 20f;
+            InputManager.StartScan(settings, HandleKeyScan);
+            isEditing = true;
+            Debug.Log("Is editing");
+        }
+    }
 }

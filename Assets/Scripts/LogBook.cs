@@ -26,13 +26,13 @@ namespace SeaOfGreed {
         // Update is called once per frame
         private void Update() {
             if (InputManager.GetButtonDown("Map")) {
-                if (currentPage != Pages.map) {
+                if (currentPage != Pages.map && !pauseMenu.paused) {
                     OpenToPage(Pages.map);
                 } else if (currentPage == Pages.map) {
                     CloseLogBook();
                 }
             } else if (InputManager.GetButtonDown("Quests")) {
-                if (currentPage != Pages.quests) {
+                if (currentPage != Pages.quests && !pauseMenu.paused) {
                     OpenToPage(Pages.quests);
                 } else if (currentPage == Pages.quests) {
                     CloseLogBook();
