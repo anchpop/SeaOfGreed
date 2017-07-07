@@ -1,81 +1,72 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace SeaOfGreed{
-	public class FollowPlayer : MonoBehaviour
-	{
-	    public float maxDistance = 3;
-	    public float dampTime = 0.15f;
-	    float zDistFromTarget = -.5f;
-	    private Vector3 targetOldPosition;
-	    private Vector3 velocity = Vector3.zero;
-		public Transform target = null;
-		private PlayerController controller;
-	    new Camera camera;
+namespace SeaOfGreed {
 
+    public class FollowPlayer : MonoBehaviour {
+        public float maxDistance = 3;
+        public float dampTime = 0.15f;
+        private float zDistFromTarget = -.5f;
+        private Vector3 targetOldPosition;
+        private Vector3 velocity = Vector3.zero;
+        public Transform target = null;
+        private PlayerController controller;
+        private new Camera camera;
 
+        private void Start() {
+            camera = GetComponent<Camera>();
+            //moveCameraToPlayer(0, 0);
+            transform.position = target.transform.position;
+            targetOldPosition = transform.position;
+            controller = target.GetComponent<PlayerController>();
+            controller.driver.StateChanged += driver_StateChanged;
+        }
 
-	    void Start()
-	    {
-	        camera = GetComponent<Camera>();
-	        //moveCameraToPlayer(0, 0);
-	        transform.position = target.transform.position;
-	        targetOldPosition = transform.position;
-			controller = target.GetComponent<PlayerController> ();
-			controller.driver.StateChanged += driver_StateChanged;
+        // Update is called once per frame
+        private void Update() {
+            if (target) {
+                if (controller.driver.isSprinting && controller.driver.isWalking) {
+                    //camera.orthographicSize = 4.5f;
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 4.7f, .3f * Time.deltaTime);
+                } else {
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 4.2f, .1f * Time.deltaTime);
+                }
+                moveCameraToPlayer(dampTime, maxDistance);
+            }
+            targetOldPosition = target.transform.position;
+        }
 
-	    }
-			
+        private Vector3 SuperSmoothLerp(Vector3 followerOldPos, Vector3 targetOldPos, Vector3 targetNewPos, float timeElapsed, float lerpRate) {
+            Vector3 f = followerOldPos - targetOldPos + (targetNewPos - targetOldPos) / (lerpRate * timeElapsed);
+            return targetNewPos - (targetNewPos - targetOldPos) / (lerpRate * timeElapsed) + f * Mathf.Exp(-lerpRate * timeElapsed);
+        }
 
+        private void moveCameraToPlayer(float dampTime, float maxDist) {
+            Vector3 point = camera.WorldToViewportPoint(target.position);
+            Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+            Vector3 destination = transform.position + delta;
+            //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+            transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime == 0 ? .2f : Time.deltaTime, dampTime);
+            transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
+            //transform.rotation = target.rotation;
 
-	    // Update is called once per frame
-	    void Update()
-	    {
-			if (target)
-	        {
-	            moveCameraToPlayer(dampTime, maxDistance);
-	        }
-	        targetOldPosition = target.transform.position;
+            if ((transform.position - destination).magnitude > maxDist) {
+                var difference = transform.position - destination;
+                transform.position = destination + difference.normalized * maxDist;
+            }
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, 1.5f * Time.deltaTime);
+        }
 
-	    }
-
-	    Vector3 SuperSmoothLerp(Vector3 followerOldPos, Vector3 targetOldPos, Vector3 targetNewPos, float timeElapsed, float lerpRate)
-	    {
-	        Vector3 f = followerOldPos - targetOldPos + (targetNewPos - targetOldPos) / (lerpRate * timeElapsed);
-	        return targetNewPos - (targetNewPos - targetOldPos) / (lerpRate * timeElapsed) + f * Mathf.Exp(-lerpRate * timeElapsed);
-	    }
-
-
-	    void moveCameraToPlayer(float dampTime, float maxDist)
-	    {
-	        Vector3 point = camera.WorldToViewportPoint(target.position);
-	        Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
-	        Vector3 destination = transform.position + delta;
-	        //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
-			transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime == 0 ? .2f : Time.deltaTime, dampTime);
-	        transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
-			//transform.rotation = target.rotation;
-				
-	        if ((transform.position - destination).magnitude > maxDist)
-	        {
-	            var difference = transform.position - destination;
-	            transform.position = destination + difference.normalized * maxDist;
-	        }
-	        transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, 1.5f * Time.deltaTime);
-	        
-	    }
-
-		private void driver_StateChanged(CharacterDriver sender, StateChangedEventArgs e){
-			if (sender.controller != null) {
-				if (e.beforeState == states.boardedShip && e.afterState == states.steeringShip) {
-					LeanTween.cancel (sender.controller.mainCamera.gameObject);
-					LeanTween.value (sender.controller.mainCamera.gameObject, val => sender.controller.mainCamera.orthographicSize = val, sender.controller.mainCamera.orthographicSize, sender.controller.interactingCameraSize, sender.controller.cameraEaseTime).setEase (LeanTweenType.easeInOutQuad);
-				}
-				if (e.beforeState == states.steeringShip && e.afterState == states.boardedShip) {
-					LeanTween.cancel (sender.controller.mainCamera.gameObject);
-					LeanTween.value (sender.controller.mainCamera.gameObject, val => sender.controller.mainCamera.orthographicSize = val, sender.controller.mainCamera.orthographicSize, sender.controller.walkingCameraSize, sender.controller.cameraEaseTime).setEase (LeanTweenType.easeInOutQuad);
-				}
-			}
-		}
-	}
+        private void driver_StateChanged(CharacterDriver sender, StateChangedEventArgs e) {
+            if (sender.controller != null) {
+                if (e.beforeState == states.boardedShip && e.afterState == states.steeringShip) {
+                    LeanTween.cancel(sender.controller.mainCamera.gameObject);
+                    LeanTween.value(sender.controller.mainCamera.gameObject, val => sender.controller.mainCamera.orthographicSize = val, sender.controller.mainCamera.orthographicSize, sender.controller.interactingCameraSize, sender.controller.cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
+                }
+                if (e.beforeState == states.steeringShip && e.afterState == states.boardedShip) {
+                    LeanTween.cancel(sender.controller.mainCamera.gameObject);
+                    LeanTween.value(sender.controller.mainCamera.gameObject, val => sender.controller.mainCamera.orthographicSize = val, sender.controller.mainCamera.orthographicSize, sender.controller.walkingCameraSize, sender.controller.cameraEaseTime).setEase(LeanTweenType.easeInOutQuad);
+                }
+            }
+        }
+    }
 }

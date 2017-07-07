@@ -1759,7 +1759,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.06
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2796,6 +2796,7 @@ MonoBehaviour:
   width: 0.15
   height: 0.15
   isSprinting: 0
+  isWalking: 0
   groundRaycastMask:
     serializedVersion: 2
     m_Bits: 1536

@@ -1,128 +1,114 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace SeaOfGreed{
-	public class CharacterDriver : MonoBehaviour {
+namespace SeaOfGreed {
 
-		internal states state = states.onLand;
-		internal states newState = states.noState;
+    public class CharacterDriver : MonoBehaviour {
+        internal states state = states.onLand;
+        internal states newState = states.noState;
 
-		public float boardShipRange = 10;
-		public float dockShipRange = 10;
-		public float dockOffset = .5f;
-		public float jumpSpeed = 10;
-		public float jumpScale = 3;
-		public float maxDistanceToGrabWheel = .5f;
+        public float boardShipRange = 10;
+        public float dockShipRange = 10;
+        public float dockOffset = .5f;
+        public float jumpSpeed = 10;
+        public float jumpScale = 3;
+        public float maxDistanceToGrabWheel = .5f;
 
-		public float walkSpeed = 2f;
-		public float sprintSpeed = 5f;
-		public float width = .12f;
-		public float height = .12f;
+        public float walkSpeed = 2f;
+        public float sprintSpeed = 5f;
+        public float width = .12f;
+        public float height = .12f;
 
-		public bool isSprinting;
+        public bool isSprinting;
+        public bool isWalking;
 
-		public LayerMask groundRaycastMask;
-		public LayerMask dockRaycastMask;
-		public LayerMask boatRaycastMask;
+        public LayerMask groundRaycastMask;
+        public LayerMask dockRaycastMask;
+        public LayerMask boatRaycastMask;
 
-		public GameObject sprite;
+        public GameObject sprite;
 
-		Animator anim;
+        private Animator anim;
 
-		internal GameObject shipBorded;
-		internal PlayerController controller;
+        internal GameObject shipBorded;
+        internal PlayerController controller;
 
+        public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 
-		public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
-		public event StateChangedEventHandler StateChanged;
+        public event StateChangedEventHandler StateChanged;
 
+        // Use this for initialization
+        private void Start() {
+            anim = GetComponent<Animator>();
+            controller = gameObject.GetComponent<PlayerController>();
+        }
 
-		// Use this for initialization
-		void Start () {
-			anim = GetComponent<Animator>();
-			controller = gameObject.GetComponent<PlayerController> ();
-		}
-		
-		// Update is called once per frame
-		void Update () {
+        // Update is called once per frame
+        private void Update() {
             //Debug.Log(state);
-            if (newState != states.noState)
-            {
+            if (newState != states.noState) {
                 state = newState;
                 newState = states.noState;
             }
-            
         }
 
-		internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
-		{
-			RaycastHit2D shortestHit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * 1 / iterations), range, mask);
-			for (int iteration = 1; iteration < iterations;  iteration++)
-			{
-				RaycastHit2D newhit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * iteration/iterations), range, mask);
-				if (newhit && (shortestHit.distance > newhit.distance || shortestHit.distance==0)) shortestHit = newhit;
-			}
-			return shortestHit;
-		}
+        internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask) {
+            RaycastHit2D shortestHit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * 1 / iterations), range, mask);
+            for (int iteration = 1; iteration < iterations; iteration++) {
+                RaycastHit2D newhit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * iteration / iterations), range, mask);
+                if (newhit && (shortestHit.distance > newhit.distance || shortestHit.distance == 0)) shortestHit = newhit;
+            }
+            return shortestHit;
+        }
 
-		internal RaycastHit2D boatSearch(int iterations)
-		{
-			return raysearch(transform.position, boardShipRange, iterations, boatRaycastMask);
-		}
-		internal RaycastHit2D dockSearch(int iterations)
-		{
-			return raysearch(transform.position, dockShipRange, iterations, dockRaycastMask);
-		}
+        internal RaycastHit2D boatSearch(int iterations) {
+            return raysearch(transform.position, boardShipRange, iterations, boatRaycastMask);
+        }
 
-        public void boardShipHelper()
-        {
+        internal RaycastHit2D dockSearch(int iterations) {
+            return raysearch(transform.position, dockShipRange, iterations, dockRaycastMask);
+        }
+
+        public void boardShipHelper() {
             Assert.IsTrue(state == states.onLand);
             onLandToBoardedShip(boatSearch(12).collider.gameObject);
         }
-        public bool canBoardShip()
-        {
+
+        public bool canBoardShip() {
             Assert.IsTrue(state == states.onLand);
             return boatSearch(12);
         }
 
-        public void dockShipHelper()
-        {
+        public void dockShipHelper() {
             Assert.IsTrue(state == states.boardedShip);
             boardedShipToOnLand(dockSearch(12).point);
         }
-        public bool canDockShip()
-        {
+
+        public bool canDockShip() {
             Assert.IsTrue(state == states.boardedShip);
             return dockSearch(12);
         }
-        public void grabWheelHelper()
-        {
+
+        public void grabWheelHelper() {
             Assert.IsTrue(state == states.boardedShip);
             boardedShipToSteeringShip();
         }
-        public bool canGrabWheel()
-		{
+
+        public bool canGrabWheel() {
             Assert.IsTrue(state == states.boardedShip);
             float distanceToWheel = Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
             bool closeEnoughToGrabWheel = distanceToWheel <= maxDistanceToGrabWheel;
 
             return closeEnoughToGrabWheel;
-		}
-
-
-        public void lookInDirection(Vector3 direction)
-        {
-            
-            var tan = Mathf.Atan2(direction.x, direction.y);
-            sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
-
         }
 
-        public void walkInDirection(Vector3 direction)
-        {
-            bool isWalking = (direction.x != 0) || (direction.y != 0);
+        public void lookInDirection(Vector3 direction) {
+            var tan = Mathf.Atan2(direction.x, direction.y);
+            sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+        }
+
+        public void walkInDirection(Vector3 direction) {
+            isWalking = (direction.x != 0) || (direction.y != 0);
 
             var xToOffset = transform.right * direction.x;
             var yToOffset = transform.up * direction.y;
@@ -135,34 +121,30 @@ namespace SeaOfGreed{
             var xOffset = (x_ray) ? xToOffset : Vector3.zero;
             var yOffset = (y_ray) ? yToOffset : Vector3.zero;
 
-			if (isWalking) {
-				if (isSprinting) {
-					transform.position += ((xOffset) + (yOffset)).normalized * sprintSpeed * Time.deltaTime;
-				} else {
-					transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
-				}
-
-			}
+            if (isWalking) {
+                if (isSprinting) {
+                    transform.position += ((xOffset) + (yOffset)).normalized * sprintSpeed * Time.deltaTime;
+                } else {
+                    transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+                }
+            }
         }
 
-		// state transitions
-		public void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
-		{
-
-			var fromLocation = transform.position;
-			// get the location to jump to by extending the line between fromLocation and closestDock
-			var jumpVector = closestDock - fromLocation;
-			var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
+        // state transitions
+        public void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
+        {
+            var fromLocation = transform.position;
+            // get the location to jump to by extending the line between fromLocation and closestDock
+            var jumpVector = closestDock - fromLocation;
+            var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
             var jumpDistance = (fromLocation - toLocation).magnitude;
             var jumpTime = jumpDistance / jumpSpeed;
 
-
             var fromRotation = shipBorded.transform.rotation;
 
-			newState = states.jumpingToLand;
+            newState = states.jumpingToLand;
 
-
-			var originalScale = transform.localScale;
+            var originalScale = transform.localScale;
 
             // scale the character so they look like they're jumping
             LeanTween.value(gameObject,
@@ -177,87 +159,79 @@ namespace SeaOfGreed{
 
             // sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
             var seq = LeanTween.sequence();
-			// move the character to their destination
-			seq.append(LeanTween.value(gameObject, 
-                (pos) => transform.position = pos, 
+            // move the character to their destination
+            seq.append(LeanTween.value(gameObject,
+                (pos) => transform.position = pos,
                 fromLocation, toLocation, jumpTime)
                 .setEase(LeanTweenType.linear));
-			//LeanTween.value(gameObject, (rotz) => {transform.rotation.Set(transform.rotation.x, transform.rotation.y, rotz, transform.rotation.w);}, fromRotation.z, Quaternion.identity.z, jumpTime).setEase(LeanTweenType.easeInOutExpo);
-			seq.append(jumpingToLandToOnLand);
+            //LeanTween.value(gameObject, (rotz) => {transform.rotation.Set(transform.rotation.x, transform.rotation.y, rotz, transform.rotation.w);}, fromRotation.z, Quaternion.identity.z, jumpTime).setEase(LeanTweenType.easeInOutExpo);
+            seq.append(jumpingToLandToOnLand);
+        }
 
-		}
-
-		public void onLandToBoardedShip(GameObject ship)
-		{
-			var fromLocation = transform.position;
-			var toLocation = ship.GetComponent<ShipController>().getClosestBoardingPoint(transform.position);
+        public void onLandToBoardedShip(GameObject ship) {
+            var fromLocation = transform.position;
+            var toLocation = ship.GetComponent<ShipController>().getClosestBoardingPoint(transform.position);
             var jumpDistance = (fromLocation - toLocation).magnitude;
             var jumpTime = jumpDistance / jumpSpeed;
 
             var originalScale = transform.localScale;
 
+            newState = states.jumpingToShip;
 
-			newState = states.jumpingToShip;
-
-			// scale the character so they look like they're jumping
-			LeanTween.value(gameObject, 
+            // scale the character so they look like they're jumping
+            LeanTween.value(gameObject,
                 (time) => {
                     transform.localScale = new Vector3(
-                        originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), 
-                        originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), 
-                        originalScale.z); }, 
+                        originalScale.x + myMath.parabolicScaleCalc(time, jumpScale),
+                        originalScale.y + myMath.parabolicScaleCalc(time, jumpScale),
+                        originalScale.z);
+                },
                 -1, 1, jumpTime)
                 .setEase(LeanTweenType.linear);
 
-			// sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
-			var seq = LeanTween.sequence();
+            // sequence object allows us to put tweens in a sequence - in this case it's calling a function that changes the state at the end of the tween
+            var seq = LeanTween.sequence();
 
             //LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
-			// move the character to their destination
-			seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
+            // move the character to their destination
+            seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
 
-			seq.append(() => jumpingToShipToBoardedShip(ship, toLocation));
-		}
+            seq.append(() => jumpingToShipToBoardedShip(ship, toLocation));
+        }
 
-		public void jumpingToShipToBoardedShip(GameObject ship, Vector3 location)
-		{
-			Assert.IsTrue(state == states.jumpingToShip);
-			transform.rotation = ship.transform.rotation;
-			newState = states.boardedShip;
-			transform.position = location;
-			transform.SetParent(ship.transform);
-			shipBorded = ship;
-		}
+        public void jumpingToShipToBoardedShip(GameObject ship, Vector3 location) {
+            Assert.IsTrue(state == states.jumpingToShip);
+            transform.rotation = ship.transform.rotation;
+            newState = states.boardedShip;
+            transform.position = location;
+            transform.SetParent(ship.transform);
+            shipBorded = ship;
+        }
 
-		public void boardedShipToSteeringShip()
-		{
-			Assert.IsTrue(state == states.boardedShip);
-			newState = states.steeringShip;
-			transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
-			//sprite.transform.localRotation = shipBorded.GetComponent<ShipController>().wheelMarker.transform.rotation;
-			StateChanged(this, new StateChangedEventArgs(states.boardedShip, states.steeringShip));
+        public void boardedShipToSteeringShip() {
+            Assert.IsTrue(state == states.boardedShip);
+            newState = states.steeringShip;
+            transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
+            //sprite.transform.localRotation = shipBorded.GetComponent<ShipController>().wheelMarker.transform.rotation;
+            StateChanged(this, new StateChangedEventArgs(states.boardedShip, states.steeringShip));
 
-			//LeanTween.value(walkingCameraSize, interactingCameraSize)
-		}
+            //LeanTween.value(walkingCameraSize, interactingCameraSize)
+        }
 
-		public void steeringShipToBoardedShip()
-		{
-			StateChanged (this, new StateChangedEventArgs (states.steeringShip, states.boardedShip));
+        public void steeringShipToBoardedShip() {
+            StateChanged(this, new StateChangedEventArgs(states.steeringShip, states.boardedShip));
 
-			Assert.IsTrue(state == states.steeringShip);
-			newState = states.boardedShip;
-		}
+            Assert.IsTrue(state == states.steeringShip);
+            newState = states.boardedShip;
+        }
 
-
-		public void jumpingToLandToOnLand()
-		{
-			Assert.IsTrue(state == states.jumpingToLand);
-			shipBorded = null;
-			transform.SetParent(null);
-			transform.rotation = Quaternion.identity;
-			newState = states.onLand;
-			shipBorded = null;
-
-		}
-	}
+        public void jumpingToLandToOnLand() {
+            Assert.IsTrue(state == states.jumpingToLand);
+            shipBorded = null;
+            transform.SetParent(null);
+            transform.rotation = Quaternion.identity;
+            newState = states.onLand;
+            shipBorded = null;
+        }
+    }
 }
