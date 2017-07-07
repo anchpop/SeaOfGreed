@@ -13,6 +13,9 @@ namespace SeaOfGreed {
 
         public GUI gui;
 
+        public GameObject[] mapItems;
+        public GameObject[] questItems;
+
         private enum Pages {
             none = 0,
             quests = 1,
@@ -41,6 +44,12 @@ namespace SeaOfGreed {
         }
 
         private void CloseLogBook() {
+            foreach (var item in mapItems) {
+                item.SetActive(false);
+            }
+            foreach (var item in questItems) {
+                item.SetActive(false);
+            }
             pauseMenu.Unpause();
             logbookCanvas.enabled = false;
             gui.showUI = true;
@@ -48,6 +57,29 @@ namespace SeaOfGreed {
         }
 
         private void OpenToPage(Pages page) {
+            switch (page) {
+                case Pages.none:
+                    CloseLogBook();
+                    break;
+
+                case Pages.quests:
+                    foreach (var item in mapItems) {
+                        item.SetActive(false);
+                    }
+                    foreach (var item in questItems) {
+                        item.SetActive(true);
+                    }
+                    break;
+
+                case Pages.map:
+                    foreach (var item in questItems) {
+                        item.SetActive(false);
+                    }
+                    foreach (var item in mapItems) {
+                        item.SetActive(true);
+                    }
+                    break;
+            }
             gui.showUI = false;
             pauseMenu.Pause();
             logbookCanvas.enabled = true;
