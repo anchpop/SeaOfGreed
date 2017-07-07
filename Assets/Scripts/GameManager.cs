@@ -45,7 +45,7 @@ namespace SeaOfGreed
 				options.Defaults ();
 			}
 			if (File.Exists (Application.persistentDataPath + "/inputs.xml")) {
-				InputManager.Load (Application.persistentDataPath + "/inputs.xml");
+				//InputManager.Load (Application.persistentDataPath + "/inputs.xml");
 			}
 		}
 

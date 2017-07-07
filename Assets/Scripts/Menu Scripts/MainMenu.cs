@@ -35,7 +35,7 @@ namespace SeaOfGreed{
 		}
 
 		public void Play(){
-			SceneManager.LoadScene("testscene1");
+			SceneManager.LoadScene("main");
 		}
 
 		public void ReturnToMainMenu(){

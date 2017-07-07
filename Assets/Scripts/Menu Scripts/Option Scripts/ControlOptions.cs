@@ -13,6 +13,7 @@ namespace SeaOfGreed{
 		public Button PlayerBackward;
 		public Button PlayerLeft;
 		public Button PlayerRight;
+		public Button Sprint;
 
 		public Button ShipEnter;
 		public Button ShipAccelerate;
@@ -39,6 +40,7 @@ namespace SeaOfGreed{
 			PlayerBackward.onClick.AddListener(OnPlayerBackward);
 			PlayerLeft.onClick.AddListener(OnPlayerLeft);
 			PlayerRight.onClick.AddListener(OnPlayerRight);
+			Sprint.onClick.AddListener(OnSprint);
 
 
 			ShipEnter.onClick.AddListener (OnShipEnter);
@@ -57,6 +59,7 @@ namespace SeaOfGreed{
 			PlayerBackward.interactable = true;
 			PlayerLeft.interactable = true;
 			PlayerRight.interactable = true;
+			Sprint.interactable = true;
 
 			ShipEnter.interactable = true;
 			ShipAccelerate.interactable = true;
@@ -74,6 +77,7 @@ namespace SeaOfGreed{
 			PlayerBackward.colors = colors;
 			PlayerLeft.colors = colors;
 			PlayerRight.colors = colors;
+			Sprint.colors = colors;
 
 			ShipEnter.colors = colors;
 			ShipAccelerate.colors = colors;
@@ -88,6 +92,7 @@ namespace SeaOfGreed{
 			PlayerBackward.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Player Backward").positive.ToString ();
 			PlayerRight.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Player Right").positive.ToString ();
 			PlayerLeft.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Player Left").positive.ToString ();
+			Sprint.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Sprint").positive.ToString ();
 
 			ShipEnter.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Enter Ship").positive.ToString ();
 			ShipAccelerate.GetComponentInChildren<Text> ().text = InputManager.GetAxisConfiguration ("Default", "Ship Accelerate").positive.ToString ();
@@ -104,6 +109,7 @@ namespace SeaOfGreed{
 			PlayerBackward.interactable = false;
 			PlayerLeft.interactable = false;
 			PlayerRight.interactable = false;
+			Sprint.interactable = false;
 
 			ShipEnter.interactable = false;
 			ShipAccelerate.interactable = false;
@@ -193,6 +199,25 @@ namespace SeaOfGreed{
 			settings.timeout = 20f;
 			InputManager.StartScan(settings, HandleKeyScan);
 			isEditing = true;
+		}
+
+		public void OnSprint(){
+			AllUninteractable ();
+
+			var colors = PlayerForward.colors;
+			colors.colorMultiplier = 5f;
+			Sprint.colors = colors;
+
+			Sprint.GetComponentInChildren<Text> ().text = "";
+			ScanSettings settings = new ScanSettings ();
+			settings.cancelScanButton = "Escape";
+			settings.scanFlags = ScanFlags.Key;
+			settings.userData = "Sprint";
+			settings.timeout = 20f;
+			isEditing = true;
+			Debug.Log ("isediding");
+			InputManager.StartScan(settings, HandleKeyScan);
+
 		}
 
 
