@@ -35,8 +35,12 @@ namespace SeaOfGreed{
 
         void walkAccordingToUserInput()
         {
-            var input_x = InputManager.GetAxisRaw("Player Horizontal");
-            var input_y = InputManager.GetAxisRaw("Player Vertical");
+			var input_x_right = InputManager.GetButton ("Player Right") ? 1 : 0;
+			var input_x_left = InputManager.GetButton ("Player Left") ? 1 : 0;
+			var input_y_forward = InputManager.GetButton("Player Forward") ? 1 : 0;
+			var input_y_backward = InputManager.GetButton ("Player Backward") ? 1 : 0;
+			var input_x = input_x_right - input_x_left;
+			var input_y = input_y_forward - input_y_backward;
 
             driver.walkInDirection(new Vector3(input_x, input_y));
         }
@@ -93,44 +97,34 @@ namespace SeaOfGreed{
         }
 
         // Update is called once per frame
-        void Update () {
-            if (driver.state == states.boardedShip || driver.state == states.onLand)
-            {
-                walkAccordingToUserInput();
-            }
-                displayHelpText();
+        void Update() {
+			if (Time.timeScale != 0f) {
+				if (driver.state == states.boardedShip || driver.state == states.onLand) {
+					walkAccordingToUserInput ();
+				}
+				displayHelpText ();
 
-			if (driver.state == states.onLand && driver.canBoardShip() && InputManager.GetButtonDown("Enter Ship"))
-            {
-                driver.boardShipHelper();
-            }
-				if (driver.state == states.boardedShip && driver.canDockShip() && InputManager.GetButtonDown("Enter Ship"))
-            {
-                driver.dockShipHelper();
-            }
-			if (driver.state == states.boardedShip && driver.canGrabWheel() && InputManager.GetButtonDown("Use"))
-            {
-                driver.grabWheelHelper();
-            }
-            if (driver.state == states.steeringShip)
-            {
-                steerShipAccordingToUserInput();
-            }
-			if (InputManager.GetButtonDown ("Sprint")) {
-				driver.isSprinting = true;
-			}	else if (InputManager.GetButtonUp ("Sprint")) {
-				driver.isSprinting = false;
-			}
-
-				
+				if (driver.state == states.onLand && driver.canBoardShip () && InputManager.GetButtonDown ("Enter Ship")) {
+					driver.boardShipHelper ();
+				}
+				if (driver.state == states.boardedShip && driver.canDockShip () && InputManager.GetButtonDown ("Enter Ship")) {
+					driver.dockShipHelper ();
+				}
+				if (driver.state == states.boardedShip && driver.canGrabWheel () && InputManager.GetButtonDown ("Use")) {
+					driver.grabWheelHelper ();
+				}
+				if (driver.state == states.steeringShip) {
+					steerShipAccordingToUserInput ();
+				}
+				if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
+					lookTowardsMouse ();
+				}
+        if (InputManager.GetButtonDown ("Sprint")) {
+          driver.isSprinting = true;
+        }	else if (InputManager.GetButtonUp ("Sprint")) {
+          driver.isSprinting = false;
         }
-
-		void FixedUpdate(){
-			if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip)
-			{
-				lookTowardsMouse();
-			}
-
-		}
+        }
+        }
     }
 }
