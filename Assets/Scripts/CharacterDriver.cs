@@ -158,7 +158,7 @@ namespace SeaOfGreed{
                 RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
                 RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
                 
-                RaycastHit2D border_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask);
+                RaycastHit2D border_x_ray = Physics2D.Raycast   (transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask);
                 RaycastHit2D border_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, borderRaycastMask);
 
                 //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);

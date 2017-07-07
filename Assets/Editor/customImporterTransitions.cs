@@ -36,6 +36,7 @@ public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
         newVerticies.Add(new Vector2(0f, 0f));
         collider.points = newVerticies.ToArray();
 
+
         // Do nothing
     }
 }
