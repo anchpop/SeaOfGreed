@@ -31,7 +31,7 @@ namespace SeaOfGreed
 			FileStream optionsFile = File.Open (Application.persistentDataPath + "/options.dat", FileMode.OpenOrCreate);
 			bf.Serialize (optionsFile, options);
 			optionsFile.Close ();
-			InputManager.Save ();
+			InputManager.Save (Application.persistentDataPath + "/inputs.xml");
 		}
 
 		public void Load(){
@@ -44,7 +44,9 @@ namespace SeaOfGreed
 			} else {
 				options.Defaults ();
 			}
-			InputManager.Load ();
+			if (File.Exists (Application.persistentDataPath + "/inputs.xml")) {
+				InputManager.Load (Application.persistentDataPath + "/inputs.xml");
+			}
 		}
 
 	}

@@ -97,36 +97,30 @@ namespace SeaOfGreed{
         }
 
         // Update is called once per frame
-        void FixedUpdate () {
-            if (driver.state == states.boardedShip || driver.state == states.onLand)
-            {
-                walkAccordingToUserInput();
-            }
-                displayHelpText();
+        void Update() {
+			if (Time.timeScale != 0f) {
+				if (driver.state == states.boardedShip || driver.state == states.onLand) {
+					walkAccordingToUserInput ();
+				}
+				displayHelpText ();
 
-			if (driver.state == states.onLand && driver.canBoardShip() && InputManager.GetButtonDown("Enter Ship"))
-            {
-                driver.boardShipHelper();
-            }
-				if (driver.state == states.boardedShip && driver.canDockShip() && InputManager.GetButtonDown("Enter Ship"))
-            {
-                driver.dockShipHelper();
-            }
-			if (driver.state == states.boardedShip && driver.canGrabWheel() && InputManager.GetButtonDown("Use"))
-            {
-                driver.grabWheelHelper();
-            }
-            if (driver.state == states.steeringShip)
-            {
-                steerShipAccordingToUserInput();
-            }
-			if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip)
-			{
-				lookTowardsMouse();
+				if (driver.state == states.onLand && driver.canBoardShip () && InputManager.GetButtonDown ("Enter Ship")) {
+					driver.boardShipHelper ();
+				}
+				if (driver.state == states.boardedShip && driver.canDockShip () && InputManager.GetButtonDown ("Enter Ship")) {
+					driver.dockShipHelper ();
+				}
+				if (driver.state == states.boardedShip && driver.canGrabWheel () && InputManager.GetButtonDown ("Use")) {
+					driver.grabWheelHelper ();
+				}
+				if (driver.state == states.steeringShip) {
+					steerShipAccordingToUserInput ();
+				}
+				if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
+					lookTowardsMouse ();
+				}
 			}
-				
         }
-
-
+			
     }
 }
