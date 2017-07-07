@@ -876,7 +876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50.599976, y: -48.800003}
+  m_AnchoredPosition: {x: -50.599976, y: -48.799988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &526569595
@@ -2770,8 +2770,8 @@ MonoBehaviour:
   dockText: {fileID: 1280218577}
   wheelText: {fileID: 2100009331}
   mainCamera: {fileID: 1126675439}
-  walkingCameraSize: 4
-  interactingCameraSize: 6
+  walkingCameraSize: 5
+  interactingCameraSize: 8
   cameraEaseTime: 2
   driver: {fileID: 1870539823}
 --- !u!114 &1870539823
@@ -6186,12 +6186,12 @@ Prefab:
     - target: {fileID: 224595832017807470, guid: ad4f60487c0af344dab8e20b74ff449d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224431873899405802, guid: ad4f60487c0af344dab8e20b74ff449d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad4f60487c0af344dab8e20b74ff449d, type: 2}
