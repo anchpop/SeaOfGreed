@@ -126,7 +126,7 @@ namespace SeaOfGreed{
 
                 // sort by which is closest to the player :)
                 assocs.Sort((assoc1, assoc2) => (assoc1.transform.position - transform.position).sqrMagnitude.CompareTo((assoc2.transform.position - transform.position).sqrMagnitude));
-                transform.position = assocs.Last().transform.position;
+                transform.position = assocs.Last().transform.position + (Vector3)assocs.Last().GetComponent<BoxCollider2D>().offset;
                 steppedOnRoomTransition = true;
             }
         }
