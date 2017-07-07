@@ -6,16 +6,36 @@ public class ShipController : MonoBehaviour {
 
     Rigidbody2D body;
 
-    public float acceleration = 5;
-    public float brakespeed = 2;
-    public float maxspeed = 10;
+    public float acceleration = 2;
+    public float brakespeed = 1.65f;
+    public float maxspeed = 5;
     public float maxbackwardspeed = 2;
     public float torque = 2;
+    public List<Transform> boardingPoints;
+
+    public ParticleSystem particles;
+    public float speedThresholdForParticles = .3f;
 
     public GameObject wheelMarker;
     // Use this for initialization
     void Start () {
         body = GetComponent<Rigidbody2D>();
+    }
+
+    public Vector3 getClosestBoardingPoint(Vector3 position)
+    {
+        int closestPoint = 0;
+        float closestDistSqr = (position - boardingPoints[0].transform.position).sqrMagnitude;
+        for (int boardingPointIndex = 1; boardingPointIndex < boardingPoints.Count; boardingPointIndex++)
+        {
+            var newDist = (position - boardingPoints[boardingPointIndex].transform.position).sqrMagnitude;
+            if (newDist < closestDistSqr)
+            {
+                closestDistSqr = newDist;
+                closestPoint = boardingPointIndex;
+            }
+        } 
+        return boardingPoints[closestPoint].position;
     }
 
     private void applyContinuousForce(float speed, Vector3 force, float maxVelocity, float minVelocity = 0)
@@ -49,6 +69,13 @@ public class ShipController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () { 
+    void Update ()
+    {
+        if (body.velocity.magnitude > speedThresholdForParticles && !particles.isEmitting)
+        {
+            particles.Play();
+        }
+        else if (body.velocity.magnitude < speedThresholdForParticles && particles.isEmitting)
+            particles.Stop();
     }
 }
