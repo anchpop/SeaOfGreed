@@ -34,6 +34,7 @@ namespace SeaOfGreed
         public RoomData currentRoomPrefab;
 
         Dictionary<String, Vector2> roomPositions;
+        Dictionary<String, List<GameObject>> TileAssociations;
 
         public GameObject player;
 
@@ -52,8 +53,6 @@ namespace SeaOfGreed
                 var roomData = rooms[roomIndex];
                 var roomTiledMap = roomData.room.GetComponent<Tiled2Unity.TiledMap>();
                 roomData.size = myMath.getTiledMapSize(roomTiledMap);
-
-                Debug.Log(roomData.size.x);
             }
             rooms.Sort((a, b) => b.Area.CompareTo(a.Area));
 
@@ -70,6 +69,16 @@ namespace SeaOfGreed
                 roomData.position = new Vector3(newx, newy);
 
                 roomData.roomGameObject = Instantiate(roomData.room, roomData.position, Quaternion.identity);
+            }
+        }
+
+        void getTransitions()
+        {
+            var markers = GameObject.FindGameObjectsWithTag("Transition");
+            for (int markerIndex = 0; markerIndex < markers.Length; markerIndex++)
+            {
+                var marker = markers[markerIndex];
+                TileAssociations[marker.GetComponent<TransitionMarker>().markerKey].Add(marker);
             }
         }
 

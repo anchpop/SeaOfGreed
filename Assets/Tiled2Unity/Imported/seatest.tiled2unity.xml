@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/6/2017 6:27:49 PM-->
+<!--Last exported: 7/6/2017 9:59:02 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="seatest_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="seatest_mesh_0002" material="RPGpack_sheet" />
@@ -33,11 +33,10 @@
     </GameObject>
     <GameObject name="RoomTransitions" x="0" y="0" z="0" layer="RoomMarker">
       <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
-      <GameObject name="roomTest" x="27.5199986" y="-24.32" rotation="0" isTrigger="true">
-        <PolylineObjectComponent tmx-object-id="1" tmx-object-name="roomTest" tmx-object-type="" tmx-object-x="1376" tmx-object-y="1216" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
-        <EdgeCollider2D>
-          <Points>0,0 0.96,0 1.92,0</Points>
-        </EdgeCollider2D>
+      <GameObject name="RectangleObject" x="27.5199986" y="-23.68" rotation="0" isTrigger="false">
+        <Property name="Transition" value="roomtest" />
+        <RectangleObjectComponent tmx-object-id="7" tmx-object-name="" tmx-object-type="" tmx-object-x="1376" tmx-object-y="1184" tmx-object-width="96" tmx-object-height="32" tmx-object-rotation="0" />
+        <BoxCollider2D width="1.92" height="0.64" />
       </GameObject>
     </GameObject>
   </Prefab>

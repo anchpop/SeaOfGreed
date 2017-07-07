@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="1">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="2">
  <tileset firstgid="1" source="../tilesheets/kenneyrpg.tsx"/>
  <tileset firstgid="1041" source="../tilesheets/kenneyrpg.tsx"/>
  <layer name="Tile Layer 1" width="20" height="20">
@@ -26,4 +26,12 @@
 250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250
 </data>
  </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" x="0" y="224" width="32" height="96">
+   <properties>
+    <property name="Transition" value="roomtest"/>
+    <property name="unity:isTrigger" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

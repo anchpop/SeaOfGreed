@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/6/2017 6:28:04 PM-->
+<!--Last exported: 7/6/2017 9:55:20 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="roomtest_mesh_0001" material="RPGpack_sheet" />
   <Prefab name="roomtest" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="1" numTilesWide="20" numTilesHigh="20" tileWidth="32" tileHeight="32" exportScale="0.02" mapWidthInPixels="640" mapHeightInPixels="640" backgroundColor="#808080">
@@ -13,6 +13,14 @@
           <Path>12.8,0 0,0 0,-12.8 12.8,-12.8</Path>
           <Path>9.599999,-4.48 9.599999,-1.92 10.88,-1.92 10.88,-4.48</Path>
         </PolygonCollider2D>
+      </GameObject>
+    </GameObject>
+    <GameObject name="Object Layer 1" x="0" y="0" z="0">
+      <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
+      <GameObject name="RectangleObject" x="0" y="-4.48" rotation="0" isTrigger="true" layer="">
+        <Property name="Transition" value="roomtest" />
+        <RectangleObjectComponent tmx-object-id="1" tmx-object-name="" tmx-object-type="" tmx-object-x="0" tmx-object-y="224" tmx-object-width="32" tmx-object-height="96" tmx-object-rotation="0" />
+        <BoxCollider2D width="0.64" height="1.92" />
       </GameObject>
     </GameObject>
   </Prefab>

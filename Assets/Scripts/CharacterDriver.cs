@@ -32,7 +32,7 @@ namespace SeaOfGreed{
 		internal GameObject shipBorded;
 		internal PlayerController controller;
 
-        public bool canSwitchIntoRooms = false;
+        public bool canSwitchIntoRooms = true;
 
 
 		public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
