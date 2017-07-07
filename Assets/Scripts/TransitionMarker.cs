@@ -8,7 +8,6 @@ public class TransitionMarker : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("yo");
     }
 
     // Use this for initialization

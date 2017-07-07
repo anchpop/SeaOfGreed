@@ -774,17 +774,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
-  - room: {fileID: 1172311483300408, guid: 6c9510cf9b34db3478bb59e2d1b35179, type: 2}
+  - roomPrefab: {fileID: 1172311483300408, guid: 6c9510cf9b34db3478bb59e2d1b35179,
+      type: 2}
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
     roomGameObject: {fileID: 0}
-  - room: {fileID: 1776455178518260, guid: 337effe745174aa4f93aaecaceb91d67, type: 2}
-    position: {x: 0, y: 0, z: 0}
-    size: {x: 0, y: 0}
-    roomGameObject: {fileID: 0}
-  currentlyLoadedRoom: {fileID: 0}
-  currentRoomPrefab:
-    room: {fileID: 0}
+  - roomPrefab: {fileID: 1776455178518260, guid: 337effe745174aa4f93aaecaceb91d67,
+      type: 2}
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
     roomGameObject: {fileID: 0}

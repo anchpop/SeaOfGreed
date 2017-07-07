@@ -187,7 +187,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1098756314770832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.48, z: 0}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4738715306406558}
@@ -256,14 +256,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 12.8, y: 0}
+    - - {x: 10, y: 0}
       - {x: 0, y: 0}
-      - {x: 0, y: -12.8}
-      - {x: 12.8, y: -12.8}
-    - - {x: 9.599999, y: -4.48}
-      - {x: 9.599999, y: -1.92}
-      - {x: 10.88, y: -1.92}
-      - {x: 10.88, y: -4.48}
+      - {x: 0, y: -10}
+      - {x: 10, y: -10}
+    - - {x: 7.5, y: -3.5}
+      - {x: 7.5, y: -1.5}
+      - {x: 8.5, y: -1.5}
+      - {x: 8.5, y: -3.5}
 --- !u!61 &61871425012329792
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -276,7 +276,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.32, y: -0.96}
+  m_Offset: {x: 0.25, y: -0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -287,7 +287,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 1.92}
+  m_Size: {x: 0.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &114225384547513798
 MonoBehaviour:
@@ -309,7 +309,7 @@ MonoBehaviour:
   NumTilesHigh: 20
   TileWidth: 32
   TileHeight: 32
-  ExportScale: 0.02
+  ExportScale: 0.015625
   MapWidthInPixels: 640
   MapHeightInPixels: 640
   BackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}

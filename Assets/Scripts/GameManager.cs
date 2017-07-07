@@ -9,7 +9,7 @@ using UnityEngine.Assertions;
 [Serializable]
 public class RoomData
 {
-    public GameObject room;
+    public GameObject roomPrefab;
     [HideInInspector]
     public Vector3 position;
     [HideInInspector]
@@ -29,9 +29,6 @@ namespace SeaOfGreed
     {
         public List<RoomData> rooms;
 
-        public GameObject currentlyLoadedRoom;
-        public RoomData currentRoomPrefab;
-
         Dictionary<String, Vector2> roomPositions;
         Dictionary<String, List<GameObject>> TileAssociations = new Dictionary<string, List<GameObject>>();
 
@@ -50,7 +47,7 @@ namespace SeaOfGreed
             for (int roomIndex = 0; roomIndex < rooms.Count; roomIndex++)
             {
                 var roomData = rooms[roomIndex];
-                var roomTiledMap = roomData.room.GetComponent<Tiled2Unity.TiledMap>();
+                var roomTiledMap = roomData.roomPrefab.GetComponent<Tiled2Unity.TiledMap>();
                 roomData.size = myMath.getTiledMapSize(roomTiledMap);
             }
             rooms.Sort((a, b) => b.Area.CompareTo(a.Area));
@@ -67,7 +64,7 @@ namespace SeaOfGreed
                 //This rectangle is now packed into position!
                 roomData.position = new Vector3(newx, newy);
 
-                roomData.roomGameObject = Instantiate(roomData.room, roomData.position, Quaternion.identity);
+                roomData.roomGameObject = Instantiate(roomData.roomPrefab, roomData.position, Quaternion.identity);
             }
         }
 

@@ -7,8 +7,10 @@ using UnityEngine.Assertions;
 namespace SeaOfGreed{
 	public class CharacterDriver : MonoBehaviour {
 
-        RoomData currentRoom;
-        public GameManager manager; 
+        public GameManager manager;
+
+        [HideInInspector]
+        public RoomData currentRoom;
 
         internal states state = states.onLand;
 		internal states newState = states.noState;
@@ -43,8 +45,9 @@ namespace SeaOfGreed{
 		public event StateChangedEventHandler StateChanged;
 
 
-		// Use this for initialization
-		void Start () {
+
+        // Use this for initialization
+        void Start () {
 			anim = GetComponent<Animator>();
 			controller = gameObject.GetComponent<PlayerController> ();
 		}
@@ -128,15 +131,15 @@ namespace SeaOfGreed{
                 assocs.Sort((assoc1, assoc2) => (assoc1.transform.position - transform.position).sqrMagnitude.CompareTo((assoc2.transform.position - transform.position).sqrMagnitude));
                 transform.position = assocs.Last().transform.position + (Vector3)assocs.Last().GetComponent<BoxCollider2D>().offset;
                 steppedOnRoomTransition = true;
+
+                currentRoom = manager.getRoomAtLocation(transform.position);
             }
         }
 
         public void lookInDirection(Vector3 direction)
         {
-            
             var tan = Mathf.Atan2(direction.x, direction.y);
             sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
-
         }
 
 
@@ -159,7 +162,7 @@ namespace SeaOfGreed{
 
                 transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
 
-                if (canSwitchIntoRooms)
+                if (canSwitchIntoRooms && state == states.onLand)
                 {
                     RaycastHit2D roomswitch_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, roomTransitionRaycastMask);
                     RaycastHit2D roomswitch_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, roomTransitionRaycastMask);
