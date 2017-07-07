@@ -240,18 +240,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34736340}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnPlayerBackward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &34736340
@@ -1795,7 +1784,7 @@ Prefab:
     - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
         type: 2}
       propertyPath: inputConfigurations.Array.data[0].axes.Array.size
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4793352474177720, guid: 21124337ffda2114ea7bd078666a56b2, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2089,6 +2078,26 @@ Prefab:
       propertyPath: inputConfigurations.Array.data[0].isExpanded
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].name
+      value: Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].gravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].sensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].positive
+      value: 27
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21124337ffda2114ea7bd078666a56b2, type: 2}
   m_IsPrefabParent: 0
@@ -2222,18 +2231,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 486782596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnShipLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &486782596
@@ -3176,18 +3174,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 604183924}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnPlayerForward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &604183924
@@ -4966,18 +4953,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1223350525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnPlayerLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1223350525
@@ -5581,18 +5557,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1336355004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnShipAccelerate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1336355004
@@ -5788,6 +5753,7 @@ MonoBehaviour:
   ShipRight: {fileID: 1752063931}
   Use: {fileID: 784990625}
   Pause: {fileID: 1946894912}
+  isEditing: 0
 --- !u!114 &1341857815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6080,18 +6046,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1429087586}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnShipEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1429087586
@@ -6203,18 +6158,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1436106467}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnPlayerRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1436106467
@@ -7591,18 +7535,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1752063932}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnShipRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1752063932
@@ -7836,18 +7769,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1791277487}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1341857814}
-        m_MethodName: OnShipBrake
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1791277487

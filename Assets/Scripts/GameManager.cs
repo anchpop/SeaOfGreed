@@ -13,9 +13,10 @@ namespace SeaOfGreed
 		void Awake(){
 			if (gameManager != null && gameManager != this) {
 				Destroy (this.gameObject);
+			} else {
+				gameManager = this;
+				DontDestroyOnLoad (this.gameObject);
 			}
-			gameManager = this;
-			DontDestroyOnLoad (this.gameObject);
 		}
 
 		void Start(){

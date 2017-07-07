@@ -1021,7 +1021,7 @@ Prefab:
     - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
         type: 2}
       propertyPath: inputConfigurations.Array.data[0].axes.Array.size
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4793352474177720, guid: 21124337ffda2114ea7bd078666a56b2, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1268,7 +1268,7 @@ Prefab:
     - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
         type: 2}
       propertyPath: inputConfigurations.Array.data[0].axes.Array.data[15].name
-      value: Escape
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
         type: 2}
@@ -1283,6 +1283,26 @@ Prefab:
     - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
         type: 2}
       propertyPath: inputConfigurations.Array.data[0].axes.Array.data[15].positive
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].name
+      value: Escape
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].gravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].sensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[16].positive
       value: 27
       objectReference: {fileID: 0}
     m_RemovedComponents: []

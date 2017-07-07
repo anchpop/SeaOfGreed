@@ -24,11 +24,11 @@ namespace SeaOfGreed{
 
 		void Update (){
 			if (optionsCanvas.enabled) {
-				if (InputManager.GetButtonDown ("Pause")) {
+				if (InputManager.GetButtonDown ("Exit")) {
 					ReturnToMainMenu ();
 				}
-			} else if(!optionsCanvas.enabled && !canvas.enabled){
-				if (InputManager.GetButtonDown ("Pause")) {
+			} else if(!optionsCanvas.enabled && !canvas.enabled && !controlsCanvas.GetComponent<ControlOptions>().isEditing){
+				if (InputManager.GetButtonDown ("Exit")) {
 					ToOptions ();
 				}
 			}

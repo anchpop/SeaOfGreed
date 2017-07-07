@@ -97,7 +97,7 @@ namespace SeaOfGreed{
         }
 
         // Update is called once per frame
-        void Update () {
+        void FixedUpdate () {
             if (driver.state == states.boardedShip || driver.state == states.onLand)
             {
                 walkAccordingToUserInput();
@@ -120,14 +120,13 @@ namespace SeaOfGreed{
             {
                 steerShipAccordingToUserInput();
             }
-				
-        }
-
-		void FixedUpdate(){
 			if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip)
 			{
 				lookTowardsMouse();
 			}
-		}
+				
+        }
+
+
     }
 }

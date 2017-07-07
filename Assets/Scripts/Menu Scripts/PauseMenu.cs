@@ -27,12 +27,12 @@ namespace SeaOfGreed
 
 		void Update(){
 			
-			if (InputManager.GetButtonDown ("Pause")) {
+			if (InputManager.GetButtonDown ("Exit")) {
 				if (!paused) {
 					Pause ();
 				} else if (canvas.enabled || optionsCanvas.enabled) {
 					Unpause ();
-				} else {
+				} else if (!controlsCanvas.GetComponent<ControlOptions>().isEditing){
 					ToOptions ();
 				}
 			}
