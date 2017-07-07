@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Assertions;
 
 [Serializable]
 public class RoomData
 {
-    public string name;
-    public string description;
     public GameObject room;
     [HideInInspector]
     public Vector3 position;
@@ -87,7 +86,6 @@ namespace SeaOfGreed
             gameManager = this;
 			options = new Options ();
 			Load ();
-
 		}
 
 		public void Save(){
@@ -108,9 +106,16 @@ namespace SeaOfGreed
 			}
 		}
 
-        void switchPlayerToRoom(string roomName)
+        public RoomData getRoomAtLocation(Vector3 loc)
         {
-            rooms.Find(roomPrefab => roomPrefab.name == roomName);
+            return rooms.Find(room => new Rect(room.position.x, room.position.y, room.size.x, room.size.y).Contains(loc));
+        }
+
+        public List<GameObject> getTileAssociations(string markerKey)
+        {
+            var assocs = TileAssociations[markerKey];
+            Assert.IsTrue(assocs.Count == 2);
+            return assocs;
         }
 	}
 }

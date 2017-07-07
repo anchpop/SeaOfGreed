@@ -774,22 +774,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
-  - name: Overworld
-    description: The world with all the islands, etc.
-    room: {fileID: 1172311483300408, guid: 6c9510cf9b34db3478bb59e2d1b35179, type: 2}
+  - room: {fileID: 1172311483300408, guid: 6c9510cf9b34db3478bb59e2d1b35179, type: 2}
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
     roomGameObject: {fileID: 0}
-  - name: roomTest
-    description: ignore me :p
-    room: {fileID: 1776455178518260, guid: 337effe745174aa4f93aaecaceb91d67, type: 2}
+  - room: {fileID: 1776455178518260, guid: 337effe745174aa4f93aaecaceb91d67, type: 2}
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
     roomGameObject: {fileID: 0}
   currentlyLoadedRoom: {fileID: 0}
   currentRoomPrefab:
-    name: 
-    description: 
     room: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
@@ -4126,6 +4120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84613f924d2b22244bfb9d69c5cae457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 438177878}
   boardShipRange: 5
   dockShipRange: 3
   dockOffset: 0.5

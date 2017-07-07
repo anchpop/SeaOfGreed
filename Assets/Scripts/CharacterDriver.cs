@@ -6,7 +6,10 @@ using UnityEngine.Assertions;
 namespace SeaOfGreed{
 	public class CharacterDriver : MonoBehaviour {
 
-		internal states state = states.onLand;
+        RoomData currentRoom;
+        public GameManager manager; 
+
+        internal states state = states.onLand;
 		internal states newState = states.noState;
 
 		public float boardShipRange = 10;
@@ -33,7 +36,6 @@ namespace SeaOfGreed{
 		internal PlayerController controller;
 
         public bool canSwitchIntoRooms = true;
-
 
 		public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 		public event StateChangedEventHandler StateChanged;
