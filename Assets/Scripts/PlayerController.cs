@@ -119,8 +119,12 @@ namespace SeaOfGreed{
 				if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
 					lookTowardsMouse ();
 				}
-			}
+        if (InputManager.GetButtonDown ("Sprint")) {
+          driver.isSprinting = true;
+        }	else if (InputManager.GetButtonUp ("Sprint")) {
+          driver.isSprinting = false;
         }
-			
+        }
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace SeaOfGreed{
 
 
 	    // Update is called once per frame
-	    void FixedUpdate()
+	    void Update()
 	    {
 			if (target)
 	        {
