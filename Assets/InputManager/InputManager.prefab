@@ -334,6 +334,34 @@ MonoBehaviour:
       type: 0
       axis: 0
       joystick: 0
+    - name: LFire
+      description: 
+      positive: 323
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 1
+      sensitivity: 1
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
+    - name: RFire
+      description: 
+      positive: 324
+      negative: 0
+      altPositive: 0
+      altNegative: 0
+      deadZone: 0
+      gravity: 1
+      sensitivity: 1
+      snap: 0
+      invert: 0
+      type: 0
+      axis: 0
+      joystick: 0
     isExpanded: 1
   playerOneDefault: Default
   playerTwoDefault: 
