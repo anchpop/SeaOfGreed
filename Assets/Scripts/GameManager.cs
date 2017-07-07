@@ -37,6 +37,7 @@ namespace SeaOfGreed
 				BinaryFormatter bf = new BinaryFormatter ();
 				FileStream file = File.Open (Application.persistentDataPath + "/options.dat", FileMode.Open);
 				options = (Options)bf.Deserialize (file);
+				file.Close ();
 			} else {
 				options.Defaults ();
 			}

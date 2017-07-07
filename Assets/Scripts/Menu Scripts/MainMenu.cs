@@ -79,6 +79,8 @@ namespace SeaOfGreed{
 			audioCanvas.enabled = false;
 			controlsCanvas.enabled = false;
 			canvas.enabled = false;
+
+			GameManager.gameManager.Save ();
 		}
 
 		public void Quit(){

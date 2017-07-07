@@ -1833,7 +1833,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 480322298}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2011994045}
+        m_MethodName: OnShipRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &480322298
@@ -2626,7 +2637,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 653778049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2011994045}
+        m_MethodName: OnShipAccelerate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &653778049
@@ -4146,7 +4168,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1139305666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2011994045}
+        m_MethodName: OnShipBrake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1139305666
@@ -5389,7 +5422,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1352750639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2011994045}
+        m_MethodName: OnShipEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1352750639
@@ -6563,7 +6607,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1638836056}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2011994045}
+        m_MethodName: OnShipLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1638836056
@@ -8600,6 +8655,41 @@ Prefab:
       propertyPath: PlayerRight
       value: 
       objectReference: {fileID: 657277789}
+    - target: {fileID: 114682714776741648, guid: ad4f60487c0af344dab8e20b74ff449d,
+        type: 2}
+      propertyPath: ShipEnter
+      value: 
+      objectReference: {fileID: 1352750638}
+    - target: {fileID: 114682714776741648, guid: ad4f60487c0af344dab8e20b74ff449d,
+        type: 2}
+      propertyPath: ShipAccelerate
+      value: 
+      objectReference: {fileID: 653778048}
+    - target: {fileID: 114682714776741648, guid: ad4f60487c0af344dab8e20b74ff449d,
+        type: 2}
+      propertyPath: ShipBrake
+      value: 
+      objectReference: {fileID: 1139305665}
+    - target: {fileID: 114682714776741648, guid: ad4f60487c0af344dab8e20b74ff449d,
+        type: 2}
+      propertyPath: ShipLeft
+      value: 
+      objectReference: {fileID: 1638836055}
+    - target: {fileID: 114682714776741648, guid: ad4f60487c0af344dab8e20b74ff449d,
+        type: 2}
+      propertyPath: ShipRight
+      value: 
+      objectReference: {fileID: 480322297}
+    - target: {fileID: 114682714776741648, guid: ad4f60487c0af344dab8e20b74ff449d,
+        type: 2}
+      propertyPath: Use
+      value: 
+      objectReference: {fileID: 311601222}
+    - target: {fileID: 114682714776741648, guid: ad4f60487c0af344dab8e20b74ff449d,
+        type: 2}
+      propertyPath: Pause
+      value: 
+      objectReference: {fileID: 1925640361}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad4f60487c0af344dab8e20b74ff449d, type: 2}
   m_IsPrefabParent: 0
