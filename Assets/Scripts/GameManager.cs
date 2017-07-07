@@ -2,6 +2,7 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.IO;
+using TeamUtility.IO;
 
 namespace SeaOfGreed
 {
@@ -27,9 +28,10 @@ namespace SeaOfGreed
 
 		public void Save(){
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/options.dat", FileMode.OpenOrCreate);
-			bf.Serialize (file, options);
-			file.Close ();
+			FileStream optionsFile = File.Open (Application.persistentDataPath + "/options.dat", FileMode.OpenOrCreate);
+			bf.Serialize (optionsFile, options);
+			optionsFile.Close ();
+			InputManager.Save ();
 		}
 
 		public void Load(){
@@ -42,6 +44,7 @@ namespace SeaOfGreed
 			} else {
 				options.Defaults ();
 			}
+			InputManager.Load ();
 		}
 
 	}
