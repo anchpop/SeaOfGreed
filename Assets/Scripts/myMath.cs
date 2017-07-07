@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-class myMath
+public class myMath
 {
     public static float parabolicScaleCalc(float time, float scale)
     {

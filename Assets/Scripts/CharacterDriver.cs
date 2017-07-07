@@ -29,6 +29,7 @@ namespace SeaOfGreed{
 		public LayerMask groundRaycastMask;
 		public LayerMask dockRaycastMask;
 		public LayerMask boatRaycastMask;
+        public LayerMask borderRaycastMask;
         public LayerMask roomTransitionRaycastMask;
 
         public GameObject sprite;
@@ -156,9 +157,13 @@ namespace SeaOfGreed{
                 // This way the player won't be able to slide past some walls
                 RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
                 RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
+                
+                RaycastHit2D border_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask);
+                RaycastHit2D border_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, borderRaycastMask);
+
                 //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
-                var xOffset = (x_ray) ? xToOffset : Vector3.zero;
-                var yOffset = (y_ray) ? yToOffset : Vector3.zero;
+                var xOffset = (x_ray && !border_x_ray) ? xToOffset : Vector3.zero;
+                var yOffset = (y_ray && !border_y_ray) ? yToOffset : Vector3.zero;
 
                 transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
 
