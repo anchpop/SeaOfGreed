@@ -1,130 +1,149 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Assertions;
 using UnityEngine;
-using TeamUtility.IO;
 
-namespace SeaOfGreed{
-    public class PlayerController : MonoBehaviour {
-        
-        enum helpText
+public class PlayerController : MonoBehaviour {
+    public float walkSpeed = 2;
+    public float width = .12f;
+    public float height = .12f;
+
+    public float boardShipRange = 10;
+    public float dockShipRange = 10;
+
+    public float minDistanceToGrabWheel = .5f;
+
+    bool boarded = false;
+    GameObject shipBorded;
+
+    bool wheelGrabbed = false;
+
+    public LayerMask walkRaycastMask;
+    public LayerMask dockRaycastMask;
+    public LayerMask boatRaycastMask;
+
+    // Use this for initialization
+    void Start () {
+	}
+
+    RaycastHit2D boatSearch(int iterations)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, boardShipRange, boatRaycastMask);
+        return hit;
+    }
+    RaycastHit2D dockSearch(int iterations)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, boardShipRange, dockRaycastMask);
+        return hit;
+    }
+
+    float getDistanceToWheel()
+    {
+        return Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
+    }
+
+    void grabWheel()
+    {
+        wheelGrabbed = true;
+        transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
+    }
+
+    void releaseWheel()
+    {
+        wheelGrabbed = false;
+    }
+
+    void boardShip(GameObject ship)
+    {
+        transform.position = ship.transform.position;
+        transform.SetParent(ship.transform);
+        boarded = true;
+        shipBorded = ship;
+    }
+
+    void dockShip(Vector3 position)
+    {
+        transform.position = position;
+        transform.parent = null;
+        boarded = false;
+        shipBorded = null;
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        RaycastHit2D boatFound = boatSearch(1);
+        if (!shipBorded && boatFound)
         {
-            boardText,
-            dockText,
-            wheelText,
-            none,
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                boardShip(boatFound.collider.gameObject);
+            }
+        }
+        else if (shipBorded)
+        {
+            var dockFound = dockSearch(1);
+            if (dockFound) Debug.Log(dockFound.transform.position);
+            if (!wheelGrabbed && getDistanceToWheel() < minDistanceToGrabWheel)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    grabWheel();
+                }
+            }
+            else if (wheelGrabbed && Input.GetKeyDown(KeyCode.E))
+            {
+                releaseWheel();
+            }
+            else if (dockFound && Input.GetKeyDown(KeyCode.V))
+            {
+                Debug.Log(dockFound.point);
+                dockShip(dockFound.point);
+            }
         }
 
-        helpText helpTextToDisplay = helpText.none;
-
-        public GameObject boardText;
-        public GameObject dockText;
-        public GameObject wheelText;
-
-        public Camera mainCamera;
-        public float walkingCameraSize = 4;
-        public float interactingCameraSize = 6;
-        public float cameraEaseTime = 2;
-
-		public CharacterDriver driver;
-
-        // Use this for initialization
-        void Start () {
-			driver = gameObject.GetComponent<CharacterDriver> ();
-	    }    
-
-        void walkAccordingToUserInput()
+        if (wheelGrabbed)
         {
-			var input_x_right = InputManager.GetButton ("Player Right") ? 1 : 0;
-			var input_x_left = InputManager.GetButton ("Player Left") ? 1 : 0;
-			var input_y_forward = InputManager.GetButton("Player Forward") ? 1 : 0;
-			var input_y_backward = InputManager.GetButton ("Player Backward") ? 1 : 0;
-			var input_x = input_x_right - input_x_left;
-			var input_y = input_y_forward - input_y_backward;
-
-            driver.walkInDirection(new Vector3(input_x, input_y));
-        }
-
-        void steerShipAccordingToUserInput()
-        {
-            driver.sprite.transform.localRotation = Quaternion.identity;
-            var shipController = driver.shipBorded.GetComponent<ShipController>();
-			if (InputManager.GetButton("Ship Accelerate"))
+            var shipController = shipBorded.GetComponent<ShipController>();
+            if (Input.GetKey(KeyCode.W))
             {
                 shipController.accelerate();
             }
-			if (InputManager.GetButton("Ship Brake"))
+            if (Input.GetKey(KeyCode.S))
             {
                 shipController.brake();
             }
-			if (InputManager.GetButton("Ship Left"))
+            if (Input.GetKey(KeyCode.A))
             {
                 shipController.turn(1);
             }
-			if (InputManager.GetButton("Ship Right"))
+            if (Input.GetKey(KeyCode.D))
             {
                 shipController.turn(-1);
             }
-			if (InputManager.GetButtonDown("Use"))
-            {
-				//Debug.Log("WantsToSteeringShiptoBoardedShip");
-                driver.steeringShipToBoardedShip();
-            }
         }
-
-        void lookTowardsMouse()
+        else
         {
-            if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip)
-            {
-                var mousePos = mainCamera.ScreenToWorldPoint(new Vector3(InputManager.mousePosition.x, InputManager.mousePosition.y, mainCamera.transform.position.z - transform.position.z));
-                Vector3 diff = (mousePos - driver.sprite.transform.position);
-                driver.lookInDirection(diff);
-            }
-        }
+            var input_x = Input.GetAxisRaw("Horizontal");
+            var input_y = Input.GetAxisRaw("Vertical");
 
-        void displayHelpText()
-        {
-            boardText.SetActive(false);
-            dockText.SetActive(false);
-            wheelText.SetActive(false);
 
-            if (driver.state == states.boardedShip && driver.canGrabWheel())
-                wheelText.SetActive(true);
-            else if (driver.state == states.onLand && driver.canBoardShip())
-                boardText.SetActive(true);
-            else if (driver.state == states.boardedShip && driver.canDockShip())
-                dockText.SetActive(true);
-        }
+            bool isWalking = (input_x != 0) || (input_y != 0);
 
-        // Update is called once per frame
-        void Update() {
-			if (Time.timeScale != 0f) {
-				if (driver.state == states.boardedShip || driver.state == states.onLand) {
-					walkAccordingToUserInput ();
-				}
-				displayHelpText ();
+            var xToOffset = transform.right * input_x;
+            var yToOffset = transform.up * input_y;
 
-				if (driver.state == states.onLand && driver.canBoardShip () && InputManager.GetButtonDown ("Enter Ship")) {
-					driver.boardShipHelper ();
-				}
-				if (driver.state == states.boardedShip && driver.canDockShip () && InputManager.GetButtonDown ("Enter Ship")) {
-					driver.dockShipHelper ();
-				}
-				if (driver.state == states.boardedShip && driver.canGrabWheel () && InputManager.GetButtonDown ("Use")) {
-					driver.grabWheelHelper ();
-				}
-				if (driver.state == states.steeringShip) {
-					steerShipAccordingToUserInput ();
-				}
-				if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
-					lookTowardsMouse ();
-				}
-        if (InputManager.GetButtonDown ("Sprint")) {
-          driver.isSprinting = true;
-        }	else if (InputManager.GetButtonUp ("Sprint")) {
-          driver.isSprinting = false;
-        }
-        }
+            // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
+            // This way the player won't be able to slide past some walls
+            RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, walkRaycastMask);
+            RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, walkRaycastMask);
+            //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
+            var xOffset = (x_ray) ? xToOffset : Vector3.zero;
+            var yOffset = (y_ray) ? yToOffset : Vector3.zero;
+
+
+            if (isWalking)
+                transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
         }
     }
 }
