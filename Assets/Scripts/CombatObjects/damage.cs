@@ -15,7 +15,7 @@ public class damage : MonoBehaviour {
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, new Vector2(0f, 0f));
         for (int i = 0; i < hits.Length; i++) {
             if (hits[i].collider.gameObject.tag == hitTag)
-                hits[i].collider.gameObject.GetComponent<CombatObject>().damage(damageAmount);
+                hits[i].collider.gameObject.GetComponent<CombatObject>().damage(damageAmount, ((transform.parent.position) - (hits[i].collider.gameObject.transform.position)).normalized * 1.5f);
         }
     }
 }

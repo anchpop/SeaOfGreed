@@ -13,7 +13,7 @@ public class PlayerCombatObject : CombatObject {
         SceneManager.LoadScene("menu");
     }
 
-    void Update() {
+    protected override void childUpdate() {
         if (InputManager.GetButtonDown("LFire")) {
             childObjectL.SetActive(true);
         }
