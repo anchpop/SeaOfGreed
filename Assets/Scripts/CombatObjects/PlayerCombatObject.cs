@@ -9,12 +9,11 @@ public class PlayerCombatObject : CombatObject {
     [SerializeField] private GameObject childObjectL;
 
     [SerializeField] private GameObject childObjectR;
-
-    private void onDeath() {
+    protected override void onDeath() {
         SceneManager.LoadScene("menu");
     }
 
-    private void Update() {
+    void Update() {
         if (InputManager.GetButtonDown("LFire")) {
             childObjectL.SetActive(true);
         }

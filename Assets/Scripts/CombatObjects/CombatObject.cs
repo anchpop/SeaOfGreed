@@ -24,13 +24,13 @@ public class CombatObject : MonoBehaviour {
 			onHPChange();
 		}
 	}
-	private void onHPChange(){
+	protected virtual void onHPChange(){
 		Debug.Log("hpchange in object " + gameObject.name);
 		if(HP<=0){
 			onDeath();
 		}
 	}
-	private void onDeath(){
+	protected virtual void onDeath(){
 		Destroy(gameObject);
 	}
 }
