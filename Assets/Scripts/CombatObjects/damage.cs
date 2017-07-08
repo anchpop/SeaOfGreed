@@ -4,6 +4,8 @@ using UnityEngine;
 public class damage : MonoBehaviour {
     [SerializeField] private int damageAmount;
     [SerializeField] private string hitTag;
+    public int range;
+
     //on enable (which happens from playercombatobject), it checks if there's an enemy touching it, and if so, damages it. Then, 0.2s later, it hides itself.
     private IEnumerator TemporarilyDeactivate() {
         yield return new WaitForSeconds(.2f);

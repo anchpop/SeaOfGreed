@@ -1805,6 +1805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 10
   hitTag: enemy
+  range: 0
 --- !u!212 &1070223291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2769,7 +2770,7 @@ MonoBehaviour:
   jumpSpeed: 10
   jumpScale: 0
   maxDistanceToGrabWheel: 0.5
-  walkSpeed: 1.5
+  walkSpeed: 1.2
   sprintSpeed: 5
   width: 0.12
   height: 0.12
@@ -2796,8 +2797,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89f8b64b5658e34d9f4d836036b13c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  driver: {fileID: 0}
   childProjectile: {fileID: 2012913149}
   player: {fileID: 1870539818}
+  weapon: {fileID: 2012913151}
+  timePassed: 3
+  output: {x: 0, y: 0, z: 0}
+  left: 0
+  sightRange: 8
+  timeSinceLastAttack: 0
 --- !u!1 &1656224186
 GameObject:
   m_ObjectHideFlags: 0
@@ -6748,6 +6756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 10
   hitTag: Player
+  range: 5
 --- !u!212 &2012913152
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6860,6 +6869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 10
   hitTag: enemy
+  range: 0
 --- !u!212 &2053756396
 SpriteRenderer:
   m_ObjectHideFlags: 0
