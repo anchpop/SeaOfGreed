@@ -5,7 +5,7 @@ public class CombatObject : MonoBehaviour {
 	//outlines the basic properties a combat object must have.
 	[SerializeField] private int maxHP;
 	[SerializeField] private int defense;
-	private int HP;
+	public  int HP;
 	void Start () {
 		HP = maxHP;
 	}
