@@ -29,6 +29,8 @@ namespace SeaOfGreed
     {
         public List<RoomData> rooms;
 
+        public CameraBlackout mainCameraBlackout;
+
         Dictionary<String, Vector2> roomPositions;
         Dictionary<String, List<GameObject>> TileAssociations = new Dictionary<string, List<GameObject>>();
 
@@ -36,9 +38,27 @@ namespace SeaOfGreed
 
         public static GameManager gameManager;
 		public static Options options;
-		void Awake(){
+
+        RoomData currentRoom;
+
+        void Awake(){
 			DontDestroyOnLoad (gameObject);	
 		}
+
+        public void setCameraClips(RoomData room)
+        {
+            
+            Camera camera = mainCameraBlackout.GetComponent<Camera>();
+            Debug.Log((room.position + (Vector3)room.size) + " " + camera.WorldToScreenPoint(room.position + (Vector3)room.size));
+            var screenPos1 = camera.WorldToScreenPoint(room.position);
+            var screenPos2 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, -room.size.y));
+
+            mainCameraBlackout.x1 = screenPos1.x;
+            mainCameraBlackout.y1 = camera.pixelHeight - screenPos1.y;
+            mainCameraBlackout.x2 = screenPos2.x;
+            mainCameraBlackout.y2 = camera.pixelHeight - screenPos2.y;
+
+        }
 
         void placeRooms()
         {
@@ -66,6 +86,8 @@ namespace SeaOfGreed
 
                 roomData.roomGameObject = Instantiate(roomData.roomPrefab, roomData.position, Quaternion.identity);
             }
+
+
         }
 
         void getTransitionAssociations()
@@ -86,7 +108,8 @@ namespace SeaOfGreed
             gameManager = this;
 			options = new Options ();
 			Load ();
-		}
+
+        }
 
 		public void Save(){
 			BinaryFormatter bf = new BinaryFormatter ();
@@ -106,9 +129,19 @@ namespace SeaOfGreed
 			}
 		}
 
+        public void setNewRoom(RoomData newRoom)
+        {
+            currentRoom = newRoom;
+        }
+
         public RoomData getRoomAtLocation(Vector3 loc)
         {
-            return rooms.Find(room => new Rect(room.position.x, room.position.y, room.size.x, room.size.y).Contains(loc));
+            for (int roomIndex = 0; roomIndex < rooms.Count; roomIndex++)
+            {
+                var room = rooms[roomIndex];
+                if (new Rect(room.position.x, room.position.y, room.size.x, room.size.y).Contains(new Vector2(loc.x, -loc.y))) return room;
+            }
+            return null;
         }
 
         public List<GameObject> getTileAssociations(string markerKey)

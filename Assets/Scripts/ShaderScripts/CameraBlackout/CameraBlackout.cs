@@ -6,6 +6,10 @@ public class CameraBlackout : MonoBehaviour
 {
 
     public float intensity;
+    public float x1;
+    public float y1;
+    public float x2;
+    public float y2;
     private Material material;
     private Material depthBlit;
 
@@ -19,8 +23,11 @@ public class CameraBlackout : MonoBehaviour
     // Postprocess the image
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-
         material.SetFloat("_bwBlend", intensity);
+        material.SetFloat("_x1", x1);
+        material.SetFloat("_y1", y1);
+        material.SetFloat("_x2", x2);
+        material.SetFloat("_y2", y2);
         Graphics.Blit(source, destination, material);
     }
 }

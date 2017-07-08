@@ -39,6 +39,7 @@ namespace SeaOfGreed{
 		internal GameObject shipBorded;
 		internal PlayerController controller;
 
+        public bool isPlayer = false;
         public bool canSwitchIntoRooms = true;
         bool steppedOnRoomTransition = false;
 
@@ -51,7 +52,7 @@ namespace SeaOfGreed{
         void Start () {
 			anim = GetComponent<Animator>();
 			controller = gameObject.GetComponent<PlayerController> ();
-		}
+        }
 		
 		// Update is called once per frame
 		void Update () {
@@ -61,7 +62,11 @@ namespace SeaOfGreed{
                 state = newState;
                 newState = states.noState;
             }
-            
+
+            currentRoom = manager.getRoomAtLocation(transform.position); // ugly! do this in switchintoroom()!
+            if (isPlayer)
+                manager.setCameraClips(currentRoom);
+
         }
 
 		internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
@@ -133,7 +138,9 @@ namespace SeaOfGreed{
                 transform.position = assocs.Last().transform.position + (Vector3)assocs.Last().GetComponent<BoxCollider2D>().offset;
                 steppedOnRoomTransition = true;
 
-                currentRoom = manager.getRoomAtLocation(transform.position);
+                
+
+
             }
         }
 
@@ -294,7 +301,6 @@ namespace SeaOfGreed{
 			transform.rotation = Quaternion.identity;
 			newState = states.onLand;
 			shipBorded = null;
-
 		}
 	}
 }

@@ -784,6 +784,7 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
     roomGameObject: {fileID: 0}
+  mainCameraBlackout: {fileID: 0}
   player: {fileID: 1870539818}
 --- !u!224 &438177879
 RectTransform:
@@ -2263,6 +2264,7 @@ GameObject:
   - component: {fileID: 1126675437}
   - component: {fileID: 1126675436}
   - component: {fileID: 1126675441}
+  - component: {fileID: 1126675442}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2354,6 +2356,22 @@ MonoBehaviour:
   maxDistance: 0.81
   dampTime: 5
   target: {fileID: 1870539820}
+--- !u!114 &1126675442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126675435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bc9a396c2749244ba370dbddbe0699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 0
+  x1: 0
+  y1: 0
+  x2: 0
+  y2: 0
 --- !u!1 &1131136659
 GameObject:
   m_ObjectHideFlags: 0
@@ -4325,6 +4343,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   sprite: {fileID: 1865421334}
+  isPlayer: 1
   canSwitchIntoRooms: 1
 --- !u!1 &1920014759
 GameObject:
