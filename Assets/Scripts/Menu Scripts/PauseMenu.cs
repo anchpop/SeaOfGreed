@@ -40,7 +40,6 @@ namespace SeaOfGreed {
         }
 
         public void Pause() {
-            Time.timeScale = 0f;
             paused = true;
         }
 
@@ -51,7 +50,6 @@ namespace SeaOfGreed {
             videoCanvas.enabled = false;
             audioCanvas.enabled = false;
             controlsCanvas.enabled = false;
-            Time.timeScale = 1f;
             paused = false;
         }
 

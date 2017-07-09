@@ -10807,6 +10807,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   sprite: {fileID: 1089191782}
+  pauseMenu: {fileID: 493530270}
 --- !u!4 &1569033590
 Transform:
   m_ObjectHideFlags: 0
@@ -10836,6 +10837,7 @@ MonoBehaviour:
   player: {fileID: 1870539818}
   weapon: {fileID: 0}
   sightRange: 8
+  pauseMenu: {fileID: 493530270}
 --- !u!1 &1571216342
 GameObject:
   m_ObjectHideFlags: 0
@@ -12600,6 +12602,7 @@ MonoBehaviour:
   interactingCameraSize: 8
   cameraEaseTime: 2
   driver: {fileID: 1870539823}
+  pauseMenu: {fileID: 493530270}
 --- !u!114 &1870539823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12633,6 +12636,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   sprite: {fileID: 1865421334}
+  pauseMenu: {fileID: 493530270}
 --- !u!1 &1873850876
 GameObject:
   m_ObjectHideFlags: 0

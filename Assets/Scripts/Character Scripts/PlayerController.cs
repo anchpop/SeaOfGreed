@@ -25,6 +25,8 @@ namespace SeaOfGreed {
 
         public CharacterDriver driver;
 
+        public PauseMenu pauseMenu;
+
         // Use this for initialization
         private void Start() {
             driver = gameObject.GetComponent<CharacterDriver>();
@@ -85,7 +87,7 @@ namespace SeaOfGreed {
 
         // Update is called once per frame
         private void Update() {
-            if (Time.timeScale != 0f) {
+            if (!pauseMenu.paused) {
                 if (driver.state == states.boardedShip || driver.state == states.onLand) {
                     walkAccordingToUserInput();
                 }

@@ -32,6 +32,7 @@ namespace SeaOfGreed {
 
         internal GameObject shipBorded;
         internal PlayerController controller;
+        public PauseMenu pauseMenu;
 
         public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 
@@ -49,6 +50,11 @@ namespace SeaOfGreed {
             if (newState != states.noState) {
                 state = newState;
                 newState = states.noState;
+            }
+            if (pauseMenu.paused) {
+                LeanTween.pauseAll();
+            } else {
+                LeanTween.resumeAll();
             }
         }
 
@@ -161,7 +167,9 @@ namespace SeaOfGreed {
             var seq = LeanTween.sequence();
             // move the character to their destination
             seq.append(LeanTween.value(gameObject,
-                (pos) => transform.position = pos,
+                (pos) => {
+                    transform.position = pos;
+                },
                 fromLocation, toLocation, jumpTime)
                 .setEase(LeanTweenType.linear));
             //LeanTween.value(gameObject, (rotz) => {transform.rotation.Set(transform.rotation.x, transform.rotation.y, rotz, transform.rotation.w);}, fromRotation.z, Quaternion.identity.z, jumpTime).setEase(LeanTweenType.easeInOutExpo);
@@ -182,9 +190,9 @@ namespace SeaOfGreed {
             LeanTween.value(gameObject,
                 (time) => {
                     transform.localScale = new Vector3(
-                        originalScale.x + myMath.parabolicScaleCalc(time, jumpScale),
-                        originalScale.y + myMath.parabolicScaleCalc(time, jumpScale),
-                        originalScale.z);
+                            originalScale.x + myMath.parabolicScaleCalc(time, jumpScale),
+                            originalScale.y + myMath.parabolicScaleCalc(time, jumpScale),
+                            originalScale.z);
                 },
                 -1, 1, jumpTime)
                 .setEase(LeanTweenType.linear);
@@ -194,7 +202,10 @@ namespace SeaOfGreed {
 
             //LeanTween.value(gameObject, (time) => { transform.localScale = new Vector3(originalScale.x + myMath.parabolicScaleCalc(time, jumpScale), originalScale.y + myMath.parabolicScaleCalc(time, jumpScale), originalScale.z); }, -1, 1, jumpTime).setEase(LeanTweenType.linear);
             // move the character to their destination
-            seq.append(LeanTween.value(gameObject, pos => transform.position = pos, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
+            seq.append(LeanTween.value(gameObject,
+                (pos) => {
+                    transform.position = pos;
+                }, fromLocation, toLocation, jumpTime).setEase(LeanTweenType.linear));
 
             seq.append(() => jumpingToShipToBoardedShip(ship, toLocation));
         }
