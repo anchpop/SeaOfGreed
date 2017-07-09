@@ -46,17 +46,22 @@ namespace SeaOfGreed
 		}
 
         public void setCameraClips(RoomData room)
-        {
+        {   
             
             Camera camera = mainCameraBlackout.GetComponent<Camera>();
-            Debug.Log((room.position + (Vector3)room.size) + " " + camera.WorldToScreenPoint(room.position + (Vector3)room.size));
             var screenPos1 = camera.WorldToScreenPoint(room.position);
-            var screenPos2 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, -room.size.y));
+            var screenPos2 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, 0));
+            var screenPos3 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, -room.size.y));
+            var screenPos4 = camera.WorldToScreenPoint(room.position + new Vector3(0, -room.size.y));
 
             mainCameraBlackout.x1 = screenPos1.x;
             mainCameraBlackout.y1 = camera.pixelHeight - screenPos1.y;
             mainCameraBlackout.x2 = screenPos2.x;
             mainCameraBlackout.y2 = camera.pixelHeight - screenPos2.y;
+            mainCameraBlackout.x3 = screenPos3.x;
+            mainCameraBlackout.y3 = camera.pixelHeight - screenPos3.y;
+            mainCameraBlackout.x4 = screenPos4.x;
+            mainCameraBlackout.y4 = camera.pixelHeight - screenPos4.y;
 
         }
 
