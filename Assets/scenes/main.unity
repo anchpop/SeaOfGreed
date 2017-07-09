@@ -2692,7 +2692,7 @@ GameObject:
   - component: {fileID: 1569033588}
   - component: {fileID: 1569033587}
   - component: {fileID: 1569033591}
-  - component: {fileID: 1569033592}
+  - component: {fileID: 1569033589}
   m_Layer: 0
   m_Name: test enemy
   m_TagString: enemy
@@ -2739,6 +2739,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.28}
   m_EdgeRadius: 0
+--- !u!114 &1569033589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569033586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89f8b64b5658e34d9f4d836036b13c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childProjectile: {fileID: 2012913149}
+  player: {fileID: 1870539818}
+  weapon: {fileID: 0}
+  sightRange: 4
 --- !u!4 &1569033590
 Transform:
   m_ObjectHideFlags: 0
@@ -2786,26 +2801,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   sprite: {fileID: 129767115}
---- !u!114 &1569033592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1569033586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89f8b64b5658e34d9f4d836036b13c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  driver: {fileID: 0}
-  childProjectile: {fileID: 2012913149}
-  player: {fileID: 1870539818}
-  weapon: {fileID: 2012913151}
-  timePassed: 3
-  output: {x: 0, y: 0, z: 0}
-  left: 0
-  sightRange: 8
-  timeSinceLastAttack: 0
 --- !u!1 &1656224186
 GameObject:
   m_ObjectHideFlags: 0

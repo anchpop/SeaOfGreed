@@ -1,7 +1,7 @@
 ﻿using SeaOfGreed;
 using UnityEngine;
 
-public class dumb_AI : MonoBehaviour {
+public class slightlybetter_AI : MonoBehaviour {
     private CharacterDriver driver;
     [SerializeField] private GameObject childProjectile;
     [SerializeField] private GameObject player;
@@ -14,7 +14,7 @@ public class dumb_AI : MonoBehaviour {
 
     private void Start() {
         driver = gameObject.GetComponent<CharacterDriver>();
-        //weapon = GetComponentInChildren<damage>();
+        weapon = childProjectile.GetComponent<damage>();
         left = Random.value >= .5;
     }
 
@@ -28,7 +28,7 @@ public class dumb_AI : MonoBehaviour {
             }
             driver.lookInDirection(player.transform.position - transform.position);
 
-            if (timeSinceLastAttack >= 0.5f) {
+            if (timeSinceLastAttack >= 1.5f) {
                 timeSinceLastAttack = 0;
                 childProjectile.SetActive(true);
             }
