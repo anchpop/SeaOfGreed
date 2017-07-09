@@ -24,7 +24,7 @@ public class RectanglePacker
                 x = node.X;
                 y = node.Y;
                 float r = x + w;
-                float b = y + h;
+                float b = y - h;
                 nodes.Add(new Node(r, y, node.Right - r, h));
                 nodes.Add(new Node(x, b, w, node.Bottom - b));
                 nodes.Add(new Node(r, b, node.Right - r, node.Bottom - b));

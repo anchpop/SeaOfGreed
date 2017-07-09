@@ -784,6 +784,11 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
     roomGameObject: {fileID: 0}
+  - roomPrefab: {fileID: 1822968584310686, guid: 0e941c3030becc54a9da99ce44971f36,
+      type: 2}
+    position: {x: 0, y: 0, z: 0}
+    size: {x: 0, y: 0}
+    roomGameObject: {fileID: 0}
   mainCameraBlackout: {fileID: 1126675442}
   player: {fileID: 1870539818}
 --- !u!224 &438177879
@@ -1576,7 +1581,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717409629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.24, y: -8.37, z: 0}
+  m_LocalPosition: {x: 52.2, y: -24, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1269198611}
@@ -4262,7 +4267,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1870539818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.99, y: -17.81, z: 0}
+  m_LocalPosition: {x: 46.6, y: -37.4, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 1865421335}
