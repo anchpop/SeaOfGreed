@@ -65,7 +65,13 @@ Shader "Unlit/CameraBlackout"
 				float4 c = tex2D(_MainTex, i.uv);
 				float3 black = float3( 0, 0, 0 ); 
 
-				c.rgb = lerp(c.rgb, black, clamp(_bwBlend, 0, 1)); 
+
+				float lum = c.r*.3 + c.g*.59 + c.b*.11;
+				float3 bw = float3(lum, lum, lum);
+				c.rgb = lerp(c.rgb, bw, clamp(_bwBlend * 3, 0, 1));
+				c.rgb = lerp(c.rgb, black, clamp(_bwBlend, 0, 1));
+
+
 
 				bool b1;
 				bool b2;

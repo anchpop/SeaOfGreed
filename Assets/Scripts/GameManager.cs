@@ -144,7 +144,7 @@ namespace SeaOfGreed
             for (int roomIndex = 0; roomIndex < rooms.Count; roomIndex++)
             {
                 var room = rooms[roomIndex];
-                if (new Rect(room.position.x, room.position.y, room.size.x, room.size.y).Contains(new Vector2(loc.x, -loc.y))) return room;
+                if (new Rect(room.position.x, room.position.y - room.size.y, room.size.x, room.size.y).Contains(new Vector2(loc.x, loc.y))) return room;
             }
             return null;
         }
