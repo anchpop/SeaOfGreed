@@ -138,9 +138,7 @@ namespace SeaOfGreed{
                 transform.position = assocs.Last().transform.position + (Vector3)assocs.Last().GetComponent<BoxCollider2D>().offset;
                 steppedOnRoomTransition = true;
 
-                
-
-
+                if (isPlayer) manager.switchedToRoom();
             }
         }
 

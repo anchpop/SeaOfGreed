@@ -160,6 +160,12 @@ namespace SeaOfGreed
             Assert.IsTrue(assocs.Count == 2);
             return assocs;
         }
-	}
+
+        public void switchedToRoom()
+        {
+            mainCameraBlackout.GetComponent<FollowPlayer>().setCameraToPlayer();
+        }
+
+    }
 }
 

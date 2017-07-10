@@ -45,6 +45,11 @@ namespace SeaOfGreed{
 	        return targetNewPos - (targetNewPos - targetOldPos) / (lerpRate * timeElapsed) + f * Mathf.Exp(-lerpRate * timeElapsed);
 	    }
 
+        public void setCameraToPlayer()
+        {
+            transform.position = target.transform.position;
+            targetOldPosition = transform.position;
+        }
 
 	    void moveCameraToPlayer(float dampTime, float maxDist)
 	    {
