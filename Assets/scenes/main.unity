@@ -10703,7 +10703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84613f924d2b22244bfb9d69c5cae457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  manager: {fileID: 438177878}
   currentRoom:
     roomPrefab: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
@@ -10730,10 +10730,10 @@ MonoBehaviour:
     m_Bits: 256
   borderRaycastMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   roomTransitionRaycastMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 12288
   sprite: {fileID: 1089191782}
   isSprinting: 0
   isWalking: 0
