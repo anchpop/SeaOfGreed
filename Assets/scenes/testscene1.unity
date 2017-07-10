@@ -574,6 +574,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4793352474177720, guid: 21124337ffda2114ea7bd078666a56b2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -605,6 +610,21 @@ Prefab:
     - target: {fileID: 4793352474177720, guid: 21124337ffda2114ea7bd078666a56b2, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[1].name
+      value: New Configuration
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[0].positive
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 114299710259304038, guid: 21124337ffda2114ea7bd078666a56b2,
+        type: 2}
+      propertyPath: inputConfigurations.Array.data[0].axes.Array.data[0].name
+      value: Submit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21124337ffda2114ea7bd078666a56b2, type: 2}
@@ -780,7 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
-  - roomPrefab: {fileID: 1172311483300408, guid: 6c9510cf9b34db3478bb59e2d1b35179,
+  - roomPrefab: {fileID: 1787736796316182, guid: 6c9510cf9b34db3478bb59e2d1b35179,
       type: 2}
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
