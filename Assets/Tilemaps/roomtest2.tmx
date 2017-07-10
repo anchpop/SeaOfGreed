@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="2">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="2">
  <tileset firstgid="1" source="../tilesheets/kenneyrpg.tsx"/>
- <tileset firstgid="1041" source="../tilesheets/kenneyrpg.tsx"/>
  <layer name="Tile Layer 1" width="20" height="20">
   <data encoding="csv">
 250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,

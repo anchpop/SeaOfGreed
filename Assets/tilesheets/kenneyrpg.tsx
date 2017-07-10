@@ -3,22 +3,7 @@
  <image source="../sprites/kenney/Spritesheet/RPGpack_sheet.png" width="1280" height="832"/>
  <tile id="41">
   <objectgroup draworder="index">
-   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
-  </objectgroup>
- </tile>
- <tile id="51">
-  <objectgroup draworder="index">
-   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
-  </objectgroup>
- </tile>
- <tile id="249">
-  <objectgroup draworder="index">
-   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
-  </objectgroup>
- </tile>
- <tile id="268">
-  <objectgroup draworder="index">
-   <object id="1" type="Building" x="0" y="0" width="32" height="32"/>
+   <object id="1" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="568">

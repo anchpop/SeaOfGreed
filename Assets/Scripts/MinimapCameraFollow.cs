@@ -16,7 +16,7 @@ namespace SeaOfGreed
 			transform.position = player.transform.position + offset;
 			if (player.state == states.steeringShip && GameManager.options.game.MinimapRotateWithShip) {
 				transform.rotation = player.shipBorded.transform.rotation;
-			}else if (player.state != states.steeringShip && GameManager.options.game.MinimapRotateWithPlayer) {
+			} else if (player.state != states.steeringShip && GameManager.options.game.MinimapRotateWithPlayer) {
 				transform.rotation = player.sprite.transform.rotation;
 			} else {
 				//Doesnt work
