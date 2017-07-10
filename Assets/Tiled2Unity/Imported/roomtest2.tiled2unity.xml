@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/10/2017 5:31:03 PM-->
+<!--Last exported: 7/10/2017 5:47:05 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="roomtest2_mesh_0001" material="RPGpack_sheet" />
   <Prefab name="roomtest2" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="1" numTilesWide="20" numTilesHigh="20" tileWidth="32" tileHeight="32" exportScale="0.03125" mapWidthInPixels="640" mapHeightInPixels="640" backgroundColor="#808080">
@@ -10,7 +10,8 @@
       <GameObject name="RPGpack_sheet" mesh="roomtest2_mesh_0001" sortingLayerName="" sortingOrder="0" opacity="1" />
       <GameObject name="Collision_Ground" layer="Ground">
         <PolygonCollider2D>
-          <Path>1,-7 0,-7 0,-10 1,-10</Path>
+          <Path>20,0 0,0 0,-20 20,-20</Path>
+          <Path>17,-8 8,-8 8,-3 17,-3</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>

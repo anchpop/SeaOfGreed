@@ -257,10 +257,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1, y: -7}
-      - {x: 0, y: -7}
-      - {x: 0, y: -10}
-      - {x: 1, y: -10}
+    - - {x: 20, y: 0}
+      - {x: 0, y: 0}
+      - {x: 0, y: -20}
+      - {x: 20, y: -20}
+    - - {x: 17, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: -3}
+      - {x: 17, y: -3}
 --- !u!61 &61339831653171730
 BoxCollider2D:
   m_ObjectHideFlags: 1
