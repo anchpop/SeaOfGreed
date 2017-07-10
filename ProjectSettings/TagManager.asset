@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TransitionMarker
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Ships
   - Ground
   - Dock
-  - Building
+  - Uncrossable
   - RoomTransitions
   - Border
   - 

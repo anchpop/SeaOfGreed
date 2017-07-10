@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/10/2017 12:39:17 AM-->
+<!--Last exported: 7/10/2017 5:13:42 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="seatest_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="seatest_mesh_0002" material="RPGpack_sheet" />
@@ -9,7 +9,7 @@
     <GameObject name="Island" x="0" y="0" z="0">
       <TileLayer offsetX="0" offsetY="0" />
       <GameObject name="RPGpack_sheet" mesh="seatest_mesh_0001" sortingLayerName="Island" sortingOrder="0" opacity="1" />
-      <GameObject name="Collision">
+      <GameObject name="Collision_Ground" layer="Ground">
         <PolygonCollider2D>
           <Path>40,-25 39,-25 39,-26 40,-26</Path>
           <Path>61,-42 63,-42 63,-41 75,-41 75,-37 71,-37 71,-36 67,-36 67,-33 63,-33 63,-32 53,-32 53,-31 50,-31 50,-29 31,-29 31,-28 30,-28 30,-29 28,-29 28,-32 21,-32 21,-36 24,-36 24,-39 25,-39 25,-40 22,-40 22,-41 20,-41 20,-42 19,-42 19,-45 22,-45 22,-47 20,-47 20,-48 14,-48 14,-49 12,-49 12,-52 28,-52 28,-53 25,-53 25,-56 30,-56 30,-57 41,-57 41,-56 50,-56 50,-55 55,-55 55,-54 60,-54 60,-53 61,-53 61,-50 63,-50 63,-49 68,-49 68,-47 73,-47 73,-44 61,-44</Path>
