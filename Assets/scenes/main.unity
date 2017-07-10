@@ -4651,10 +4651,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 4
-  brakespeed: 0.65
+  brakespeed: 1.2
   maxspeed: 8
-  maxbackwardspeed: 2
-  torque: 1.15
+  maxbackwardspeed: 4
+  torque: 2.3
   boardingPoints:
   - {fileID: 1216877896}
   - {fileID: 1289790428}
@@ -12569,7 +12569,7 @@ MonoBehaviour:
   boardShipRange: 10
   dockShipRange: 6
   dockOffset: 0.5
-  jumpSpeed: 10
+  jumpSpeed: 20
   jumpScale: 0.6
   grabWheelRange: 1
   walkSpeed: 4
