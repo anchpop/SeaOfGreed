@@ -10738,7 +10738,7 @@ MonoBehaviour:
   isSprinting: 0
   isWalking: 0
   isPlayer: 0
-  canSwitchIntoRooms: 1
+  canSwitchIntoRooms: 0
 --- !u!4 &1569033590
 Transform:
   m_ObjectHideFlags: 0
