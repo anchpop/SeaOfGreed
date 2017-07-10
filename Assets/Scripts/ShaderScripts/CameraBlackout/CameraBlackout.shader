@@ -79,16 +79,16 @@ Shader "Unlit/CameraBlackout"
 				int tri1;
 				int tri2;
 
-				b1 = sign(i.pos.x, i.pos.y, _x1, _y1, _x2, _y2) < 0.0f;
-				b2 = sign(i.pos.x, i.pos.y, _x2, _y2, _x3, _y3) < 0.0f;
-				b3 = sign(i.pos.x, i.pos.y, _x3, _y3, _x1, _y1) < 0.0f;
+				b1 = sign(i.pos.x, i.pos.y, _x1, _y1, _x2, _y2) <= 0.0f;
+				b2 = sign(i.pos.x, i.pos.y, _x2, _y2, _x3, _y3) <= 0.0f;
+				b3 = sign(i.pos.x, i.pos.y, _x3, _y3, _x1, _y1) <= 0.0f;
 				
 				tri1 = (b1 == b2) && (b2 == b3);
 
 
-				b1 = sign(i.pos.x, i.pos.y, _x1, _y1, _x3, _y3) < 0.0f;
-				b2 = sign(i.pos.x, i.pos.y, _x3, _y3, _x4, _y4) < 0.0f;
-				b3 = sign(i.pos.x, i.pos.y, _x4, _y4, _x1, _y1) < 0.0f;
+				b1 = sign(i.pos.x, i.pos.y, _x1, _y1, _x3, _y3) <= 0.0f;
+				b2 = sign(i.pos.x, i.pos.y, _x3, _y3, _x4, _y4) <= 0.0f;
+				b3 = sign(i.pos.x, i.pos.y, _x4, _y4, _x1, _y1) <= 0.0f;
 				tri2 = (b1 == b2) && (b2 == b3);
 
 

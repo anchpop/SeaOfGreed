@@ -14,6 +14,8 @@ public class CameraBlackout : MonoBehaviour
     public float y3;
     public float x4;
     public float y4;
+
+    public bool enabled;
     private Material material;
     private Material depthBlit;
 
@@ -36,6 +38,7 @@ public class CameraBlackout : MonoBehaviour
         material.SetFloat("_y3", y3);
         material.SetFloat("_x4", x4);
         material.SetFloat("_y4", y4);
-        Graphics.Blit(source, destination, material);
+        if (enabled) Graphics.Blit(source, destination, material);
+        else Graphics.Blit(source, destination);
     }
 }
