@@ -65,7 +65,7 @@ namespace SeaOfGreed{
 
             currentRoom = manager.getRoomAtLocation(transform.position); // ugly! do this in switchintoroom()!
             if (isPlayer)
-                manager.setCameraClips(currentRoom);
+                manager.setupCameras(currentRoom);
 
         }
 

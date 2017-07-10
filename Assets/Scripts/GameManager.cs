@@ -30,6 +30,7 @@ namespace SeaOfGreed
         public List<RoomData> rooms;
 
         public CameraBlackout mainCameraBlackout;
+        public CameraBlackout minimapCameraBlackout;
 
         Dictionary<String, Vector2> roomPositions;
         Dictionary<String, List<GameObject>> TileAssociations = new Dictionary<string, List<GameObject>>();
@@ -45,24 +46,28 @@ namespace SeaOfGreed
 			DontDestroyOnLoad (gameObject);	
 		}
 
-        public void setCameraClips(RoomData room)
+        public void setupCameras(RoomData room)
+        {
+            setCameraClips(room, mainCameraBlackout);
+            setCameraClips(room, minimapCameraBlackout);
+        }
+
+        public void setCameraClips(RoomData room, CameraBlackout blackout)
         {   
-            
-            Camera camera = mainCameraBlackout.GetComponent<Camera>();
+            Camera camera = blackout.GetComponent<Camera>();
             var screenPos1 = camera.WorldToScreenPoint(room.position);
             var screenPos2 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, 0));
             var screenPos3 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, -room.size.y));
             var screenPos4 = camera.WorldToScreenPoint(room.position + new Vector3(0, -room.size.y));
 
-            mainCameraBlackout.x1 = screenPos1.x;
-            mainCameraBlackout.y1 = camera.pixelHeight - screenPos1.y;
-            mainCameraBlackout.x2 = screenPos2.x;
-            mainCameraBlackout.y2 = camera.pixelHeight - screenPos2.y;
-            mainCameraBlackout.x3 = screenPos3.x;
-            mainCameraBlackout.y3 = camera.pixelHeight - screenPos3.y;
-            mainCameraBlackout.x4 = screenPos4.x;
-            mainCameraBlackout.y4 = camera.pixelHeight - screenPos4.y;
-
+            blackout.x1 = screenPos1.x;
+            blackout.y1 = camera.pixelHeight - screenPos1.y;
+            blackout.x2 = screenPos2.x;
+            blackout.y2 = camera.pixelHeight - screenPos2.y;
+            blackout.x3 = screenPos3.x;
+            blackout.y3 = camera.pixelHeight - screenPos3.y;
+            blackout.x4 = screenPos4.x;
+            blackout.y4 = camera.pixelHeight - screenPos4.y;
         }
 
         void placeRooms()
