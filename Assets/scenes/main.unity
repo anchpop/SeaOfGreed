@@ -4630,8 +4630,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717409629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.1, y: -22.6, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 51.59, y: -17.92, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 1269198611}
   - {fileID: 285135572}
@@ -7883,7 +7883,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 8.13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10714,7 +10714,7 @@ MonoBehaviour:
   dockOffset: 0.5
   jumpSpeed: 10
   jumpScale: 3
-  maxDistanceToGrabWheel: 0.5
+  grabWheelRange: 0.5
   walkSpeed: 2
   sprintSpeed: 5
   width: 0.12
@@ -12507,7 +12507,7 @@ Transform:
   m_GameObject: {fileID: 1870539818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.99, y: -39.9, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1865421335}
   m_Father: {fileID: 0}
@@ -12545,8 +12545,8 @@ MonoBehaviour:
   dockText: {fileID: 1280218577}
   wheelText: {fileID: 2100009331}
   mainCamera: {fileID: 1126675439}
-  walkingCameraSize: 5
-  interactingCameraSize: 8
+  walkingCameraSize: 8
+  interactingCameraSize: 12
   cameraEaseTime: 2
   driver: {fileID: 1870539823}
 --- !u!114 &1870539823
@@ -12566,13 +12566,13 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     size: {x: 0, y: 0}
     roomGameObject: {fileID: 0}
-  boardShipRange: 5
-  dockShipRange: 3
+  boardShipRange: 10
+  dockShipRange: 6
   dockOffset: 0.5
   jumpSpeed: 10
   jumpScale: 0.6
-  maxDistanceToGrabWheel: 0.5
-  walkSpeed: 2
+  grabWheelRange: 1
+  walkSpeed: 4
   sprintSpeed: 5
   width: 0.15
   height: 0.15
@@ -12593,7 +12593,7 @@ MonoBehaviour:
     m_Bits: 4096
   sprite: {fileID: 1865421334}
   isSprinting: 0
-  isWalking: 0
+  isWalking: 1
   isPlayer: 1
   canSwitchIntoRooms: 1
 --- !u!1 &1873850876

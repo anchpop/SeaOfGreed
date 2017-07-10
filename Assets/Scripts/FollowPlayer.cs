@@ -10,7 +10,7 @@ namespace SeaOfGreed {
         private Vector3 targetOldPosition;
         private Vector3 velocity = Vector3.zero;
         public Transform target = null;
-        private PlayerController controller;
+        private PlayerController playerController;
         private new Camera camera;
 
         private void Start()
@@ -19,8 +19,8 @@ namespace SeaOfGreed {
             //moveCameraToPlayer(0, 0);
             transform.position = target.transform.position;
             targetOldPosition = transform.position;
-            controller = target.GetComponent<PlayerController>();
-            controller.driver.StateChanged += driver_StateChanged;
+            playerController = target.GetComponent<PlayerController>();
+            playerController.driver.StateChanged += driver_StateChanged;
         }
 
         // Update is called once per frame
@@ -28,14 +28,14 @@ namespace SeaOfGreed {
         {
             if (target)
             {
-                if (controller.driver.isSprinting && controller.driver.isWalking)
+                if (playerController.driver.isSprinting || playerController.driver.isWalking)
                 {
                     //camera.orthographicSize = 4.5f;
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 4.7f, .3f * Time.deltaTime);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, playerController.walkingCameraSize, .3f * Time.deltaTime);
                 }
                 else
                 {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 4.2f, .1f * Time.deltaTime);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, playerController.interactingCameraSize, .1f * Time.deltaTime);
                 }
                 moveCameraToPlayer(dampTime, maxDistance);
             }

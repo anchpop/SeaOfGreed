@@ -19,7 +19,7 @@ namespace SeaOfGreed {
         public float dockOffset = .5f;
         public float jumpSpeed = 10;
         public float jumpScale = 3;
-        public float maxDistanceToGrabWheel = .5f;
+        public float grabWheelRange = .5f;
 
         public float walkSpeed = 2f;
         public float sprintSpeed = 5f;
@@ -120,7 +120,7 @@ namespace SeaOfGreed {
         public bool canGrabWheel() {
             Assert.IsTrue(state == states.boardedShip);
             float distanceToWheel = Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
-            bool closeEnoughToGrabWheel = distanceToWheel <= maxDistanceToGrabWheel;
+            bool closeEnoughToGrabWheel = distanceToWheel <= grabWheelRange;
 
             return closeEnoughToGrabWheel;
         }
