@@ -4630,7 +4630,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717409629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.35, y: -13.63, z: 0}
+  m_LocalPosition: {x: 49.1, y: -22.6, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1269198611}
@@ -4650,9 +4650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f88699ef39c49147a6a1c5b627156cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 2
+  acceleration: 4
   brakespeed: 0.65
-  maxspeed: 5
+  maxspeed: 8
   maxbackwardspeed: 2
   torque: 1.15
   boardingPoints:
@@ -10746,7 +10746,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1569033586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: -25, z: 0}
+  m_LocalPosition: {x: 39.17, y: -32.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1089191784}
@@ -12848,7 +12848,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1851539391
+  randomSeed: 1149210391
   InitialModule:
     serializedVersion: 3
     enabled: 1
