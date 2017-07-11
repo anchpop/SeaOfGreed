@@ -28,14 +28,14 @@ namespace SeaOfGreed {
         {
             if (target)
             {
-                if (playerController.driver.isSprinting || playerController.driver.isWalking)
+                if (playerController.driver.state == states.steeringShip)
+                {
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, playerController.interactingCameraSize, .1f * Time.deltaTime);
+                }
+                else if (playerController.driver.state == states.onLand || playerController.driver.state == states.boardedShip)
                 {
                     //camera.orthographicSize = 4.5f;
                     camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, playerController.walkingCameraSize, .3f * Time.deltaTime);
-                }
-                else
-                {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, playerController.interactingCameraSize, .1f * Time.deltaTime);
                 }
                 moveCameraToPlayer(dampTime, maxDistance);
             }
