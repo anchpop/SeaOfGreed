@@ -196,6 +196,11 @@
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
+ <tile id="126">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
  <tile id="139">
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
@@ -246,6 +251,11 @@
   </objectgroup>
  </tile>
  <tile id="165">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="166">
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
