@@ -12573,7 +12573,7 @@ MonoBehaviour:
   jumpScale: 0.6
   grabWheelRange: 1
   walkSpeed: 4
-  sprintSpeed: 5
+  sprintSpeed: 9
   width: 0.15
   height: 0.15
   groundRaycastMask:

@@ -21,8 +21,8 @@ namespace SeaOfGreed {
         public float jumpScale = 3;
         public float grabWheelRange = .5f;
 
-        public float walkSpeed = 2f;
-        public float sprintSpeed = 5f;
+        public float walkSpeed = 4f;
+        public float sprintSpeed = 9f;
         public float width = .12f;
         public float height = .12f;
         
@@ -170,7 +170,11 @@ namespace SeaOfGreed {
                 var xOffset = (x_ray && !border_x_ray) ? xToOffset : Vector3.zero;
                 var yOffset = (y_ray && !border_y_ray) ? yToOffset : Vector3.zero;
 
-                transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+				if (isSprinting) {
+					transform.position += ((xOffset) + (yOffset)).normalized * sprintSpeed * Time.deltaTime;
+				} else {
+					transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+				}
 
                 if (canSwitchIntoRooms && state == states.onLand)
                 {
