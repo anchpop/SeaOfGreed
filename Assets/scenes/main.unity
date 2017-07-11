@@ -4654,7 +4654,7 @@ MonoBehaviour:
   brakespeed: 1.2
   maxspeed: 8
   maxbackwardspeed: 4
-  torque: 2.3
+  torque: 4
   boardingPoints:
   - {fileID: 1216877896}
   - {fileID: 1289790428}
@@ -11643,8 +11643,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 28
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -11654,7 +11654,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -12546,7 +12546,7 @@ MonoBehaviour:
   wheelText: {fileID: 2100009331}
   mainCamera: {fileID: 1126675439}
   walkingCameraSize: 8
-  interactingCameraSize: 12
+  interactingCameraSize: 20.4
   cameraEaseTime: 2
   driver: {fileID: 1870539823}
 --- !u!114 &1870539823
