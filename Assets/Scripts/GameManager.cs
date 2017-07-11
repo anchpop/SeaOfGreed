@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -18,6 +19,11 @@ public class RoomData
     [HideInInspector]
     public GameObject roomGameObject;
 
+    public RoomData(GameObject prefab)
+    {
+        roomPrefab = prefab;
+    }
+
     public float Area
     {
         get { return size.x * size.y; }
@@ -28,7 +34,7 @@ namespace SeaOfGreed
 {
 	public class GameManager : MonoBehaviour
     {
-        public List<RoomData> rooms;
+        List<RoomData> rooms;
 
         public CameraBlackout mainCameraBlackout;
         public CameraBlackout minimapCameraBlackout;
@@ -84,6 +90,11 @@ namespace SeaOfGreed
             }
         }
 
+        void getRooms()
+        {
+            rooms = Resources.LoadAll("", typeof(GameObject)).Where(prefab => (prefab as GameObject).GetComponent<Tiled2Unity.TiledMap>() != null).Select(prefab => new RoomData(prefab as GameObject)).ToList();
+        }
+
         void placeRooms()
         {
             var packer = new RectanglePacker();
@@ -127,6 +138,7 @@ namespace SeaOfGreed
         }
 
 		void Start(){
+            getRooms();
             placeRooms();
             getTransitionAssociations();
             gameManager = this;

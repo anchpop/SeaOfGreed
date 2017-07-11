@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="14">
+ <properties>
+  <property name="unity:resource" value="True"/>
+ </properties>
  <tileset firstgid="1" source="../tilesheets/kenneyrpg.tsx"/>
  <layer name="Island" width="100" height="100">
   <properties>
