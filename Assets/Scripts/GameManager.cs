@@ -53,10 +53,10 @@ namespace SeaOfGreed
         public void setupCameras(RoomData room)
         {
             setCameraClips(room, mainCameraBlackout);
-            setCameraClips(room, minimapCameraBlackout);
+            setCameraClips(room, minimapCameraBlackout, false);
         }
 
-        public void setCameraClips(RoomData room, CameraBlackout blackout)
+        public void setCameraClips(RoomData room, CameraBlackout blackout, bool inverty = true)
         {   
             Camera camera = blackout.GetComponent<Camera>();
             var screenPos1 = camera.WorldToScreenPoint(room.position);
@@ -65,13 +65,23 @@ namespace SeaOfGreed
             var screenPos4 = camera.WorldToScreenPoint(room.position + new Vector3(0, -room.size.y));
 
             blackout.x1 = screenPos1.x;
-            blackout.y1 = camera.pixelHeight - screenPos1.y;
             blackout.x2 = screenPos2.x;
-            blackout.y2 = camera.pixelHeight - screenPos2.y;
             blackout.x3 = screenPos3.x;
-            blackout.y3 = camera.pixelHeight - screenPos3.y;
             blackout.x4 = screenPos4.x;
-            blackout.y4 = camera.pixelHeight - screenPos4.y;
+            if (inverty)
+            {
+                blackout.y1 = camera.pixelHeight - screenPos1.y;
+                blackout.y2 = camera.pixelHeight - screenPos2.y;
+                blackout.y3 = camera.pixelHeight - screenPos3.y;
+                blackout.y4 = camera.pixelHeight - screenPos4.y;
+            }
+            else
+            {
+                blackout.y1 = screenPos1.y;
+                blackout.y2 = screenPos2.y;
+                blackout.y3 = screenPos3.y;
+                blackout.y4 = screenPos4.y;
+            }
         }
 
         void placeRooms()
