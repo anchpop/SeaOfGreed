@@ -11644,7 +11644,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 28
+  orthographic size: 55.28
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -12848,7 +12848,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1149210391
+  randomSeed: 810139129
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13298,7 +13298,7 @@ ParticleSystem:
     boxY: 1
     boxZ: 1
     radius:
-      value: 0.26451454
+      value: 0.5484008
       mode: 0
       spread: 0
       speed:
