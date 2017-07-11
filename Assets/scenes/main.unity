@@ -11644,7 +11644,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 55.28
+  orthographic size: 22
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -12546,7 +12546,7 @@ MonoBehaviour:
   wheelText: {fileID: 2100009331}
   mainCamera: {fileID: 1126675439}
   walkingCameraSize: 8
-  interactingCameraSize: 20.4
+  interactingCameraSize: 17.9
   cameraEaseTime: 2
   driver: {fileID: 1870539823}
 --- !u!114 &1870539823
