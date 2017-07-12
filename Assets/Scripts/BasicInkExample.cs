@@ -55,7 +55,6 @@ public class BasicInkExample : MonoBehaviour {
 		currentIndex = 0;
 		while (story.canContinue) {
 			queue.Add(story.Continue ().Trim());
-			Debug.Log("HEY!");
 		}
 
 		/*if(story.currentChoices.Count > 0) {
