@@ -14,10 +14,14 @@ public class BasicInkExample : MonoBehaviour {
 	private bool isChoosing;
 	private int selectedChoiceIndex;
 	[SerializeField] private Canvas canvas;
+	//pretty obvious - initialization of stuff
 	void Awake () {
 		textCompRef = textRef.GetComponent<Text>();
 		queue = new ArrayList();
 	}
+	//it uses the text object's active value to determine whether or not it actually is running
+	//if so, it runs one of two scripts - one which makes E go to the next page of text, the other of which renders all choices + an arrow with the currently selected one
+	//selectedChoiceIndex is both the value to be given to the story and the current line with an arrow on it
 	void Update(){
 		if(textRef.activeInHierarchy){
 		if(!isChoosing){
@@ -49,35 +53,16 @@ public class BasicInkExample : MonoBehaviour {
 		story = new Story (input);
 		RefreshView();
 	}
-
+	//clears the queue of items, replaces it with the dialogue from story.Continue, which has changed because we gave it a choice(above)
 	void RefreshView () {
 		queue.Clear();
 		currentIndex = 0;
 		while (story.canContinue) {
 			queue.Add(story.Continue ().Trim());
 		}
-
-		/*if(story.currentChoices.Count > 0) {
-			for (int i = 0; i < story.currentChoices.Count; i++) {
-				Choice choice = story.currentChoices [i];
-				Button button = CreateChoiceView (choice.text.Trim ());
-				button.onClick.AddListener (delegate {
-					OnClickChoiceButton (choice);
-				});
-			}
-		} else {
-			Button choice = CreateChoiceView("End of story.\nRestart?");
-			choice.onClick.AddListener(delegate{
-				StartStory();
-			});
-		}*/
 		NextInQueue();
 	}
-
-	void OnClickChoiceButton (Choice choice) {
-		story.ChooseChoiceIndex (choice.index);
-		RefreshView();
-	}
+	//shows the next line in the queue; if the queue is empty, it displays choices or closes the dialogue box
 	void NextInQueue () {
 		if(currentIndex < queue.Count)
       	{
@@ -94,7 +79,7 @@ public class BasicInkExample : MonoBehaviour {
 			} else{
 				textRef.SetActive(false);
 				PlayerController.setMove(true);
-				//put shit here to do when the dialogue is complete
+				//TODO: put shit here to do when the dialogue is complete
 			}
 		}
 
