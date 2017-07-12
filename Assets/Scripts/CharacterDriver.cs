@@ -55,6 +55,7 @@ namespace SeaOfGreed {
         void Start () {
 			anim = GetComponent<Animator>();
 			controller = gameObject.GetComponent<PlayerController> ();
+            manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         }
 		
 		// Update is called once per frame

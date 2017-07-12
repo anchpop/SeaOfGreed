@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 1328555190}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -778,6 +778,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b7000ffc12fd43b1920c127d22e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCameraBlackout: {fileID: 0}
+  minimapCameraBlackout: {fileID: 0}
+  player: {fileID: 0}
 --- !u!223 &1341857817 stripped
 Canvas:
   m_PrefabParentObject: {fileID: 223128522422427474, guid: ad4f60487c0af344dab8e20b74ff449d,

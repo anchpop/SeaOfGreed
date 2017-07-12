@@ -16,6 +16,7 @@ namespace SeaOfGreed {
         private void Start()
         {
             camera = GetComponent<Camera>();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().mainCameraBlackout = gameObject.GetComponent<CameraBlackout>();
             //moveCameraToPlayer(0, 0);
             transform.position = target.transform.position;
             targetOldPosition = transform.position;

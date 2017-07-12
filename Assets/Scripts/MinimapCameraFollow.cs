@@ -9,7 +9,7 @@ namespace SeaOfGreed
 		public Vector3 offset;
 
 		public void Start(){
-			
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().minimapCameraBlackout = gameObject.GetComponent<CameraBlackout>();
 		}
 
 		public void Update() {

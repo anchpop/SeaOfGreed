@@ -28,6 +28,7 @@ namespace SeaOfGreed {
         // Use this for initialization
         private void Start() {
             driver = gameObject.GetComponent<CharacterDriver>();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().player = gameObject;
         }
 
         private void walkAccordingToUserInput() {

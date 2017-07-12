@@ -7,6 +7,7 @@ using UnityEngine;
 using System.IO;
 using TeamUtility.IO;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class RoomData
@@ -48,13 +49,22 @@ namespace SeaOfGreed
 		public static Options options;
         RoomData currentRoom;
 		void Awake(){
-			if (gameManager != null && gameManager != this) {
-				Destroy (this.gameObject);
-			} else {
-				gameManager = this;
+            if (gameManager != null && gameManager != this)
+            {
+                Destroy (this.gameObject);
+			} else
+            {
+                gameManager = this;
 				DontDestroyOnLoad (this.gameObject);
 			}
 		}
+
+
+        // called first
+        void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
 
         public void setupCameras(RoomData room)
         {
@@ -138,13 +148,18 @@ namespace SeaOfGreed
         }
 
 		void Start(){
-            getRooms();
-            placeRooms();
-            getTransitionAssociations();
-            gameManager = this;
 			options = new Options ();
 			Load ();
-
+        }
+        // called second
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (scene.name == "main")
+            {
+                getRooms();
+                placeRooms();
+                getTransitionAssociations();
+            }
         }
 
 		public void Save(){
