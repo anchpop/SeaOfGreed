@@ -137,7 +137,7 @@ namespace SeaOfGreed
 
         void getTransitionAssociations()
         {
-            var markers = GameObject.FindGameObjectsWithTag("TransitionMarker");
+            var markers = GameObject.FindGameObjectsWithTag("MapImportObject").Where(obj => obj.GetComponent<TransitionMarker>() != null).ToArray();
             for (int markerIndex = 0; markerIndex < markers.Length; markerIndex++)
             {
                 var marker = markers[markerIndex];
@@ -147,7 +147,21 @@ namespace SeaOfGreed
             }
         }
 
-		void Start(){
+
+        void spawnCharacters()
+        {
+            var markers = GameObject.FindGameObjectsWithTag("MapImportObject").Where(obj => obj.GetComponent<SpawnMarkers.CharacterSpawnMarker>() != null).ToArray();
+            for (int markerIndex = 0; markerIndex < markers.Length; markerIndex++)
+            {
+                var spawnMarker = markers[markerIndex].GetComponent<SpawnMarkers.CharacterSpawnMarker>();
+                if (spawnMarker.characterName == "Wally")
+                {
+                    Debug.Log("Add wally at " + spawnMarker.transform.position);
+                }
+            }
+        }
+
+        void Start(){
 			options = new Options ();
 			Load ();
         }
@@ -159,6 +173,7 @@ namespace SeaOfGreed
                 getRooms();
                 placeRooms();
                 getTransitionAssociations();
+                spawnCharacters();
             }
         }
 
@@ -200,10 +215,10 @@ namespace SeaOfGreed
             return null;
         }
 
-        public List<GameObject> getTileAssociations(string markerKey)
+        public List<GameObject> getAssociationsForKey(string markerKey)
         {
             var assocs = TileAssociations[markerKey];
-            Assert.IsTrue(assocs.Count == 2);
+            Assert.IsTrue(assocs.Count == 2, markerKey + " had " + assocs.Count + " entries, not 2");
             return assocs;
         }
 
