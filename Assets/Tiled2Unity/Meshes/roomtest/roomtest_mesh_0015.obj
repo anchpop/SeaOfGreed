@@ -2,14 +2,14 @@
 # Wavefront file for 'roomtest_mesh_0015.obj'
 
 # Vertices (Count = 8)
-v -9 -7 0
 v -10 -7 0
+v -11 -7 0
+v -11 -6 0
 v -10 -6 0
-v -9 -6 0
-v -9 -8 0
 v -10 -8 0
+v -11 -8 0
+v -11 -7 0
 v -10 -7 0
-v -9 -7 0
 
 # Texture cooridinates (Count = 4)
 vt 0.0001220703 0.0001220703

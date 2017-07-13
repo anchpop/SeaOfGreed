@@ -1,197 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="bar1" tilewidth="64" tileheight="64" tilecount="34" columns="0">
+<tileset name="bar1" tilewidth="64" tileheight="96" tilecount="33" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
- <tile id="0">
+ <tile id="34">
+  <image width="32" height="32" source="../../../../sea of greed/tiles/black.png"/>
+  <objectgroup draworder="index">
+   <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="35">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_seat.png"/>
   <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="7" y="7" width="16" height="16"/>
+   <object id="1" type="Unpassable" x="8" y="6" width="18" height="18"/>
   </objectgroup>
  </tile>
- <tile id="1">
+ <tile id="36">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_seat_down.png"/>
   <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="7" y="10" width="16" height="17"/>
+   <object id="1" type="Unpassable" x="8" y="10" width="16" height="19"/>
   </objectgroup>
  </tile>
- <tile id="2">
+ <tile id="37">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_seat_up.png"/>
   <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="8" y="2" width="17" height="12"/>
+   <object id="1" type="Unpassable" x="5" y="-1" width="20" height="18"/>
   </objectgroup>
  </tile>
- <tile id="3">
+ <tile id="38">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_table.png"/>
   <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="0" y="0" width="32" height="32">
+   <object id="1" type="Unpassable" x="-2" y="-6" width="35" height="36">
     <ellipse/>
    </object>
   </objectgroup>
  </tile>
- <tile id="4">
-  <image width="64" height="64" source="../../../../sea of greed/tiles/tubs_tavern/barrel_table_large.png"/>
-  <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="0" y="0" width="64" height="64">
-    <ellipse/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="5">
+ <tile id="40">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/door_transparent.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="6">
+ <tile id="41">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/floor.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="7">
+ <tile id="42">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/painting1.png"/>
  </tile>
- <tile id="8">
+ <tile id="43">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="9">
+ <tile id="44">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_bottomleft.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="10">
+ <tile id="45">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_bottomright.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="11">
+ <tile id="46">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_down.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="12">
+ <tile id="47">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_left.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="13">
+ <tile id="48">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_right.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="14">
+ <tile id="49">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_topleft.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="15">
+ <tile id="50">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_topright.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="16">
+ <tile id="51">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_up.png"/>
   <objectgroup draworder="index">
-   <object id="2" type="Ground" x="0" y="0" width="32" height="32"/>
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="17">
+ <tile id="52">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_wall.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="18">
+ <tile id="53">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_x.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="19">
+ <tile id="54">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_xy.png"/>
   <objectgroup draworder="index">
-   <object id="2" type="Unpassable" x="0" y="0" width="32" height="32"/>
+   <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="20">
+ <tile id="55">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_xy2.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="21">
+ <tile id="56">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_y.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="22">
-  <image width="64" height="63" source="../../../../sea of greed/tiles/tubs_tavern/tavern_booth.png"/>
+ <tile id="57">
+  <image width="64" height="96" source="../../../../sea of greed/tiles/tubs_tavern/tavern_booth.png"/>
   <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="0" y="0" width="64" height="63"/>
+   <object id="1" type="Unpassable" x="-1" y="13" width="63" height="63"/>
   </objectgroup>
  </tile>
- <tile id="23">
+ <tile id="58">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="24">
+ <tile id="59">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_left.png"/>
  </tile>
- <tile id="25">
+ <tile id="60">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_right.png"/>
  </tile>
- <tile id="26">
+ <tile id="61">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_shelves1.png"/>
   <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
+   <object id="2" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="27">
+ <tile id="62">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_shelves2.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="28">
+ <tile id="63">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_shelves3.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="29">
+ <tile id="64">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_windows.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="30">
+ <tile id="65">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_windows_shade.png"/>
   <objectgroup draworder="index">
    <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="31">
+ <tile id="66">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall2_left.png"/>
  </tile>
- <tile id="32">
+ <tile id="67">
   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall2_right.png"/>
- </tile>
- <tile id="33">
-  <image width="32" height="32" source="../../../../sea of greed/tiles/black.png"/>
-  <objectgroup draworder="index">
-   <object id="1" type="Unpassable" x="0" y="0" width="32" height="32"/>
-  </objectgroup>
  </tile>
 </tileset>
