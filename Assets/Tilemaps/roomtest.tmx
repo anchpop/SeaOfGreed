@@ -1,45 +1,240 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="3">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="12" height="10" tilewidth="32" tileheight="32" nextobjectid="3">
  <properties>
   <property name="unity:resource" value="True"/>
  </properties>
  <tileset firstgid="1" source="../tilesheets/kenneyrpg.tsx"/>
- <tileset firstgid="1041" source="../tilesheets/kenneyrpg.tsx"/>
- <layer name="Tile Layer 1" width="20" height="20">
+ <tileset firstgid="1041" name="bar1" tilewidth="64" tileheight="64" tilecount="35" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_seat.png"/>
+   <objectgroup draworder="index">
+    <object id="1" x="7" y="6" width="16" height="18"/>
+   </objectgroup>
+  </tile>
+  <tile id="1">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_seat_down.png"/>
+   <objectgroup draworder="index">
+    <object id="1" x="7" y="9" width="17" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="2">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_seat_up.png"/>
+   <objectgroup draworder="index">
+    <object id="1" x="8" y="-1" width="17" height="22"/>
+   </objectgroup>
+  </tile>
+  <tile id="3">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/barrel_table.png"/>
+  </tile>
+  <tile id="5">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/door_transparent.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="6">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/floor.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="7">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/painting1.png"/>
+  </tile>
+  <tile id="8">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="9">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_bottomleft.png"/>
+   <objectgroup draworder="index">
+    <object id="2" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="10">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_bottomright.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="11">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_down.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="12">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_left.png"/>
+   <objectgroup draworder="index">
+    <object id="2" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="13">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_right.png"/>
+   <objectgroup draworder="index">
+    <object id="2" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="14">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_topleft.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_topright.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/rug_up.png"/>
+   <objectgroup draworder="index">
+    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="17">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_x.png"/>
+  </tile>
+  <tile id="18">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_xy.png"/>
+  </tile>
+  <tile id="19">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_xy2.png"/>
+  </tile>
+  <tile id="20">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_y.png"/>
+  </tile>
+  <tile id="21">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall.png"/>
+  </tile>
+  <tile id="22">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_left.png"/>
+  </tile>
+  <tile id="23">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_right.png"/>
+  </tile>
+  <tile id="24">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall2_left.png"/>
+  </tile>
+  <tile id="25">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall2_right.png"/>
+  </tile>
+  <tile id="26">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_shelves1.png"/>
+  </tile>
+  <tile id="27">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_shelves2.png"/>
+  </tile>
+  <tile id="28">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_shelves3.png"/>
+  </tile>
+  <tile id="29">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_windows.png"/>
+  </tile>
+  <tile id="30">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/wall_windows_shade.png"/>
+  </tile>
+  <tile id="31">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/tavern_bartop_wall.png"/>
+  </tile>
+  <tile id="33">
+   <image width="64" height="63" source="../../../../sea of greed/tiles/tubs_tavern/tavern_booth.png"/>
+  </tile>
+  <tile id="34">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/black.png"/>
+  </tile>
+  <tile id="35">
+   <image width="64" height="64" source="../../../../sea of greed/tiles/tubs_tavern/barrel_table_large.png"/>
+  </tile>
+  <tile id="37">
+   <image width="32" height="32" source="../../../../sea of greed/tiles/tubs_tavern/painting1.png"/>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="12" height="10">
   <data encoding="csv">
-250,250,250,250,250,250,250,52,85,86,87,88,250,250,250,250,250,250,250,250,
-250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,
-250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,
-250,250,250,250,250,82,503,504,505,506,250,250,250,250,52,809,810,250,250,250,
-250,250,250,250,250,82,543,544,545,546,250,250,250,250,52,849,850,250,250,250,
-250,250,250,250,250,82,583,584,585,586,250,250,250,250,52,889,890,250,250,250,
-250,250,250,250,250,82,623,624,625,626,250,250,250,250,52,929,930,250,250,250,
-250,250,250,250,250,82,663,664,665,666,250,250,250,250,250,250,250,250,250,250,
-250,250,0,250,250,82,703,704,705,706,250,250,250,250,250,250,250,250,250,250,
-250,587,588,589,590,591,587,588,589,590,591,250,250,250,250,250,250,250,250,250,
-250,627,628,629,630,631,627,628,629,630,631,250,250,250,250,250,250,250,250,250,
-250,667,668,669,670,671,667,668,669,670,671,250,250,250,250,250,149,250,250,250,
-250,707,708,709,710,711,707,708,709,710,711,250,250,250,250,250,250,250,250,250,
-250,250,250,250,587,588,589,590,591,250,250,250,250,149,250,250,250,250,250,250,
-250,250,250,250,627,628,629,630,631,250,250,250,250,250,250,250,250,250,250,250,
-250,250,250,250,667,668,669,670,671,250,149,250,250,250,250,250,250,250,250,250,
-250,250,250,250,707,708,709,710,711,250,149,149,250,250,250,250,250,250,250,250,
-250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,
-250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,
-250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250,250
+1070,1070,1071,1071,1062,1062,1062,1072,1067,1068,1069,1072,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,52,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,
+1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,1047,
+1047,1047,1047,1047,1047,1047,1047,1047,52,1047,1047,1047
+</data>
+ </layer>
+ <layer name="carpet" width="12" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1056,1057,1057,1057,1055,0,
+0,0,0,0,0,0,1053,1049,1049,1049,1054,0,
+0,0,0,0,0,0,1053,1049,1049,1049,1054,0,
+0,0,0,0,0,0,1050,1052,1052,1052,1051,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="furniture" width="12" height="10">
+  <data encoding="csv">
+0,0,0,0,0,1078,0,0,0,0,0,0,
+0,0,0,0,0,0,1041,1061,0,0,0,1061,
+0,0,0,0,0,0,1041,1059,1058,1058,1058,1060,
+0,0,0,0,0,0,0,0,1043,1041,1043,0,
+0,1042,0,0,0,0,0,0,0,0,0,0,
+0,0,1076,0,1043,0,0,0,0,0,0,0,
+0,0,1041,0,0,0,1041,1044,0,0,0,1042,
+0,0,0,0,0,0,0,1041,0,0,0,1044,
+0,0,0,0,0,0,0,0,0,0,0,1043,
+0,0,0,0,0,0,0,0,1046,0,0,0
+</data>
+ </layer>
+ <layer name="booth" width="12" height="10" offsetx="0" offsety="16">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,1041,0,
+1074,0,1074,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="walls" width="12" height="10">
+  <data encoding="csv">
+1063,0,0,0,0,0,0,0,0,0,0,0,
+1063,0,0,0,0,0,0,0,0,0,0,0,
+1063,0,0,0,0,0,0,0,0,0,0,0,
+1063,0,0,0,0,0,0,0,0,0,0,0,
+1063,0,0,0,0,0,0,0,0,0,0,0,
+1063,0,0,0,0,0,0,0,0,0,0,0,
+1065,0,0,0,0,0,0,0,0,0,0,0,
+1075,1075,1075,1075,1075,1063,0,0,0,0,0,0,
+1075,1075,1075,1075,1075,1063,0,0,0,0,0,0,
+1075,1075,1075,1075,1075,1065,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup name="RoomTransitions">
   <properties>
    <property name="unity:layer" value="RoomTransitions"/>
   </properties>
-  <object id="1" x="221" y="1" width="161" height="31">
+  <object id="1" x="256" y="288" width="32" height="31">
    <properties>
     <property name="Transition" value="roomtest"/>
     <property name="unity:isTrigger" value="true"/>
    </properties>
   </object>
-  <object id="2" x="449" y="98" width="31" height="123">
+  <object id="2" x="352" y="160" width="31" height="29">
    <properties>
     <property name="Transition" value="roomtest2"/>
     <property name="unity:isTrigger" value="true"/>
