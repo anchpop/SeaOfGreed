@@ -14,7 +14,7 @@ public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
         if (customProperties.ContainsKey("Transition"))
         {
             Debug.Log("MakingTransition");
-            // Add the terrain tile game object
+
             TransitionMarker marker = gameObject.AddComponent<TransitionMarker>();
             marker.markerKey = customProperties["Transition"];
 
@@ -23,9 +23,10 @@ public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
         else if (customProperties.ContainsKey("Character name"))
         {
             Debug.Log("adding character " + customProperties["Character name"]);
-            // Add the terrain tile game object
+
             var marker = gameObject.AddComponent<SpawnMarkers.CharacterSpawnMarker>();
             marker.characterName = customProperties["Character name"];
+            gameObject.transform.position += new Vector3(.5f, -.5f); // IMPORTANT! This assumes that tiles are 1 unit by 1 unit! 
 
             marker.tag = markerTag;
         }

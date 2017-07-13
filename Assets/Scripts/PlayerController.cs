@@ -28,6 +28,7 @@ namespace SeaOfGreed {
         // Use this for initialization
         private void Start() {
             driver = gameObject.GetComponent<CharacterDriver>();
+            mainCamera =  GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().player = gameObject;
         }
 
@@ -90,7 +91,7 @@ namespace SeaOfGreed {
                 if (driver.state == states.boardedShip || driver.state == states.onLand) {
                     walkAccordingToUserInput();
                 }
-                displayHelpText();
+                //displayHelpText();
 
                 if (driver.state == states.onLand && driver.canBoardShip() && InputManager.GetButtonDown("Enter Ship")) {
                     driver.boardShipHelper();

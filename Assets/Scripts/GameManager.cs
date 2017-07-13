@@ -44,6 +44,7 @@ namespace SeaOfGreed
         Dictionary<String, List<GameObject>> TileAssociations = new Dictionary<string, List<GameObject>>();
 
         public GameObject player;
+        public GameObject playerPrefab;
 
         public static GameManager gameManager;
 		public static Options options;
@@ -150,13 +151,17 @@ namespace SeaOfGreed
 
         void spawnCharacters()
         {
+            bool alreadySpawnedWally = false;
             var markers = GameObject.FindGameObjectsWithTag("MapImportObject").Where(obj => obj.GetComponent<SpawnMarkers.CharacterSpawnMarker>() != null).ToArray();
             for (int markerIndex = 0; markerIndex < markers.Length; markerIndex++)
             {
                 var spawnMarker = markers[markerIndex].GetComponent<SpawnMarkers.CharacterSpawnMarker>();
                 if (spawnMarker.characterName == "Wally")
                 {
+                    Assert.IsFalse(alreadySpawnedWally, "You can only have one wally! You have at least 2!");
                     Debug.Log("Add wally at " + spawnMarker.transform.position);
+                    Instantiate(playerPrefab, spawnMarker.transform.position, Quaternion.identity);
+                    alreadySpawnedWally = true;
                 }
             }
         }
