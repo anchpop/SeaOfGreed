@@ -223,9 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af1ad52d0ca7a343b43edf02dff6fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardText: {fileID: 0}
-  dockText: {fileID: 0}
-  wheelText: {fileID: 0}
+  helpText: {fileID: 1338165994337644, guid: c57f79af232d6ab42983f6271414e1da, type: 2}
   mainCamera: {fileID: 0}
   walkingCameraSize: 8
   interactingCameraSize: 17.9
