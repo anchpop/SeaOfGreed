@@ -7555,9 +7555,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  dockText: {fileID: 0}
-  boardText: {fileID: 0}
-  sailText: {fileID: 0}
   showUI: 1
 --- !u!1 &1126675435
 GameObject:

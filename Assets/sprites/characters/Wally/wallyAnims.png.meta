@@ -1,0 +1,1658 @@
+fileFormatVersion: 2
+guid: 5eb36a9513ddf3e4a9b593e78b2af0ee
+timeCreated: 1500055468
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: wallyAnims_0
+    21300002: wallyAnims_1
+    21300004: wallyAnims_2
+    21300006: wallyAnims_3
+    21300008: wallyAnims_4
+    21300010: wallyAnims_5
+    21300012: wallyAnims_6
+    21300014: wallyAnims_7
+    21300016: wallyAnims_8
+    21300018: wallyAnims_9
+    21300020: wallyAnims_10
+    21300022: wallyAnims_11
+    21300024: wallyAnims_12
+    21300026: wallyAnims_13
+    21300028: wallyAnims_14
+    21300030: wallyAnims_15
+    21300032: wallyAnims_16
+    21300034: wallyAnims_17
+    21300036: wallyAnims_18
+    21300038: wallyAnims_19
+    21300040: wallyAnims_20
+    21300042: wallyAnims_21
+    21300044: wallyAnims_22
+    21300046: wallyAnims_23
+    21300048: wallyAnims_24
+    21300050: wallyAnims_25
+    21300052: wallyAnims_26
+    21300054: wallyAnims_27
+    21300056: wallyAnims_28
+    21300058: wallyAnims_29
+    21300060: wallyAnims_30
+    21300062: wallyAnims_31
+    21300064: wallyAnims_32
+    21300066: wallyAnims_33
+    21300068: wallyAnims_34
+    21300070: wallyAnims_35
+    21300072: wallyAnims_36
+    21300074: wallyAnims_37
+    21300076: wallyAnims_38
+    21300078: wallyAnims_39
+    21300080: wallyAnims_40
+    21300082: wallyAnims_41
+    21300084: wallyAnims_42
+    21300086: wallyAnims_43
+    21300088: wallyAnims_44
+    21300090: wallyAnims_45
+    21300092: wallyAnims_46
+    21300094: wallyAnims_47
+    21300096: wallyAnims_48
+    21300098: wallyAnims_49
+    21300100: wallyAnims_50
+    21300102: wallyAnims_51
+    21300104: wallyAnims_52
+    21300106: wallyAnims_53
+    21300108: wallyAnims_54
+    21300110: wallyAnims_55
+    21300112: wallyAnims_56
+    21300114: wallyAnims_57
+    21300116: wallyAnims_58
+    21300118: wallyAnims_59
+    21300120: wallyAnims_60
+    21300122: wallyAnims_61
+    21300124: wallyAnims_62
+    21300126: wallyAnims_63
+    21300128: wallyAnims_64
+    21300130: wallyAnims_65
+    21300132: wallyAnims_66
+    21300134: wallyAnims_67
+    21300136: wallyAnims_68
+    21300138: wallyAnims_69
+    21300140: wallyAnims_70
+    21300142: wallyAnims_71
+    21300144: wallyAnims_72
+    21300146: wallyAnims_73
+    21300148: wallyAnims_74
+    21300150: wallyAnims_75
+    21300152: wallyAnims_76
+    21300154: wallyAnims_77
+    21300156: wallyAnims_78
+    21300158: wallyAnims_79
+    21300160: wallyAnims_80
+    21300162: wallyAnims_81
+    21300164: wallyAnims_82
+    21300166: wallyAnims_83
+    21300168: wallyAnims_84
+    21300170: wallyAnims_85
+    21300172: wallyAnims_86
+    21300174: wallyAnims_87
+    21300176: wallyAnims_88
+    21300178: wallyAnims_89
+    21300180: wallyAnims_90
+    21300182: wallyAnims_91
+    21300184: wallyAnims_92
+    21300186: wallyAnims_93
+    21300188: wallyAnims_94
+    21300190: wallyAnims_95
+    21300192: wallyAnims_96
+    21300194: wallyAnims_97
+    21300196: wallyAnims_98
+    21300198: wallyAnims_99
+    21300200: wallyAnims_100
+    21300202: wallyAnims_101
+    21300204: wallyAnims_102
+    21300206: wallyAnims_103
+    21300208: wallyAnims_104
+    21300210: wallyAnims_105
+    21300212: wallyAnims_106
+    21300214: wallyAnims_107
+    21300216: wallyAnims_108
+    21300218: wallyAnims_109
+    21300220: wallyAnims_110
+    21300222: wallyAnims_111
+    21300224: wallyAnims_112
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wallyAnims_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 482
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 490
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 490
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_3
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 490
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_4
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 490
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 491
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_6
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 490
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_7
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 490
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_8
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 490
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_9
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 490
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_10
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 491
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_11
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 449
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_12
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 458
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_13
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 459
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_14
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 458
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_15
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 458
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_16
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 459
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 458
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_18
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 458
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_19
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 457
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_20
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 457
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_21
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 458
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_22
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 471
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_23
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 417
+        width: 15
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_24
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 426
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_25
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 427
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_26
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 426
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_27
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 426
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_28
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 427
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_29
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 426
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_30
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 426
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_31
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 425
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_32
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 425
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_33
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 426
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_34
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 385
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_35
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 394
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_36
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 394
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_37
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 393
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_38
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 393
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_39
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 394
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_40
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 394
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_41
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 394
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_42
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 393
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_43
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 393
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_44
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 394
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_45
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 354
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_46
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 362
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_47
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 361
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_48
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 361
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_49
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 362
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_50
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 362
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_51
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 362
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_52
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 361
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_53
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 361
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_54
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 362
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_55
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 362
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_56
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 330
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_57
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 321
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_58
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 321
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_59
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 321
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_60
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 321
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_61
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 322
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_62
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 321
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_63
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 321
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_64
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 321
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_65
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 321
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_66
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 322
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_67
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 299
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_68
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 299
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_69
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 290
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_70
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 289
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_71
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 288
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_72
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 288
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_73
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 290
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_74
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 291
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_75
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 291
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_76
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 290
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_77
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 290
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_78
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 290
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_79
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 264
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_80
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 258
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_81
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 258
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_82
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 257
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_83
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 257
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_84
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 257
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_85
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 257
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_86
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 257
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_87
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 259
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_88
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 259
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_89
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 259
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_90
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 233
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_91
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 233
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_92
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 226
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_93
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 226
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_94
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 225
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_95
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 226
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_96
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 226
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_97
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 225
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_98
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 224
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_99
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 224
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_100
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 225
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_101
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 226
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_102
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 195
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_103
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 193
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_104
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 193
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_105
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 193
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_106
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 193
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_107
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 194
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_108
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 194
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_109
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 193
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_110
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 193
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_111
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 193
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wallyAnims_112
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 194
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
