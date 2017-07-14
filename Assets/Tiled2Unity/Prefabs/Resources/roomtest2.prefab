@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 114228446408210728}
   m_Layer: 12
   m_Name: RectangleObject
-  m_TagString: TransitionMarker
+  m_TagString: MapImportObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/11/2017 3:23:54 AM-->
+<!--Last exported: 7/13/2017 2:57:41 AM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="seatest_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="seatest_mesh_0002" material="RPGpack_sheet" />
@@ -44,6 +44,14 @@
         <Property name="Transition" value="roomaround" />
         <RectangleObjectComponent tmx-object-id="10" tmx-object-name="" tmx-object-type="" tmx-object-x="1504" tmx-object-y="1248" tmx-object-width="32" tmx-object-height="96" tmx-object-rotation="0" />
         <BoxCollider2D width="1" height="3" />
+      </GameObject>
+    </GameObject>
+    <GameObject name="CharacterMarkers" x="0" y="0" z="0">
+      <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
+      <GameObject name="RectangleObject" x="43" y="-31" rotation="0" layer="">
+        <Property name="Character name" value="Wally" />
+        <RectangleObjectComponent tmx-object-id="18" tmx-object-name="" tmx-object-type="" tmx-object-x="1376" tmx-object-y="992" tmx-object-width="32" tmx-object-height="32" tmx-object-rotation="0" />
+        <BoxCollider2D width="1" height="1" />
       </GameObject>
     </GameObject>
   </Prefab>
