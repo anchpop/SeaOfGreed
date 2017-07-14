@@ -9,7 +9,7 @@ namespace SeaOfGreed {
         private float zDistFromTarget = -.5f;
         private Vector3 targetOldPosition;
         private Vector3 velocity = Vector3.zero;
-        public Transform target = null;
+        public Transform player;
         private PlayerController playerController;
         private new Camera camera;
 
@@ -17,17 +17,25 @@ namespace SeaOfGreed {
         {
             camera = GetComponent<Camera>();
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().mainCameraBlackout = gameObject.GetComponent<CameraBlackout>();
+            findPlayer();
             //moveCameraToPlayer(0, 0);
-            transform.position = target.transform.position;
+        }
+
+        private void findPlayer()
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            transform.position = player.transform.position;
             targetOldPosition = transform.position;
-            playerController = target.GetComponent<PlayerController>();
+            playerController = player.GetComponent<PlayerController>();
             playerController.driver.StateChanged += driver_StateChanged;
+
         }
 
         // Update is called once per frame
         private void Update()
         {
-            if (target)
+            if (!player) findPlayer();
+            if (player)
             {
                 if (playerController.driver.state == states.steeringShip)
                 {
@@ -39,8 +47,8 @@ namespace SeaOfGreed {
                     camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, playerController.walkingCameraSize, .3f * Time.deltaTime);
                 }
                 moveCameraToPlayer(dampTime, maxDistance);
+                targetOldPosition = player.transform.position;
             }
-            targetOldPosition = target.transform.position;
         }
 
         private Vector3 SuperSmoothLerp(Vector3 followerOldPos, Vector3 targetOldPos, Vector3 targetNewPos, float timeElapsed, float lerpRate)
@@ -51,11 +59,11 @@ namespace SeaOfGreed {
 
         private void moveCameraToPlayer(float dampTime, float maxDist)
         {
-            Vector3 point = camera.WorldToViewportPoint(target.position);
-            Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+            Vector3 point = camera.WorldToViewportPoint(player.position);
+            Vector3 delta = player.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
             Vector3 destination = transform.position + delta;
             //transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
-            transform.position = SuperSmoothLerp(transform.position, targetOldPosition, target.transform.position, Time.deltaTime == 0 ? .2f : Time.deltaTime, dampTime);
+            transform.position = SuperSmoothLerp(transform.position, targetOldPosition, player.transform.position, Time.deltaTime == 0 ? .2f : Time.deltaTime, dampTime);
             transform.position = new Vector3(transform.position.x, transform.position.y, zDistFromTarget);
             //transform.rotation = target.rotation;
 
@@ -64,12 +72,12 @@ namespace SeaOfGreed {
                 var difference = transform.position - destination;
                 transform.position = destination + difference.normalized * maxDist;
             }
-            transform.rotation = Quaternion.Lerp(transform.rotation, target.transform.rotation, 1.5f * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, player.transform.rotation, 1.5f * Time.deltaTime);
         }
 
         public void setCameraToPlayer()
         {
-            transform.position = target.transform.position;
+            transform.position = player.transform.position;
             targetOldPosition = transform.position;
         }
 

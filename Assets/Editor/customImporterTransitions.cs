@@ -7,16 +7,26 @@ using System.Linq;
 [Tiled2Unity.CustomTiledImporter]
 public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
 {
-    string markerTag = "TransitionMarker";
+    string markerTag = "MapImportObject";
     public void HandleCustomProperties(GameObject gameObject,
         IDictionary<string, string> customProperties)
     {
         if (customProperties.ContainsKey("Transition"))
         {
             Debug.Log("MakingTransition");
-            // Add the terrain tile game object
+
             TransitionMarker marker = gameObject.AddComponent<TransitionMarker>();
             marker.markerKey = customProperties["Transition"];
+
+            marker.tag = markerTag;
+        }
+        else if (customProperties.ContainsKey("Character name"))
+        {
+            Debug.Log("adding character " + customProperties["Character name"]);
+
+            var marker = gameObject.AddComponent<SpawnMarkers.CharacterSpawnMarker>();
+            marker.characterName = customProperties["Character name"];
+            gameObject.transform.position += new Vector3(.5f, -.5f); // IMPORTANT! This assumes that tiles are 1 unit by 1 unit! 
 
             marker.tag = markerTag;
         }
