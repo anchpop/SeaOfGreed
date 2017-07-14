@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/13/2017 2:16:00 PM-->
+<!--Last exported: 7/13/2017 8:42:51 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="roomtest_mesh_0001" material="wall_windows_shade" />
   <AssignMaterial mesh="roomtest_mesh_0002" material="wall_windows" />
@@ -49,7 +49,7 @@
       <GameObject name="wall_shelves3" mesh="roomtest_mesh_0007" sortingLayerName="" sortingOrder="0" opacity="1" />
       <GameObject name="floor" mesh="roomtest_mesh_0008" sortingLayerName="" sortingOrder="0" opacity="1" />
       <GameObject name="black" mesh="roomtest_mesh_0009" sortingLayerName="" sortingOrder="0" opacity="1" />
-      <GameObject name="Collision_Unpassable" layer="Unpassable">
+      <GameObject name="Collision_Uncrossable" layer="Uncrossable">
         <PolygonCollider2D>
           <Path>0,-1 12,-1 12,0 0,0</Path>
           <Path>5,-7 0,-7 0,-10 5,-10</Path>
@@ -92,7 +92,7 @@
       <GameObject name="barrel_seat_up" mesh="roomtest_mesh_0027" sortingLayerName="" sortingOrder="2" opacity="1" />
       <GameObject name="barrel_seat_down" mesh="roomtest_mesh_0028" sortingLayerName="" sortingOrder="2" opacity="1" />
       <GameObject name="door_transparent" mesh="roomtest_mesh_0029" sortingLayerName="" sortingOrder="2" opacity="1" />
-      <GameObject name="Collision_Unpassable" layer="Unpassable">
+      <GameObject name="Collision_Uncrossable" layer="Uncrossable">
         <PolygonCollider2D>
           <Path>1.9375,-0.40625 -0.03125,-0.40625 -0.03125,-2.375 1.9375,-2.375</Path>
           <Path>3.9375,-0.40625 1.96875,-0.40625 1.96875,-2.375 3.9375,-2.375</Path>
@@ -119,7 +119,7 @@
     <GameObject name="off" x="0" y="-0.5" z="0">
       <TileLayer offsetX="0" offsetY="16" />
       <GameObject name="barrel_seat" mesh="roomtest_mesh_0030" sortingLayerName="" sortingOrder="3" opacity="1" />
-      <GameObject name="Collision_Unpassable" layer="Unpassable">
+      <GameObject name="Collision_Uncrossable" layer="Uncrossable">
         <PolygonCollider2D>
           <Path>10.8125,-0.1875 10.25,-0.1875 10.25,-0.75 10.8125,-0.75</Path>
           <Path>1.8125,-3.1875 1.25,-3.1875 1.25,-3.75 1.8125,-3.75</Path>
