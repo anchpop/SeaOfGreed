@@ -132,7 +132,7 @@ namespace SeaOfGreed {
             {
                 var marker = roomswitchRaycast.collider.gameObject.GetComponent<TransitionMarker>();
                 Debug.Log("Switch into " + marker.markerKey);
-                var assocs = manager.getTileAssociations(marker.markerKey);
+                var assocs = manager.getAssociationsForKey(marker.markerKey);
 
                 // sort by which is closest to the player :)
                 assocs.Sort((assoc1, assoc2) => (assoc1.transform.position - transform.position).sqrMagnitude.CompareTo((assoc2.transform.position - transform.position).sqrMagnitude));

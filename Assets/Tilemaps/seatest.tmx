@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="14">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="19">
  <properties>
   <property name="unity:resource" value="True"/>
  </properties>
@@ -237,6 +237,13 @@
   <object id="10" x="1504" y="1248" width="32" height="96">
    <properties>
     <property name="Transition" value="roomaround"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="CharacterMarkers">
+  <object id="18" x="1376" y="992" width="32" height="32">
+   <properties>
+    <property name="Character name" value="Wally"/>
    </properties>
   </object>
  </objectgroup>
