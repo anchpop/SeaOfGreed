@@ -5,6 +5,7 @@ using Ink.Runtime;
 using SeaOfGreed;
 
 public class BasicInkExample : MonoBehaviour {
+	public static BasicInkExample inkHolder;
 	[SerializeField]
 	private Story story;
 	[SerializeField] private GameObject textRef;
@@ -16,6 +17,7 @@ public class BasicInkExample : MonoBehaviour {
 	[SerializeField] private Canvas canvas;
 	//pretty obvious - initialization of stuff
 	void Awake () {
+		inkHolder = this;
 		textCompRef = textRef.GetComponent<Text>();
 		queue = new ArrayList();
 	}
@@ -23,7 +25,7 @@ public class BasicInkExample : MonoBehaviour {
 	//if so, it runs one of two scripts - one which makes E go to the next page of text, the other of which renders all choices + an arrow with the currently selected one
 	//selectedChoiceIndex is both the value to be given to the story and the current line with an arrow on it
 	void Update(){
-		if(textRef.activeInHierarchy){
+		if(textRef.transform.parent.gameObject.activeInHierarchy){
 		if(!isChoosing){
 		if(Input.GetKeyDown(KeyCode.E))
 			NextInQueue();
@@ -49,7 +51,7 @@ public class BasicInkExample : MonoBehaviour {
 		}
 	}
 	public void StartStory (string input) {
-		textRef.SetActive(true);
+		textRef.transform.parent.gameObject.SetActive(true);
 		story = new Story (input);
 		RefreshView();
 	}
@@ -63,12 +65,24 @@ public class BasicInkExample : MonoBehaviour {
 		NextInQueue();
 	}
 	//shows the next line in the queue; if the queue is empty, it displays choices or closes the dialogue box
-	void NextInQueue () {
+	public void NextInQueue () {
 		if(currentIndex < queue.Count)
       	{
+			//if not command (ie first character isnt &) it just displays. Else - complicated shit
+			if(((string)queue[currentIndex]).ToCharArray()[0] != '&'){
      		textCompRef.text = (string)queue[currentIndex];
         	currentIndex++;
         	isChoosing = false;
+			} else{
+				string temp = (string) queue[currentIndex];
+				temp = temp.Remove(0,1);
+				string[] args = temp.Split('=');
+				foreach(string qq in args){
+					Debug.Log(qq + "Q");
+				}
+				currentIndex++;
+				CommandController.runCommand(args[0], args[1]);
+			}
         }
         else
         {
@@ -77,7 +91,7 @@ public class BasicInkExample : MonoBehaviour {
 				isChoosing = true;
 				selectedChoiceIndex = 0;
 			} else{
-				textRef.SetActive(false);
+				textRef.transform.parent.gameObject.SetActive(false);
 				PlayerController.setMove(true);
 				//TODO: put shit here to do when the dialogue is complete
 			}

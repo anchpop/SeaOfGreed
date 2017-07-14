@@ -1,4 +1,5 @@
-- I looked at Monsieur Fogg 
+Let's try our example function!!!!
+&test=ayylmao
 *   ... and I could contain myself no longer.
     'What is the purpose of our journey, Monsieur?'
     'A wager,' he replied.
