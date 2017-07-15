@@ -18,6 +18,7 @@ namespace SeaOfGreed {
 
         Canvas canvas;
 
+
         // Use this for initialization
         private void Start() {
             driver = GetComponent<CharacterDriver>();
