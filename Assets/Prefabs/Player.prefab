@@ -39,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4863547910826898}
   - component: {fileID: 212159953594307834}
+  - component: {fileID: 95014916258008946}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -188,13 +189,30 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1279677542856176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.99, y: -39.9, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4863547910826898}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95014916258008946
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1393622863025194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13a21b97613d03142bdfc15c539b738c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95346643333354562
 Animator:
   serializedVersion: 3
@@ -204,7 +222,7 @@ Animator:
   m_GameObject: {fileID: 1279677542856176}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 26600be0d6ff3c146b5e7a77532a618a, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -318,6 +336,7 @@ MonoBehaviour:
   sprite: {fileID: 1393622863025194}
   isSprinting: 0
   isWalking: 1
+  torsoAnim: {fileID: 95014916258008946}
   isPlayer: 1
   canSwitchIntoRooms: 1
 --- !u!212 &212159953594307834

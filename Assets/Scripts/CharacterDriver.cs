@@ -36,10 +36,11 @@ namespace SeaOfGreed {
 
         public bool isSprinting;
         public bool isWalking;
-        
 
-        private Animator anim;
-        
+
+
+        public Animator torsoAnim;
+
         public bool isPlayer = false;
         public bool canSwitchIntoRooms = true;
         bool steppedOnRoomTransition = false;
@@ -53,7 +54,6 @@ namespace SeaOfGreed {
 
         // Use this for initialization
         void Start () {
-			anim = GetComponent<Animator>();
 			controller = gameObject.GetComponent<PlayerController> ();
             manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         }
@@ -146,7 +146,13 @@ namespace SeaOfGreed {
         public void lookInDirection(Vector3 direction)
         {
             var tan = Mathf.Atan2(direction.x, direction.y);
-            sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            if (state == states.boardedShip) sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            else
+            {
+                sprite.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                torsoAnim.SetFloat("xTorso", direction.x);
+                torsoAnim.SetFloat("yTorso", direction.y);
+            }
         }
         
 

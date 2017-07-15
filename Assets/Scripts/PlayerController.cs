@@ -20,7 +20,7 @@ namespace SeaOfGreed {
 
         // Use this for initialization
         private void Start() {
-            driver = gameObject.GetComponent<CharacterDriver>();
+            driver = GetComponent<CharacterDriver>();
             mainCamera =  GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().player = gameObject;
             canvas = GameObject.Find("UI Canvas").GetComponent<Canvas>();
@@ -78,17 +78,6 @@ namespace SeaOfGreed {
                 helpToShow = HelpTextDisplayer.helpText.dockText;
 
             helpTextObject.textToShow = helpToShow;
-
-            /*
-            boardText.SetActive(false);
-            dockText.SetActive(false);
-            wheelText.SetActive(false);
-
-                wheelText.SetActive(true);
-            else if (driver.state == states.onLand && driver.canBoardShip())
-                boardText.SetActive(true);
-            else if (driver.state == states.boardedShip && driver.canDockShip())
-                dockText.SetActive(true);*/
         }
 
         // Update is called once per frame
