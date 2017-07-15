@@ -40,6 +40,7 @@ namespace SeaOfGreed {
 
 
         public Animator torsoAnim;
+        public Animator legsAnim;
 
         public bool isPlayer = false;
         public bool canSwitchIntoRooms = true;
@@ -194,8 +195,12 @@ namespace SeaOfGreed {
                     else
                         steppedOnRoomTransition = false;
                 }
+
+                legsAnim.SetFloat("xLegs", xOffset.x);
+                legsAnim.SetFloat("yLegs", yOffset.y);
             }
             torsoAnim.SetBool("isWalking", isWalking);
+            legsAnim.SetBool("isWalking", isWalking);
         }
 
 		// state transitions
