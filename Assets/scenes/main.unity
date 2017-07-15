@@ -7504,7 +7504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1067737512
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11402,6 +11402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkHolder: {fileID: 1109171899}
   inkJSONAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
+  knot: 
 --- !u!212 &1599696526
 SpriteRenderer:
   m_ObjectHideFlags: 0
