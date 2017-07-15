@@ -194,8 +194,8 @@ namespace SeaOfGreed {
                     else
                         steppedOnRoomTransition = false;
                 }
-
             }
+            torsoAnim.SetBool("isWalking", isWalking);
         }
 
 		// state transitions
