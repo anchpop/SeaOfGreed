@@ -149,7 +149,6 @@ namespace SeaOfGreed {
             if (state == states.boardedShip) sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
             else
             {
-                sprite.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 torsoAnim.SetFloat("xTorso", direction.x);
                 torsoAnim.SetFloat("yTorso", direction.y);
             }
@@ -298,7 +297,8 @@ namespace SeaOfGreed {
             Assert.IsTrue(state == states.jumpingToLand);
             shipBorded = null;
             transform.SetParent(null);
-            transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            sprite.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             newState = states.onLand;
             shipBorded = null;
         }
