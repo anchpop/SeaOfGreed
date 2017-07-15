@@ -55,6 +55,12 @@ public class BasicInkExample : MonoBehaviour {
 		story = new Story (input);
 		RefreshView();
 	}
+	public void StartStory (string input, string knot) {
+		textRef.transform.parent.gameObject.SetActive(true);
+		story = new Story (input);
+		if(knot!=null)story.ChoosePathString(knot);
+		RefreshView();
+	}
 	//clears the queue of items, replaces it with the dialogue from story.Continue, which has changed because we gave it a choice(above)
 	void RefreshView () {
 		queue.Clear();
@@ -96,6 +102,5 @@ public class BasicInkExample : MonoBehaviour {
 				//TODO: put shit here to do when the dialogue is complete
 			}
 		}
-
 	}
 }

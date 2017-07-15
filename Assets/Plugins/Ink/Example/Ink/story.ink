@@ -1,4 +1,4 @@
-Let's try our example function!!!!
+What do you mean? This hammer is <i>TOTALLY</i> safe.
 &test=ayylmao
 *   ... and I could contain myself no longer.
     'What is the purpose of our journey, Monsieur?'

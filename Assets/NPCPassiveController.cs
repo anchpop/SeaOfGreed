@@ -6,6 +6,7 @@ using SeaOfGreed;
 public class NPCPassiveController : MonoBehaviour {
 	[SerializeField] private GameObject inkHolder;
 	[SerializeField] private TextAsset inkJSONAsset;
+	[SerializeField] private string knot;
 	private BasicInkExample inkScriptRef;
 	void Start(){
 		inkScriptRef = inkHolder.GetComponent<BasicInkExample>();
