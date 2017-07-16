@@ -2686,7 +2686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b7000ffc12fd43b1920c127d22e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyShowProgrammerMaps: 0
+  onlyShowProgrammerMaps: 1
   mainCameraBlackout: {fileID: 0}
   minimapCameraBlackout: {fileID: 0}
   player: {fileID: 0}
