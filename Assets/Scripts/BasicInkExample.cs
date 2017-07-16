@@ -25,7 +25,7 @@ public class BasicInkExample : MonoBehaviour {
 	//if so, it runs one of two scripts - one which makes E go to the next page of text, the other of which renders all choices + an arrow with the currently selected one
 	//selectedChoiceIndex is both the value to be given to the story and the current line with an arrow on it
 	void Update(){
-		if(textRef.transform.parent.gameObject.activeInHierarchy){
+		if(getTextBoxActive()){
 		if(!isChoosing){
 		if(Input.GetKeyDown(KeyCode.E))
 			NextInQueue();
@@ -51,12 +51,12 @@ public class BasicInkExample : MonoBehaviour {
 		}
 	}
 	public void StartStory (string input) {
-		textRef.transform.parent.gameObject.SetActive(true);
+		setTextBoxActive(true);
 		story = new Story (input);
 		RefreshView();
 	}
 	public void StartStory (string input, string knot) {
-		textRef.transform.parent.gameObject.SetActive(true);
+		setTextBoxActive(true);
 		story = new Story (input);
 		if(knot!=null)story.ChoosePathString(knot);
 		RefreshView();
@@ -75,32 +75,52 @@ public class BasicInkExample : MonoBehaviour {
 		if(currentIndex < queue.Count)
       	{
 			//if not command (ie first character isnt &) it just displays. Else - complicated shit
-			if(((string)queue[currentIndex]).ToCharArray()[0] != '&'){
-     		textCompRef.text = (string)queue[currentIndex];
-        	currentIndex++;
-        	isChoosing = false;
+			//% = consecutive commands. tempArgs.args = the string after the "=", args[] = the command name and the string after "="
+			//if the function doesn't plan on having a coroutine run NextInQueue after it runs, just run NextInQueue immediately
+			if(((string)queue[currentIndex]).ToCharArray()[0] != '&' && ((string)queue[currentIndex]).ToCharArray()[0] != '$'){
+				if(!getTextBoxActive())setTextBoxActive(true);
+     			textCompRef.text = (string)queue[currentIndex];
+        		currentIndex++;
+        		isChoosing = false;
 			} else{
 				string temp = (string) queue[currentIndex];
+				CommandArgs tempArgs;
+				tempArgs.isSequential = (((string)queue[currentIndex]).ToCharArray()[0] == '$') ? true : false;
+				if(tempArgs.isSequential && ((string)queue[currentIndex]).ToCharArray()[1] == '!'){ 
+					temp = temp.Remove(0,1);
+					setTextBoxActive(false);
+				}
 				temp = temp.Remove(0,1);
 				string[] args = temp.Split('=');
 				foreach(string qq in args){
 					Debug.Log(qq + "Q");
 				}
+				tempArgs.args = args[1];
 				currentIndex++;
-				CommandController.runCommand(args[0], args[1]);
+				CommandController.runCommand(args[0], tempArgs);
+				if(!tempArgs.isSequential) NextInQueue();
 			}
         }
         else
         {
 			if(story.currentChoices.Count > 0){
+				if(!getTextBoxActive())setTextBoxActive(true);
 				Debug.Log("isChoosing = true");
 				isChoosing = true;
 				selectedChoiceIndex = 0;
 			} else{
-				textRef.transform.parent.gameObject.SetActive(false);
+				setTextBoxActive(false);
 				PlayerController.setMove(true);
-				//TODO: put shit here to do when the dialogue is complete
 			}
 		}
+	}
+	public void endOfCommand(CommandArgs arg){
+		if(arg.isSequential) NextInQueue();
+	}
+	public void setTextBoxActive(bool b){
+		textRef.transform.parent.gameObject.SetActive(b);
+	}
+	public bool getTextBoxActive(){
+		return textRef.transform.parent.gameObject.activeInHierarchy;
 	}
 }

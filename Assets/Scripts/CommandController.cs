@@ -1,19 +1,24 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CommandController : MonoBehaviour {
-	private static Dictionary<string, Action<string>> functionEmbedDict = new Dictionary<string, Action<string>>();
+	private static Dictionary<string, Action<CommandArgs>> functionEmbedDict = new Dictionary<string, Action<CommandArgs>>();
 	void Start () {
 		functionEmbedDict.Add("test", testMethod);
+		functionEmbedDict.Add("move", GameObject.Find("squarey").GetComponent<ObeyCommand>().move);
 	}
-	
-	static void testMethod(string s){
-		Debug.Log(s);
+	static void testMethod(CommandArgs s){
+		Debug.Log(s.args);
+		BasicInkExample.inkHolder.endOfCommand(s);
 	}
 
-	public static void runCommand(String commandName, string argument){
+	public static void runCommand(String commandName, CommandArgs argument){
 		functionEmbedDict[commandName](argument);
-		BasicInkExample.inkHolder.NextInQueue();
 	}
+}
+public struct CommandArgs{
+		public bool isSequential;
+		public string args;
 }
