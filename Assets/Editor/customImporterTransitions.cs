@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using UnityEditor;
 
 [Tiled2Unity.CustomTiledImporter]
 public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
@@ -30,11 +31,25 @@ public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
 
             marker.tag = markerTag;
         }
-        else if (customProperties.ContainsKey("Place grass"))
+        else if (customProperties.ContainsKey("Place Enviromental"))
         {
             var rectToPlaceGrassIn = gameObject.AddComponent<Tiled2Unity.RectangleObject>();
-            Debug.Log("placing grass at " + rectToPlaceGrassIn.TmxPosition);
+            Debug.Log("placing grass at " + rectToPlaceGrassIn.transform.position);
 
+            int numToPlace = 3;
+            if (customProperties.ContainsKey("Number to place")) int.TryParse(customProperties["Number to place"], out numToPlace);
+
+            for (int i = 0; i < numToPlace; i++)
+            {
+                GameObject enviromental = new GameObject(customProperties["Place Enviromental"] + " " + i);
+                enviromental.transform.SetParent(rectToPlaceGrassIn.transform, false);
+                enviromental.transform.localPosition = Vector3.zero + Vector3.right * UnityEngine.Random.Range(0f, 1f) + -Vector3.up * UnityEngine.Random.Range(0f, 1f);
+                var renderer = enviromental.AddComponent<SpriteRenderer>();
+                renderer.sprite = (Sprite)AssetDatabase.LoadAssetAtPath(customProperties["Place Enviromental"], typeof(Sprite));
+                renderer.sortingLayerName = "Characters";
+                renderer.sortingOrder = myMath.floatToSortingOrder(enviromental.transform.position.y);
+                enviromental.layer = LayerMask.NameToLayer("mainCameraOnly");
+            }
         }
     }
 

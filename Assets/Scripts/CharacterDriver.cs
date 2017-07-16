@@ -78,8 +78,8 @@ namespace SeaOfGreed {
 
             if (state == states.onLand)
             {
-                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = -(int)((transform.position.y - currentRoom.position.y) * 10) + 1;
-                legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = -(int)((transform.position.y - currentRoom.position.y) * 10);
+                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y) + 1;
+                legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y);
             }
         }
 
