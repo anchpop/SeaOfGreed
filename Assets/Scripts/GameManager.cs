@@ -105,7 +105,6 @@ namespace SeaOfGreed
 
         void getRooms()
         {
-            Debug.Log("Getting rooms");
             rooms = Resources.LoadAll("", typeof(GameObject)).Where(prefab => (prefab as GameObject).GetComponent<Tiled2Unity.TiledMap>() != null).Where(prefab => (prefab as GameObject).name.ToLower().Contains("programmer") == onlyShowProgrammerMaps).Select(prefab => new RoomData(prefab as GameObject)).ToList();
         }
 
