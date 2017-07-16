@@ -35,6 +35,8 @@ namespace SeaOfGreed
 {
 	public class GameManager : MonoBehaviour
     {
+        public bool onlyShowProgrammerMaps = false;
+
         List<RoomData> rooms;
 
         public CameraBlackout mainCameraBlackout;
@@ -103,7 +105,7 @@ namespace SeaOfGreed
 
         void getRooms()
         {
-            rooms = Resources.LoadAll("", typeof(GameObject)).Where(prefab => (prefab as GameObject).GetComponent<Tiled2Unity.TiledMap>() != null).Select(prefab => new RoomData(prefab as GameObject)).ToList();
+            rooms = Resources.LoadAll("", typeof(GameObject)).Where(prefab => (prefab as GameObject).GetComponent<Tiled2Unity.TiledMap>() != null).Where(prefab => (prefab as GameObject).name.ToLower().Contains("programmer") == onlyShowProgrammerMaps).Select(prefab => new RoomData(prefab as GameObject)).ToList();
         }
 
         void placeRooms()

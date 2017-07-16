@@ -14,4 +14,9 @@ public class myMath
         var height = map.NumTilesHigh * map.TileHeight * map.ExportScale;
         return new Vector2(width, height);
     }
+
+    public static int floatToSortingOrder(float s)
+    {
+        return -(int)(s * 10);
+    }
 }

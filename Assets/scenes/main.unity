@@ -2686,10 +2686,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b7000ffc12fd43b1920c127d22e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyShowProgrammerMaps: 1
   mainCameraBlackout: {fileID: 0}
   minimapCameraBlackout: {fileID: 0}
   player: {fileID: 0}
-  playerPrefab: {fileID: 1279677542856176, guid: fbe48bd378ff83040a41f8820d0886fe,
+  playerPrefab: {fileID: 1715360280288548, guid: 4aa2279ee3ffe8b4cb5a95dd23735a8a,
     type: 2}
 --- !u!224 &438177879
 RectTransform:
@@ -7555,9 +7556,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  dockText: {fileID: 0}
-  boardText: {fileID: 0}
-  sailText: {fileID: 0}
   showUI: 1
 --- !u!1 &1126675435
 GameObject:
@@ -10316,6 +10314,9 @@ MonoBehaviour:
   sprite: {fileID: 1089191782}
   isSprinting: 0
   isWalking: 0
+  torsoAnim: {fileID: 0}
+  legsAnim: {fileID: 0}
+  topDownParent: {fileID: 0}
   isPlayer: 0
   canSwitchIntoRooms: 0
 --- !u!4 &1569033590
@@ -11227,7 +11228,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294950911
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 77afff4704b56964682b0b2ad62975eb, type: 2}
   m_TargetDisplay: 0
