@@ -10311,6 +10311,9 @@ MonoBehaviour:
   roomTransitionRaycastMask:
     serializedVersion: 2
     m_Bits: 12288
+  uncrossableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 0
   sprite: {fileID: 1089191782}
   isSprinting: 0
   isWalking: 0
