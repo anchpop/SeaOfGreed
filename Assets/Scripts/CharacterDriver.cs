@@ -42,6 +42,7 @@ namespace SeaOfGreed {
 
         public Animator torsoAnim;
         public Animator legsAnim;
+        public GameObject topDownParent;
 
         public bool isPlayer = false;
         public bool canSwitchIntoRooms = true;
@@ -59,6 +60,8 @@ namespace SeaOfGreed {
         void Start () {
 			controller = gameObject.GetComponent<PlayerController> ();
             manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
+            topDownParent.SetActive(false);
         }
 		
 		// Update is called once per frame
@@ -75,7 +78,7 @@ namespace SeaOfGreed {
 
             if (state == states.onLand)
             {
-                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = -(int)((transform.position.y - currentRoom.position.y) * 10);
+                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = -(int)((transform.position.y - currentRoom.position.y) * 10) + 1;
                 legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = -(int)((transform.position.y - currentRoom.position.y) * 10);
             }
         }
@@ -155,7 +158,7 @@ namespace SeaOfGreed {
         {
             lastLookDirection = direction;
             var tan = Mathf.Atan2(direction.x, direction.y);
-            if (state == states.boardedShip) sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            if (state == states.boardedShip) topDownParent.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
             else
             {
                 torsoAnim.SetFloat("xTorso", direction.x);
@@ -289,6 +292,8 @@ namespace SeaOfGreed {
             transform.position = location;
             transform.SetParent(ship.transform);
             shipBorded = ship;
+            topDownParent.SetActive(true);                            // enable the top-down boat sprite
+            legsAnim.transform.parent.gameObject.SetActive(false);    // diable the 3/4ths sprites by diabling the parent of the legsanim 
         }
 
         public void boardedShipToSteeringShip() {
@@ -316,6 +321,8 @@ namespace SeaOfGreed {
             sprite.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             newState = states.onLand;
             shipBorded = null;
+            topDownParent.SetActive(false);                          // disable the top-down boat sprite
+            legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim 
         }
     }
 }

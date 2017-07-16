@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/16/2017 3:22:29 AM-->
+<!--Last exported: 7/16/2017 11:26:44 AM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="programmers_test_dont_touch_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="programmers_test_dont_touch_mesh_0002" material="RPGpack_sheet" />
@@ -26,9 +26,6 @@
           <Path>64,-74 72,-74 72,-70 64,-70</Path>
         </PolygonCollider2D>
       </GameObject>
-    </GameObject>
-    <GameObject name="RoomTransitions" x="0" y="0" z="0" layer="RoomTransitions">
-      <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
     </GameObject>
     <GameObject name="CharacterMarkers" x="0" y="0" z="0">
       <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />

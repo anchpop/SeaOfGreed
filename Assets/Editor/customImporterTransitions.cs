@@ -30,6 +30,12 @@ public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
 
             marker.tag = markerTag;
         }
+        else if (customProperties.ContainsKey("Place grass"))
+        {
+            var rectToPlaceGrassIn = gameObject.AddComponent<Tiled2Unity.RectangleObject>();
+            Debug.Log("placing grass at " + rectToPlaceGrassIn.TmxPosition);
+
+        }
     }
 
     public void CustomizePrefab(GameObject prefab)

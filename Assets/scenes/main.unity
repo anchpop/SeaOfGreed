@@ -10316,6 +10316,7 @@ MonoBehaviour:
   isWalking: 0
   torsoAnim: {fileID: 0}
   legsAnim: {fileID: 0}
+  topDownParent: {fileID: 0}
   isPlayer: 0
   canSwitchIntoRooms: 0
 --- !u!4 &1569033590
