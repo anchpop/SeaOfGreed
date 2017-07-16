@@ -39,16 +39,22 @@ public class CustomImporter_TransitionTiles : Tiled2Unity.ICustomTiledImporter
             int numToPlace = 3;
             if (customProperties.ContainsKey("Number to place")) int.TryParse(customProperties["Number to place"], out numToPlace);
 
+            int chance = 1;
+            if (customProperties.ContainsKey("Chance")) int.TryParse(customProperties["Chance"], out chance);
+
             for (int i = 0; i < numToPlace; i++)
             {
-                GameObject enviromental = new GameObject(customProperties["Place Enviromental"] + " " + i);
-                enviromental.transform.SetParent(rectToPlaceGrassIn.transform, false);
-                enviromental.transform.localPosition = Vector3.zero + Vector3.right * UnityEngine.Random.Range(0f, 1f) + -Vector3.up * UnityEngine.Random.Range(0f, 1f);
-                var renderer = enviromental.AddComponent<SpriteRenderer>();
-                renderer.sprite = (Sprite)AssetDatabase.LoadAssetAtPath(customProperties["Place Enviromental"], typeof(Sprite));
-                renderer.sortingLayerName = "Characters";
-                renderer.sortingOrder = myMath.floatToSortingOrder(enviromental.transform.position.y);
-                enviromental.layer = LayerMask.NameToLayer("mainCameraOnly");
+                if (UnityEngine.Random.Range(0, 1) <= chance)
+                {
+                    GameObject enviromental = new GameObject(customProperties["Place Enviromental"] + " " + i);
+                    enviromental.transform.SetParent(rectToPlaceGrassIn.transform, false);
+                    enviromental.transform.localPosition = Vector3.zero + Vector3.right * UnityEngine.Random.Range(0f, 1f) + -Vector3.up * UnityEngine.Random.Range(0f, 1f);
+                    var renderer = enviromental.AddComponent<SpriteRenderer>();
+                    renderer.sprite = (Sprite)AssetDatabase.LoadAssetAtPath(customProperties["Place Enviromental"], typeof(Sprite));
+                    renderer.sortingLayerName = "Characters";
+                    renderer.sortingOrder = myMath.floatToSortingOrder(enviromental.transform.position.y);
+                    enviromental.layer = LayerMask.NameToLayer("mainCameraOnly");
+                }
             }
         }
     }
