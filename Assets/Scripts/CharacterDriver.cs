@@ -51,7 +51,8 @@ namespace SeaOfGreed {
         public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 
         public event StateChangedEventHandler StateChanged;
-        
+
+        Vector2 lastLookDirection;
 
         // Use this for initialization
         void Start () {
@@ -146,12 +147,15 @@ namespace SeaOfGreed {
 
         public void lookInDirection(Vector3 direction)
         {
+            lastLookDirection = direction;
             var tan = Mathf.Atan2(direction.x, direction.y);
             if (state == states.boardedShip) sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
             else
             {
                 torsoAnim.SetFloat("xTorso", direction.x);
                 torsoAnim.SetFloat("yTorso", direction.y);
+                legsAnim.SetFloat("xTorso", direction.x);
+                legsAnim.SetFloat("yTorso", direction.y);
             }
         }
         
