@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Assertions;
 
 namespace SeaOfGreed {
@@ -72,6 +73,11 @@ namespace SeaOfGreed {
             if (isPlayer)
                 manager.setupCameras(currentRoom);
 
+            if (state == states.onLand)
+            {
+                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = -(int)((transform.position.y - currentRoom.position.y) * 10);
+                legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = -(int)((transform.position.y - currentRoom.position.y) * 10);
+            }
         }
 
 		internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
