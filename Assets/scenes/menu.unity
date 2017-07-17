@@ -778,9 +778,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b7000ffc12fd43b1920c127d22e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyShowProgrammerMaps: 0
   mainCameraBlackout: {fileID: 0}
   minimapCameraBlackout: {fileID: 0}
   player: {fileID: 0}
+  playerPrefab: {fileID: 1715360280288548, guid: 4aa2279ee3ffe8b4cb5a95dd23735a8a,
+    type: 2}
 --- !u!223 &1341857817 stripped
 Canvas:
   m_PrefabParentObject: {fileID: 223128522422427474, guid: ad4f60487c0af344dab8e20b74ff449d,
