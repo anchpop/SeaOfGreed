@@ -56,6 +56,7 @@ namespace SeaOfGreed {
         public event StateChangedEventHandler StateChanged;
 
         Vector2 lastLookDirection;
+        
 
         // Use this for initialization
         void Start () {

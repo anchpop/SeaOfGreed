@@ -51,6 +51,8 @@ namespace SeaOfGreed
         public static GameManager gameManager;
 		public static Options options;
         RoomData currentRoom;
+
+        GameObject seaQuad;
 		void Awake(){
             if (gameManager != null && gameManager != this)
             {
@@ -177,6 +179,7 @@ namespace SeaOfGreed
         {
             if (scene.name == "main")
             {
+                seaQuad = GameObject.Find("SeaQuad");
                 getRooms();
                 placeRooms();
                 getTransitionAssociations();
