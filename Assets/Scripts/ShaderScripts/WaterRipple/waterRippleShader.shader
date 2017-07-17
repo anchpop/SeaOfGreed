@@ -16,9 +16,11 @@
 			CGPROGRAM
 #pragma vertex vert_img
 #pragma fragment frag
+#pragma target 3.0
 
 #include "UnityCG.cginc"
 #include "UnityUI.cginc"
+
 
 #define sign(x1, y1, x2, y2, x3, y3) \
 (x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3)
@@ -40,9 +42,9 @@
 			float xBump = (i.uv.x * _tileX) % 1;
 			float yBump = (i.uv.y * _tileY) % 1;
 
-			float normal = tex2D(_bumpTex, float2(xBump, yBump));
-			float xReflect = (i.uv.x + normal.r);
-			float yReflect = (i.uv.y);
+			float normal = tex2D(_bumpTex, float2(xBump, yBump)).rgb;
+			float xReflect = ((i.uv + normal).x);
+			float yReflect = ((i.uv + normal).y);
 			//y = y + sin(_Time * _rippleSpeed + i.uv.y * _rippleSize) / 2 + .5;
 			xReflect = xReflect % 1;
 			yReflect = yReflect % 1;
