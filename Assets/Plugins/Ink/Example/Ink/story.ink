@@ -19,3 +19,8 @@ $!move=5,5,0
 *   ... but I said nothing[] and <>
 - we passed the day in silence.
 - -> END
+== WorldScript
+#loop
+$move=5,0,0
+$move=-5,0,0
+$wait=3

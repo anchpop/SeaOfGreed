@@ -8127,6 +8127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textRef: {fileID: 626658022}
   textCompRef: {fileID: 0}
+  isCommandSlave: 0
   canvas: {fileID: 1109171902}
 --- !u!1 &1126675435
 GameObject:
@@ -11358,6 +11359,7 @@ GameObject:
   - component: {fileID: 1599696525}
   - component: {fileID: 1599696524}
   - component: {fileID: 1599696528}
+  - component: {fileID: 1599696529}
   m_Layer: 0
   m_Name: squarey
   m_TagString: interactable
@@ -11404,6 +11406,7 @@ MonoBehaviour:
   inkHolder: {fileID: 1109171899}
   inkJSONAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
   knot: 
+  isRunningWorldScript: 1
 --- !u!212 &1599696526
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11469,6 +11472,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e06ff3a9e475342b77f8a6addba3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1599696529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1599696523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fd98b9fdb0fdd4c9734015c577ecaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textRef: {fileID: 0}
+  textCompRef: {fileID: 0}
+  isCommandSlave: 1
+  canvas: {fileID: 0}
 --- !u!1 &1610845721
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,10 +8,11 @@ public class CommandController : MonoBehaviour {
 	void Start () {
 		functionEmbedDict.Add("test", testMethod);
 		functionEmbedDict.Add("move", GameObject.Find("squarey").GetComponent<ObeyCommand>().move);
+		functionEmbedDict.Add("wait", GameObject.Find("squarey").GetComponent<ObeyCommand>().wait);
 	}
 	static void testMethod(CommandArgs s){
 		Debug.Log(s.args);
-		BasicInkExample.inkHolder.endOfCommand(s);
+		s.commandCaller.endOfCommand(s);
 	}
 
 	public static void runCommand(String commandName, CommandArgs argument){
@@ -21,4 +22,5 @@ public class CommandController : MonoBehaviour {
 public struct CommandArgs{
 		public bool isSequential;
 		public string args;
+		public BasicInkExample commandCaller;
 }

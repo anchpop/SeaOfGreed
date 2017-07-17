@@ -6,6 +6,9 @@ public class ObeyCommand : MonoBehaviour {
 	public void move(CommandArgs args){
 		StartCoroutine(moveCorout(args));
 	}
+	public void wait(CommandArgs args){
+		StartCoroutine(waitCorout(args));
+	}
 	private IEnumerator moveCorout(CommandArgs args){
 		string[] argSplit = args.args.Split(',');
 		int[] argSplitInt = new int[3];
@@ -19,6 +22,12 @@ public class ObeyCommand : MonoBehaviour {
 			yield return new WaitForFixedUpdate();
 		}
 		transform.position += diff;
-		BasicInkExample.inkHolder.endOfCommand(args);
+		args.commandCaller.endOfCommand(args);
+	}
+	private IEnumerator waitCorout(CommandArgs args){
+		float x;
+		float.TryParse(args.args, out x);
+		yield return new WaitForSeconds(x);
+		args.commandCaller.endOfCommand(args);
 	}
 }
