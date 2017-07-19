@@ -3,6 +3,7 @@
 			_MainTex("Base (RGB)", 2D) = "white" {}
 			_reflectionBlend("% of reflection to use", Range(0, 1)) = 0
 			_xOffset("x offset", Float) = 1
+			_yOffset("y offset", Float) = 1
 			_tileX("Tile x", Float) = 1
 			_tileY("Tile y", Float) = 1
 			_rippleSpeed("ripple speed", Float) = 1
@@ -32,19 +33,20 @@
 		uniform float _rippleSize;
 		uniform float _rippleSpeed;
 		uniform float _xOffset;
+		uniform float _yOffset;
 		uniform float _tileX;
 		uniform float _tileY;
 
 		float4 frag(v2f_img i) : COLOR{
 			//float x = (i.uv.x * _tileX + _Time.x) % 1;
-			float xWater = (i.uv.x * _tileX + _xOffset/10) % 1;
+			float xWater = (i.uv.x * _tileX) % 1;
 			float yWater = (i.uv.y * _tileY) % 1;
 			float xBump = (i.uv.x * _tileX) % 1;
 			float yBump = (i.uv.y * _tileY) % 1;
 
 			float normal = tex2D(_bumpTex, float2(xBump, yBump)).rgb;
-			float xReflect = ((i.uv + normal).x);
-			float yReflect = ((i.uv + normal).y);
+			float xReflect = ((i.uv + normal).x + _xOffset);
+			float yReflect = ((i.uv + normal).y + _yOffset);
 			//y = y + sin(_Time * _rippleSpeed + i.uv.y * _rippleSize) / 2 + .5;
 			xReflect = xReflect % 1;
 			yReflect = yReflect % 1;

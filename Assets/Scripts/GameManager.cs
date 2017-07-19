@@ -51,6 +51,9 @@ namespace SeaOfGreed
         public static GameManager gameManager;
 		public static Options options;
         RoomData currentRoom;
+
+        GameObject seaQuad;
+
 		void Awake(){
             if (gameManager != null && gameManager != this)
             {
@@ -101,6 +104,8 @@ namespace SeaOfGreed
                 blackout.y3 = screenPos3.y;
                 blackout.y4 = screenPos4.y;
             }
+
+            //seaQuad.GetComponent<MeshRenderer>().materials[0].SetFloat("_xOffset", 0f);
         }
 
         void getRooms()
@@ -177,6 +182,7 @@ namespace SeaOfGreed
         {
             if (scene.name == "main")
             {
+                seaQuad = GameObject.Find("SeaQuad");
                 getRooms();
                 placeRooms();
                 getTransitionAssociations();
