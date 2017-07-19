@@ -35,7 +35,6 @@ public class HelpTextDisplayer : MonoBehaviour {
 	void Update () {
         if (textToShow != oldTextToShow)
         {
-            Debug.Log("oi");
             var shipAxes = InputManager.GetAxisConfiguration("Default", "Enter Ship").positive.ToString();
             var useAxes = InputManager.GetAxisConfiguration("Default", "Use").positive.ToString();
 

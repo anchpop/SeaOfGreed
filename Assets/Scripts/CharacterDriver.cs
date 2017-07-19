@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Assertions;
 
 namespace SeaOfGreed {
@@ -31,15 +32,19 @@ namespace SeaOfGreed {
 		public LayerMask boatRaycastMask;
         public LayerMask borderRaycastMask;
         public LayerMask roomTransitionRaycastMask;
+        public LayerMask uncrossableRaycastMask;
 
         public GameObject sprite;
 
         public bool isSprinting;
         public bool isWalking;
-        
 
-        private Animator anim;
-        
+
+
+        public Animator torsoAnim;
+        public Animator legsAnim;
+        public GameObject topDownParent;
+
         public bool isPlayer = false;
         public bool canSwitchIntoRooms = true;
         bool steppedOnRoomTransition = false;
@@ -49,13 +54,15 @@ namespace SeaOfGreed {
         public delegate void StateChangedEventHandler(CharacterDriver sender, StateChangedEventArgs e);
 
         public event StateChangedEventHandler StateChanged;
-        
+
+        Vector2 lastLookDirection;
 
         // Use this for initialization
         void Start () {
-			anim = GetComponent<Animator>();
 			controller = gameObject.GetComponent<PlayerController> ();
             manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
+            topDownParent.SetActive(false);
         }
 		
 		// Update is called once per frame
@@ -70,6 +77,11 @@ namespace SeaOfGreed {
             if (isPlayer)
                 manager.setupCameras(currentRoom);
 
+            if (state == states.onLand)
+            {
+                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y) + 1;
+                legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y);
+            }
         }
 
 		internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
@@ -145,8 +157,16 @@ namespace SeaOfGreed {
 
         public void lookInDirection(Vector3 direction)
         {
+            lastLookDirection = direction;
             var tan = Mathf.Atan2(direction.x, direction.y);
-            sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            if (state == states.boardedShip) topDownParent.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            else
+            {
+                torsoAnim.SetFloat("xTorso", direction.x);
+                torsoAnim.SetFloat("yTorso", direction.y);
+                legsAnim.SetFloat("xTorso", direction.x);
+                legsAnim.SetFloat("yTorso", direction.y);
+            }
         }
         
 
@@ -164,8 +184,8 @@ namespace SeaOfGreed {
                 RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
                 RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
                 
-                RaycastHit2D border_x_ray = Physics2D.Raycast   (transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask);
-                RaycastHit2D border_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, borderRaycastMask);
+                RaycastHit2D border_x_ray = Physics2D.Raycast   (transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask | uncrossableRaycastMask);
+                RaycastHit2D border_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, borderRaycastMask | uncrossableRaycastMask);
 
                 //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
                 var xOffset = (x_ray && !border_x_ray) ? xToOffset : Vector3.zero;
@@ -190,7 +210,11 @@ namespace SeaOfGreed {
                         steppedOnRoomTransition = false;
                 }
 
+                legsAnim.SetFloat("xLegs", xOffset.x);
+                legsAnim.SetFloat("yLegs", yOffset.y);
             }
+            torsoAnim.SetBool("isWalking", isWalking);
+            legsAnim.SetBool("isWalking", isWalking);
         }
 
 		// state transitions
@@ -269,6 +293,8 @@ namespace SeaOfGreed {
             transform.position = location;
             transform.SetParent(ship.transform);
             shipBorded = ship;
+            topDownParent.SetActive(true);                            // enable the top-down boat sprite
+            legsAnim.transform.parent.gameObject.SetActive(false);    // diable the 3/4ths sprites by diabling the parent of the legsanim 
         }
 
         public void boardedShipToSteeringShip() {
@@ -292,9 +318,12 @@ namespace SeaOfGreed {
             Assert.IsTrue(state == states.jumpingToLand);
             shipBorded = null;
             transform.SetParent(null);
-            transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            sprite.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             newState = states.onLand;
             shipBorded = null;
+            topDownParent.SetActive(false);                          // disable the top-down boat sprite
+            legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim 
         }
     }
 }
