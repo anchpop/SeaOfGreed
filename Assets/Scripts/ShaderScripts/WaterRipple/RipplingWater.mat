@@ -62,6 +62,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: c266a4e638b23034b9878f845b4b8f2f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _bumpTex1:
+        m_Texture: {fileID: 2800000, guid: 1abf136d1b806ef4caced9c087f64013, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _bumpTex2:
+        m_Texture: {fileID: 2800000, guid: 4475568e2032d69468e0cde279e7b449, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _bumpTex3:
+        m_Texture: {fileID: 2800000, guid: f4c1013bc50f3e94a962c65aafa940bc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpAmt: 29.3
     - _BumpScale: 1
@@ -82,8 +94,8 @@ Material:
     - _ZWrite: 1
     - _bwBlend: 0
     - _reflectionBlend: 0.991
-    - _rippleSize: 1
-    - _rippleSpeed: 9.15
+    - _rippleSize: 0.6
+    - _rippleSpeed: 1
     - _tileX: 30
     - _tileY: 30
     - _time: 6.56
@@ -91,11 +103,12 @@ Material:
     - _x2: 500
     - _x3: 500
     - _x4: 0
-    - _xOffset: 0
+    - _xOffset: 3.04
     - _y1: 0
     - _y2: 0
     - _y3: 500
     - _y4: 15
+    - _yOffset: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
