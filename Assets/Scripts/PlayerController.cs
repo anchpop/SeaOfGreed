@@ -5,10 +5,11 @@ namespace SeaOfGreed {
 
     public class PlayerController : MonoBehaviour
     { 
-
+        
         public GameObject helpText;
         HelpTextDisplayer helpTextObject;
-
+        [SerializeField] private GameObject frontChild;
+        private static bool canMove;
         public Camera mainCamera;
         public float walkingCameraSize = 4;
         public float interactingCameraSize = 6;
@@ -27,6 +28,7 @@ namespace SeaOfGreed {
             canvas = GameObject.Find("UI Canvas").GetComponent<Canvas>();
 
             helpTextObject = Instantiate(helpText, canvas.transform).GetComponent<HelpTextDisplayer>();
+            canMove = true;
         }
 
         private void walkAccordingToUserInput() {
@@ -80,10 +82,10 @@ namespace SeaOfGreed {
 
             helpTextObject.textToShow = helpToShow;
         }
-
-        // Update is called once per frame
+        //used to not instantly interpret a continue "E" press as an interact "E" press, trapping you in a loop of conversation.
+        private static bool wasActiveLastFrame;
         private void Update() {
-            if (Time.timeScale != 0f) {
+            if (Time.timeScale != 0f && canMove == true) {
                 if (driver.state == states.boardedShip || driver.state == states.onLand) {
                     walkAccordingToUserInput();
                 }
@@ -109,7 +111,25 @@ namespace SeaOfGreed {
                 } else if (InputManager.GetButtonUp("Sprint")) {
                     driver.isSprinting = false;
                 }
+                if(InputManager.GetButtonDown("Use") && wasActiveLastFrame){
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, frontChild.transform.position - transform.position, 2);
+                    for(int i  = 0; i<hits.Length; i++){
+                        if(hits[i].transform.gameObject.tag == "interactable"){
+                            hits[i].transform.gameObject.GetComponent<NPCPassiveController>().OnInteract();
+                            break;
+                        }
+                    }
+                } else
+                    wasActiveLastFrame = true;
             }
+        }
+        public static void setMove(bool a){
+            if(!a)
+                wasActiveLastFrame = false;
+            canMove = a;
+        }
+        public static bool getMove(){
+            return canMove;
         }
     }
 }
