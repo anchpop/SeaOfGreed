@@ -1,5 +1,5 @@
 What do you mean? This hammer is <i>TOTALLY</i> safe.
-$!move=5,5,0
+$!move=1,2,0
 &test=ayylmao
 *   ... and I could contain myself no longer.
     'What is the purpose of our journey, Monsieur?'

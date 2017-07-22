@@ -62,12 +62,13 @@ namespace SeaOfGreed {
                 driver.steeringShipToBoardedShip();
             }
         }
-
+        private Vector3 getCursorDiff(){
+            var mousePos = mainCamera.ScreenToWorldPoint(new Vector2(InputManager.mousePosition.x, InputManager.mousePosition.y));
+            return(mousePos - driver.transform.position);
+        }
         private void lookTowardsMouse() {
             if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
-                var mousePos = mainCamera.ScreenToWorldPoint(new Vector3(InputManager.mousePosition.x, InputManager.mousePosition.y, mainCamera.transform.position.z - transform.position.z));
-                Vector3 diff = (mousePos - driver.sprite.transform.position);
-                driver.lookInDirection(diff);
+                driver.lookInDirection(getCursorDiff());
             }
         }
 
@@ -112,7 +113,8 @@ namespace SeaOfGreed {
                     driver.isSprinting = false;
                 }
                 if(InputManager.GetButtonDown("Use") && wasActiveLastFrame){
-                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, frontChild.transform.position - transform.position, 2);
+                    //not sure if you actually have to normalize, but it makes me feel like it's less likely to break lol
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, getCursorDiff().normalized, 2);
                     for(int i  = 0; i<hits.Length; i++){
                         if(hits[i].transform.gameObject.tag == "interactable"){
                             hits[i].transform.gameObject.GetComponent<NPCPassiveController>().OnInteract();
