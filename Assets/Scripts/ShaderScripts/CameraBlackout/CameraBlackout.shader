@@ -1,29 +1,4 @@
-﻿/*Shader "MyShader"
-{
-	Properties
-	{
-		_MyFloat("X", Float) = 0
-		_MyFloat("Y", Float) = 0
-		_MyFloat("W", Float) = 64
-		_MyFloat("H", Float) = 64
-	}
-
-	SubShader
-	{
-		float _X;
-		float _Y;
-		float _W;
-		float _H;
-		// The code of your shaders
-		// - surface shader
-		//    OR
-		// - vertex and fragment shader
-		//    OR
-		// - fixed function shader
-	}
-}*/
-
-Shader "Unlit/CameraBlackout"
+﻿Shader "Unlit/CameraBlackout"
 {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}

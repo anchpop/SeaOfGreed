@@ -56,6 +56,7 @@ namespace SeaOfGreed {
         public event StateChangedEventHandler StateChanged;
 
         Vector2 lastLookDirection;
+        
 
         // Use this for initialization
         void Start () {
@@ -160,7 +161,7 @@ namespace SeaOfGreed {
             lastLookDirection = direction;
             var tan = Mathf.Atan2(direction.x, direction.y);
             if (state == states.boardedShip) topDownParent.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
-            else
+            else if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy)
             {
                 torsoAnim.SetFloat("xTorso", direction.x);
                 torsoAnim.SetFloat("yTorso", direction.y);
@@ -209,12 +210,17 @@ namespace SeaOfGreed {
                     else
                         steppedOnRoomTransition = false;
                 }
-
-                legsAnim.SetFloat("xLegs", xOffset.x);
-                legsAnim.SetFloat("yLegs", yOffset.y);
+                if (legsAnim.gameObject.activeInHierarchy)
+                {
+                    legsAnim.SetFloat("xLegs", xOffset.x);
+                    legsAnim.SetFloat("yLegs", yOffset.y);
+                }
             }
-            torsoAnim.SetBool("isWalking", isWalking);
-            legsAnim.SetBool("isWalking", isWalking);
+            if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy)
+            {
+                torsoAnim.SetBool("isWalking", isWalking);
+                legsAnim.SetBool("isWalking", isWalking);
+            }
         }
 
 		// state transitions

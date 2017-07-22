@@ -51,6 +51,9 @@ namespace SeaOfGreed
         public static GameManager gameManager;
 		public static Options options;
         RoomData currentRoom;
+
+        GameObject seaQuad;
+
 		void Awake(){
             if (gameManager != null && gameManager != this)
             {
@@ -75,24 +78,31 @@ namespace SeaOfGreed
             setCameraClips(room, minimapCameraBlackout, false);
         }
 
-        public void setCameraClips(RoomData room, CameraBlackout blackout, bool inverty = true)
+        public void setCameraClips(RoomData room, CameraBlackout blackout, bool isMainCamera = true)
         {   
             Camera camera = blackout.GetComponent<Camera>();
             var screenPos1 = camera.WorldToScreenPoint(room.position);
             var screenPos2 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, 0));
             var screenPos3 = camera.WorldToScreenPoint(room.position + new Vector3(room.size.x, -room.size.y));
             var screenPos4 = camera.WorldToScreenPoint(room.position + new Vector3(0, -room.size.y));
+            
 
             blackout.x1 = screenPos1.x;
             blackout.x2 = screenPos2.x;
             blackout.x3 = screenPos3.x;
             blackout.x4 = screenPos4.x;
-            if (inverty)
+            if (isMainCamera)
             {
                 blackout.y1 = camera.pixelHeight - screenPos1.y;
                 blackout.y2 = camera.pixelHeight - screenPos2.y;
                 blackout.y3 = camera.pixelHeight - screenPos3.y;
                 blackout.y4 = camera.pixelHeight - screenPos4.y;
+
+                var worldPos1 = camera.ScreenToWorldPoint(Vector2.zero);
+                var worldPos2 = camera.ScreenToWorldPoint(new Vector2(1, 1));
+                seaQuad.GetComponent<MeshRenderer>().materials[0].SetFloat("_xOffset", -screenPos1.x / (screenPos2.x - screenPos1.x));
+                seaQuad.GetComponent<MeshRenderer>().materials[0].SetFloat("_yOffset", -screenPos2.y / (screenPos3.y - screenPos2.y));
+                Debug.Log(screenPos2.x - screenPos1.x);
             }
             else
             {
@@ -101,6 +111,7 @@ namespace SeaOfGreed
                 blackout.y3 = screenPos3.y;
                 blackout.y4 = screenPos4.y;
             }
+
         }
 
         void getRooms()
@@ -177,6 +188,7 @@ namespace SeaOfGreed
         {
             if (scene.name == "main")
             {
+                seaQuad = GameObject.Find("SeaQuad");
                 getRooms();
                 placeRooms();
                 getTransitionAssociations();

@@ -28,7 +28,6 @@ public class HelpTextDisplayer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         textObject = GetComponent<Text>();
-
     }
 	
 	// Update is called once per frame
