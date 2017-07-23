@@ -18,6 +18,7 @@ public class CommandController : MonoBehaviour {
 	}
 
 	public static void runCommand(String commandName, CommandArgs argument){
+        Debug.Log("Running command " + commandName);
 		functionEmbedDict[commandName](argument);
 	}
 	private static void moveObject(CommandArgs s){
