@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class CommandController : MonoBehaviour {
 	private static Dictionary<string, Action<CommandArgs>> functionEmbedDict = new Dictionary<string, Action<CommandArgs>>();
-	void Start () {
+	void Awake () {
 		if(functionEmbedDict.Count == 0){
 			functionEmbedDict.Add("test", testMethod);
 			functionEmbedDict.Add("move", moveObject);
 			functionEmbedDict.Add("wait", waitObject);
 		}
+        else
+        {
+            Destroy(this);
+        }
 	}
 	static void testMethod(CommandArgs s){
 		Debug.Log(s.args);
