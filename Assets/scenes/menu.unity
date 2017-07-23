@@ -747,6 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1328555189}
   - component: {fileID: 1328555190}
+  - component: {fileID: 1328555191}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -784,6 +785,17 @@ MonoBehaviour:
   player: {fileID: 0}
   playerPrefab: {fileID: 1715360280288548, guid: 4aa2279ee3ffe8b4cb5a95dd23735a8a,
     type: 2}
+--- !u!114 &1328555191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1328555188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49214bd52c9281747a3fc67c7a50e0d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &1341857817 stripped
 Canvas:
   m_PrefabParentObject: {fileID: 223128522422427474, guid: ad4f60487c0af344dab8e20b74ff449d,

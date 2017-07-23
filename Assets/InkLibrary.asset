@@ -14,25 +14,5 @@ MonoBehaviour:
   inkLibrary:
   - compileAutomatically: 0
     inkAsset: {fileID: 102900000, guid: 1460e815e969b43b8a83a7caa8b48c27, type: 3}
-    jsonAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
-  compilationStack:
-  - state: 1
-    inkFile:
-      compileAutomatically: 0
-      inkAsset: {fileID: 102900000, guid: 1460e815e969b43b8a83a7caa8b48c27, type: 3}
-      jsonAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
-    inkAbsoluteFilePath: D:/programs/SeaOfGreed/Assets/Plugins/Ink/Example/Ink/story.ink
-    jsonAbsoluteFilePath: D:/programs/SeaOfGreed/Assets/Plugins/Ink/Example/Ink/story.json
-    output: []
-    errorOutput: []
-    timeTaken: 0
-  - state: 1
-    inkFile:
-      compileAutomatically: 0
-      inkAsset: {fileID: 102900000, guid: 1460e815e969b43b8a83a7caa8b48c27, type: 3}
-      jsonAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
-    inkAbsoluteFilePath: C:/Users/andre/OneDrive/Documents/GitHub/SeaOfGreed/Assets/Plugins/Ink/Example/Ink/story.ink
-    jsonAbsoluteFilePath: C:/Users/andre/OneDrive/Documents/GitHub/SeaOfGreed/Assets/Plugins/Ink/Example/Ink/story.json
-    output: []
-    errorOutput: []
-    timeTaken: 0
+    jsonAsset: {fileID: 0}
+  compilationStack: []
