@@ -66,7 +66,7 @@ namespace Ink.UnityIntegration {
 						}
 						InkLibrary.Instance.compilationStack.RemoveAt(i);
 						if(InkLibrary.Instance.compilationStack.Count == 0) EditorUtility.ClearProgressBar();
-						Debug.LogError("Ink Compiler timed out for "+compilingFile.inkAbsoluteFilePath+".\n. Compilation should never take more than a few seconds, but for large projects or slow computers you may want to increase the timeout time in the InkSettings file.\nIf this persists there may be another issue; or else check an ink file exists at this path and try Assets/Recompile Ink, else please report as a bug with the following error log at this address: https://github.com/inkle/ink/issues\nError log:\n"+compilingFile.errorOutput);
+					//	Debug.LogError("Ink Compiler timed out for "+compilingFile.inkAbsoluteFilePath+".\n. Compilation should never take more than a few seconds, but for large projects or slow computers you may want to increase the timeout time in the InkSettings file.\nIf this persists there may be another issue; or else check an ink file exists at this path and try Assets/Recompile Ink, else please report as a bug with the following error log at this address: https://github.com/inkle/ink/issues\nError log:\n"+compilingFile.errorOutput);
 					}
 				} else if (compilingFile.state == CompilationStackItem.State.Importing) {
 					// This covers a rare bug that I've not pinned down
