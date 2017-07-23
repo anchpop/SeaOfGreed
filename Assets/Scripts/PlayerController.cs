@@ -121,8 +121,9 @@ namespace SeaOfGreed {
                             break;
                         }
                     }
-                } else
+                } else{
                     wasActiveLastFrame = true;
+                }
             }
         }
         public static void setMove(bool a){

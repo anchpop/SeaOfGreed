@@ -19,6 +19,13 @@ public class NPCPassiveController : MonoBehaviour {
 	public void OnInteract(){
 		PlayerController.setMove(false);
 		inkScriptRef.StartStory(inkJSONAsset.text);
+		inkScriptRef.setEndAction(this.onInteractEnd);
+		if(isRunningWorldScript)
+			gameObject.GetComponent<BasicInkExample>().pauseCoroutines = true;
+	}
+	public void onInteractEnd(){
+		if(isRunningWorldScript)
+			gameObject.GetComponent<BasicInkExample>().pauseCoroutines = false;
 	}
 	void Update(){
 	}

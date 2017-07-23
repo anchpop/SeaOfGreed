@@ -1,5 +1,5 @@
 What do you mean? This hammer is <i>TOTALLY</i> safe.
-$!move=1,2,0
+$!move=squarey,1,2,0
 &test=ayylmao
 *   ... and I could contain myself no longer.
     'What is the purpose of our journey, Monsieur?'
@@ -21,6 +21,6 @@ $!move=1,2,0
 - -> END
 == WorldScript
 #loop
-$move=5,0,0
-$move=-5,0,0
-$wait=3
+$move=0,5,0
+$move=-0,-5,0
+$wait=5

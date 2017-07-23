@@ -1402,6 +1402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fd98b9fdb0fdd4c9734015c577ecaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseCoroutines: 0
   textRef: {fileID: 0}
   textCompRef: {fileID: 0}
   isCommandSlave: 1
@@ -1431,7 +1432,7 @@ MonoBehaviour:
   inkHolder: {fileID: 1109171899}
   inkJSONAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
   knot: 
-  isRunningWorldScript: 0
+  isRunningWorldScript: 1
 --- !u!212 &210305224
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1480,7 +1481,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210305220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35, y: -30, z: 0}
+  m_LocalPosition: {x: 35, y: -35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8024,6 +8025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fd98b9fdb0fdd4c9734015c577ecaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseCoroutines: 0
   textRef: {fileID: 878712452}
   textCompRef: {fileID: 0}
   isCommandSlave: 0

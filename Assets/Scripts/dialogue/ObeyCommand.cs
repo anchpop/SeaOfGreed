@@ -9,8 +9,9 @@ public class ObeyCommand : MonoBehaviour {
 	public void wait(CommandArgs args){
 		StartCoroutine(waitCorout(args));
 	}
-	private IEnumerator moveCorout(CommandArgs args){
-		string[] argSplit = args.args.Split(',');
+	//YARRRRRR
+	private IEnumerator moveCorout(CommandArgs arrgs){
+		string[] argSplit = arrgs.args.Split(',');
 		int[] argSplitInt = new int[3];
 		for(int i = 0; i<3; i++){
 			int.TryParse(argSplit[i], out argSplitInt[i]);
@@ -19,15 +20,48 @@ public class ObeyCommand : MonoBehaviour {
 		while(diff.magnitude > Time.deltaTime*3){
 			diff -= diff.normalized*Time.deltaTime*3;
 			transform.position += diff.normalized*Time.deltaTime*3;
-			yield return new WaitForFixedUpdate();
+			yield return new WaitForFixedUpdateInterruptable(arrgs.commandCaller);
 		}
 		transform.position += diff;
-		args.commandCaller.endOfCommand(args);
+		arrgs.commandCaller.endOfCommand(arrgs);
 	}
 	private IEnumerator waitCorout(CommandArgs args){
 		float x;
 		float.TryParse(args.args, out x);
-		yield return new WaitForSeconds(x);
+		yield return new WaitForSecondsInterruptable(x, args.commandCaller);
 		args.commandCaller.endOfCommand(args);
+	}
+}
+public class WaitForSecondsInterruptable : CustomYieldInstruction{
+	private float waitCountDown;
+	private BasicInkExample commandCaller;
+	public override bool keepWaiting{
+		get {
+			if(!commandCaller.pauseCoroutines){
+				waitCountDown -= Time.deltaTime;
+				if(waitCountDown<=0)return false;
+			}
+			return true;
+		}
+	}
+	public WaitForSecondsInterruptable(float cd, BasicInkExample caller){
+		waitCountDown = cd;
+		commandCaller = caller;
+	}
+}
+public class WaitForFixedUpdateInterruptable : CustomYieldInstruction{
+	private BasicInkExample commandCaller;
+	private bool hasRunForAFrame = false;
+	public override bool keepWaiting{
+		get {
+			if(!commandCaller.pauseCoroutines){
+				if(hasRunForAFrame)return false;
+				hasRunForAFrame = true;
+			}
+			return true;
+		}
+	}
+	public WaitForFixedUpdateInterruptable(BasicInkExample caller){
+		commandCaller = caller;
 	}
 }

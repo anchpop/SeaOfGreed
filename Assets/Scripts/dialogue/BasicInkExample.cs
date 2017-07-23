@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Ink.Runtime;
 using SeaOfGreed;
 
 public class BasicInkExample : MonoBehaviour {
-	[SerializeField]
-	private Story story;
+	private Action onEndAction;
+	public bool pauseCoroutines = false;
+	[SerializeField] private Story story;
 	[SerializeField] private GameObject textRef;
-	[SerializeField]private Text textCompRef;
+	[SerializeField] private Text textCompRef;
 	private List<string> tags;
 	public bool isCommandSlave = false;
 	private List<string> queue = new List<string>();
@@ -62,6 +64,9 @@ public class BasicInkExample : MonoBehaviour {
 		if(knot!=null)story.ChoosePathString(knot);
 		RefreshView();
 	}
+	public void setEndAction(Action x){
+		onEndAction = x;
+	}
 	//clears the queue of items, replaces it with the dialogue from story.Continue, which has changed because we gave it a choice(above)
 	void RefreshView () {
 		queue.Clear();
@@ -98,6 +103,7 @@ public class BasicInkExample : MonoBehaviour {
 			} else{
 				setTextBoxActive(false);
 				PlayerController.setMove(true);
+				onEndAction();
 			}
 		}
 		} else{
