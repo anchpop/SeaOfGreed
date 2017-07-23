@@ -11,10 +11,6 @@ public class CommandController : MonoBehaviour {
 			functionEmbedDict.Add("move", moveObject);
 			functionEmbedDict.Add("wait", waitObject);
 		}
-        else
-        {
-            Destroy(this);
-        }
 	}
 	static void testMethod(CommandArgs s){
 		Debug.Log(s.args);
