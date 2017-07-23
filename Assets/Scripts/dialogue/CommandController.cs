@@ -6,7 +6,7 @@ using UnityEngine;
 public class CommandController : MonoBehaviour {
 	private static Dictionary<string, Action<CommandArgs>> functionEmbedDict = new Dictionary<string, Action<CommandArgs>>();
 	void Start () {
-		if(functionEmbedDict.Count != 0){
+		if(functionEmbedDict.Count == 0){
 			functionEmbedDict.Add("test", testMethod);
 			functionEmbedDict.Add("move", moveObject);
 			functionEmbedDict.Add("wait", waitObject);
