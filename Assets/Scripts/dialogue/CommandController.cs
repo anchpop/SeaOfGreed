@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CommandController : MonoBehaviour {
-	private static Dictionary<string, Action<CommandArgs>> functionEmbedDict = new Dictionary<string, Action<CommandArgs>>();
+    private static Dictionary<string, Action<CommandArgs>> functionEmbedDict = new Dictionary<string, Action<CommandArgs>>();
 	void Awake () {
+        if (GameObject.FindGameObjectsWithTag("GameController").Length > 1)
+        {
+            Destroy(this);
+            return;
+        }
 		functionEmbedDict.Add("test", testMethod);
 		functionEmbedDict.Add("move", moveObject);
 		functionEmbedDict.Add("wait", waitObject);
@@ -16,6 +21,7 @@ public class CommandController : MonoBehaviour {
 	}
 
 	public static void runCommand(String commandName, CommandArgs argument){
+        Debug.Log("Running command " + commandName);
 		functionEmbedDict[commandName](argument);
 	}
 	private static void moveObject(CommandArgs s){

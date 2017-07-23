@@ -102,7 +102,6 @@ namespace SeaOfGreed
                 var worldPos2 = camera.ScreenToWorldPoint(new Vector2(1, 1));
                 seaQuad.GetComponent<MeshRenderer>().materials[0].SetFloat("_xOffset", -screenPos1.x / (screenPos2.x - screenPos1.x));
                 seaQuad.GetComponent<MeshRenderer>().materials[0].SetFloat("_yOffset", -screenPos2.y / (screenPos3.y - screenPos2.y));
-                Debug.Log(screenPos2.x - screenPos1.x);
             }
             else
             {
