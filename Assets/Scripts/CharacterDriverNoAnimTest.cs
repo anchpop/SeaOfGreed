@@ -56,8 +56,8 @@ namespace SeaOfGreed {
         public int maxHealth; //Readonly
         public int health;
 
-        public object leftHand; //Structs
-        public object rightHand;
+        public HandItem leftHand; //Structs
+        public HandItem rightHand;
 
         // Use this for initialization
         private void Start() {
