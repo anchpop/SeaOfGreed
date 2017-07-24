@@ -7825,7 +7825,7 @@ GameObject:
   - component: {fileID: 1105430077}
   - component: {fileID: 1105430076}
   m_Layer: 0
-  m_Name: hit projectile
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10702,7 +10702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1569033587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10750,10 +10750,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1569033586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84613f924d2b22244bfb9d69c5cae457, type: 3}
+  m_Script: {fileID: 11500000, guid: c682da1f2f105164b84e3bf0ea0f4985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 438177878}
+  manager: {fileID: 0}
   currentRoom:
     roomPrefab: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
@@ -10790,11 +10790,11 @@ MonoBehaviour:
   sprite: {fileID: 1089191782}
   isSprinting: 0
   isWalking: 0
-  torsoAnim: {fileID: 0}
-  legsAnim: {fileID: 0}
-  topDownParent: {fileID: 0}
+  topDownParent: {fileID: 1569033586}
   isPlayer: 0
   canSwitchIntoRooms: 0
+  maxHealth: 50
+  health: 50
 --- !u!4 &1569033590
 Transform:
   m_ObjectHideFlags: 0
@@ -10802,7 +10802,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1569033586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.17, y: -32.27, z: 0}
+  m_LocalPosition: {x: 51.52, y: -43.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1089191784}
@@ -10822,8 +10822,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childProjectile: {fileID: 1105430073}
   player: {fileID: 0}
-  weapon: {fileID: 0}
+  weapon: {fileID: 1105430076}
   sightRange: 8
+  escapeAtHealthPercent: 0
 --- !u!1 &1571216342
 GameObject:
   m_ObjectHideFlags: 0

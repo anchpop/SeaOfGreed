@@ -1,11 +1,10 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Rendering;
 
 namespace SeaOfGreed {
 
-    public class CharacterDriver : MonoBehaviour {
+    public class CharacterDriverNoAnimTest : MonoBehaviour {
         public GameManager manager;
 
         [HideInInspector]
@@ -38,8 +37,8 @@ namespace SeaOfGreed {
         public bool isSprinting;
         public bool isWalking;
 
-        public Animator torsoAnim;
-        public Animator legsAnim;
+        //public Animator torsoAnim;
+        //public Animator legsAnim;
         public GameObject topDownParent;
 
         public bool isPlayer = false;
@@ -65,7 +64,7 @@ namespace SeaOfGreed {
             controller = gameObject.GetComponent<PlayerController>();
             manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
-            topDownParent.SetActive(false);
+            //topDownParent.SetActive(false);
         }
 
         // Update is called once per frame
@@ -81,8 +80,8 @@ namespace SeaOfGreed {
                 manager.setupCameras(currentRoom);
 
             if (state == states.onLand) {
-                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y) + 1;
-                legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y);
+                //torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y) + 1;
+                //legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y);
             }
         }
 
@@ -154,13 +153,13 @@ namespace SeaOfGreed {
         public void lookInDirection(Vector3 direction) {
             lastLookDirection = direction;
             var tan = Mathf.Atan2(direction.x, direction.y);
-            if (state == states.boardedShip) topDownParent.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
-            else if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
-                torsoAnim.SetFloat("xTorso", direction.x);
-                torsoAnim.SetFloat("yTorso", direction.y);
-                legsAnim.SetFloat("xTorso", direction.x);
-                legsAnim.SetFloat("yTorso", direction.y);
-            }
+            topDownParent.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            //else if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
+            //    torsoAnim.SetFloat("xTorso", direction.x);
+            //    torsoAnim.SetFloat("yTorso", direction.y);
+            //    legsAnim.SetFloat("xTorso", direction.x);
+            //    legsAnim.SetFloat("yTorso", direction.y);
+            //}
         }
 
         public void walkInDirection(Vector3 direction) {
@@ -198,15 +197,15 @@ namespace SeaOfGreed {
                     else
                         steppedOnRoomTransition = false;
                 }
-                if (legsAnim.gameObject.activeInHierarchy) {
-                    legsAnim.SetFloat("xLegs", xOffset.x);
-                    legsAnim.SetFloat("yLegs", yOffset.y);
-                }
+                //if (legsAnim.gameObject.activeInHierarchy) {
+                //    legsAnim.SetFloat("xLegs", xOffset.x);
+                //    legsAnim.SetFloat("yLegs", yOffset.y);
+                //}
             }
-            if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
-                torsoAnim.SetBool("isWalking", isWalking);
-                legsAnim.SetBool("isWalking", isWalking);
-            }
+            //if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
+            //    torsoAnim.SetBool("isWalking", isWalking);
+            //    legsAnim.SetBool("isWalking", isWalking);
+            //}
         }
 
         // state transitions
@@ -285,8 +284,8 @@ namespace SeaOfGreed {
             transform.position = location;
             transform.SetParent(ship.transform);
             shipBorded = ship;
-            topDownParent.SetActive(true);                            // enable the top-down boat sprite
-            legsAnim.transform.parent.gameObject.SetActive(false);    // diable the 3/4ths sprites by diabling the parent of the legsanim
+            //topDownParent.SetActive(true);                            // enable the top-down boat sprite
+            //legsAnim.transform.parent.gameObject.SetActive(false);    // diable the 3/4ths sprites by diabling the parent of the legsanim
         }
 
         public void boardedShipToSteeringShip() {
@@ -294,13 +293,13 @@ namespace SeaOfGreed {
             newState = states.steeringShip;
             transform.position = shipBorded.GetComponent<ShipController>().wheelMarker.transform.position;
             //sprite.transform.localRotation = shipBorded.GetComponent<ShipController>().wheelMarker.transform.rotation;
-            StateChanged(this, new StateChangedEventArgs(states.boardedShip, states.steeringShip));
+            StateChanged(new CharacterDriver(), new StateChangedEventArgs(states.boardedShip, states.steeringShip));
 
             //LeanTween.value(walkingCameraSize, interactingCameraSize)
         }
 
         public void steeringShipToBoardedShip() {
-            StateChanged(this, new StateChangedEventArgs(states.steeringShip, states.boardedShip));
+            StateChanged(new CharacterDriver(), new StateChangedEventArgs(states.steeringShip, states.boardedShip));
 
             Assert.IsTrue(state == states.steeringShip);
             newState = states.boardedShip;
@@ -314,8 +313,8 @@ namespace SeaOfGreed {
             sprite.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             newState = states.onLand;
             shipBorded = null;
-            topDownParent.SetActive(false);                          // disable the top-down boat sprite
-            legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim
+            //topDownParent.SetActive(false);                          // disable the top-down boat sprite
+            //legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim
         }
     }
 }
