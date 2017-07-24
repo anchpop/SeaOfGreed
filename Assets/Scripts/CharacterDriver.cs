@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Rendering;
 
 namespace SeaOfGreed {
 
     public class CharacterDriver : MonoBehaviour {
+        public GameManager manager;
+
+        [HideInInspector]
+        public RoomData currentRoom;
+
         internal states state = states.onLand;
         internal states newState = states.noState;
 
@@ -12,24 +19,32 @@ namespace SeaOfGreed {
         public float dockOffset = .5f;
         public float jumpSpeed = 10;
         public float jumpScale = 3;
-        public float maxDistanceToGrabWheel = .5f;
+        public float grabWheelRange = .5f;
 
-        public float walkSpeed = 2f;
-        public float sprintSpeed = 5f;
+        public float walkSpeed = 4f;
+        public float sprintSpeed = 9f;
         public float width = .12f;
         public float height = .12f;
-
-        public bool isSprinting;
-        public bool isWalking;
 
         public LayerMask groundRaycastMask;
         public LayerMask dockRaycastMask;
         public LayerMask boatRaycastMask;
+        public LayerMask borderRaycastMask;
+        public LayerMask roomTransitionRaycastMask;
+        public LayerMask uncrossableRaycastMask;
 
         public GameObject sprite;
 
-        private Animator anim;
+        public bool isSprinting;
+        public bool isWalking;
 
+        public Animator torsoAnim;
+        public Animator legsAnim;
+        public GameObject topDownParent;
+
+        public bool isPlayer = false;
+        public bool canSwitchIntoRooms = true;
+        private bool steppedOnRoomTransition = false;
         internal GameObject shipBorded;
         internal PlayerController controller;
 
@@ -37,10 +52,20 @@ namespace SeaOfGreed {
 
         public event StateChangedEventHandler StateChanged;
 
+        private Vector2 lastLookDirection;
+
+        public int maxHealth; //Readonly
+        public int health;
+
+        public object leftHand; //Structs
+        public object rightHand;
+
         // Use this for initialization
         private void Start() {
-            anim = GetComponent<Animator>();
             controller = gameObject.GetComponent<PlayerController>();
+            manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
+            topDownParent.SetActive(false);
         }
 
         // Update is called once per frame
@@ -49,6 +74,15 @@ namespace SeaOfGreed {
             if (newState != states.noState) {
                 state = newState;
                 newState = states.noState;
+            }
+
+            currentRoom = manager.getRoomAtLocation(transform.position); // ugly! do this in switchintoroom()!
+            if (isPlayer)
+                manager.setupCameras(currentRoom);
+
+            if (state == states.onLand) {
+                torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y) + 1;
+                legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y);
             }
         }
 
@@ -97,36 +131,81 @@ namespace SeaOfGreed {
         public bool canGrabWheel() {
             Assert.IsTrue(state == states.boardedShip);
             float distanceToWheel = Vector3.Distance(transform.position, shipBorded.GetComponent<ShipController>().wheelMarker.transform.position);
-            bool closeEnoughToGrabWheel = distanceToWheel <= maxDistanceToGrabWheel;
+            bool closeEnoughToGrabWheel = distanceToWheel <= grabWheelRange;
 
             return closeEnoughToGrabWheel;
         }
 
+        public void switchIntoRoom(RaycastHit2D roomswitchRaycast) {
+            if (!steppedOnRoomTransition) {
+                var marker = roomswitchRaycast.collider.gameObject.GetComponent<TransitionMarker>();
+                Debug.Log("Switch into " + marker.markerKey);
+                var assocs = manager.getAssociationsForKey(marker.markerKey);
+
+                // sort by which is closest to the player :)
+                assocs.Sort((assoc1, assoc2) => (assoc1.transform.position - transform.position).sqrMagnitude.CompareTo((assoc2.transform.position - transform.position).sqrMagnitude));
+                transform.position = assocs.Last().transform.position + (Vector3)assocs.Last().GetComponent<BoxCollider2D>().offset;
+                steppedOnRoomTransition = true;
+
+                if (isPlayer) manager.switchedToRoom();
+            }
+        }
+
         public void lookInDirection(Vector3 direction) {
+            lastLookDirection = direction;
             var tan = Mathf.Atan2(direction.x, direction.y);
-            sprite.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            if (state == states.boardedShip) topDownParent.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
+            else if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
+                torsoAnim.SetFloat("xTorso", direction.x);
+                torsoAnim.SetFloat("yTorso", direction.y);
+                legsAnim.SetFloat("xTorso", direction.x);
+                legsAnim.SetFloat("yTorso", direction.y);
+            }
         }
 
         public void walkInDirection(Vector3 direction) {
-            isWalking = (direction.x != 0) || (direction.y != 0);
-
-            var xToOffset = transform.right * direction.x;
-            var yToOffset = transform.up * direction.y;
-
-            // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
-            // This way the player won't be able to slide past some walls
-            RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
-            RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
-            //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
-            var xOffset = (x_ray) ? xToOffset : Vector3.zero;
-            var yOffset = (y_ray) ? yToOffset : Vector3.zero;
-
+            bool isWalking = (direction.x != 0) || (direction.y != 0);
             if (isWalking) {
+                var xToOffset = transform.right * direction.x;
+                var yToOffset = transform.up * direction.y;
+
+                // TODO - shoot 2 rays for each dir, one for each corner, according to Sprite.bounds
+                // This way the player won't be able to slide past some walls
+                RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
+                RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
+
+                RaycastHit2D border_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask | uncrossableRaycastMask);
+                RaycastHit2D border_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, borderRaycastMask | uncrossableRaycastMask);
+
+                //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
+                var xOffset = (x_ray && !border_x_ray) ? xToOffset : Vector3.zero;
+                var yOffset = (y_ray && !border_y_ray) ? yToOffset : Vector3.zero;
+
                 if (isSprinting) {
                     transform.position += ((xOffset) + (yOffset)).normalized * sprintSpeed * Time.deltaTime;
                 } else {
                     transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
                 }
+
+                if (canSwitchIntoRooms && state == states.onLand) {
+                    RaycastHit2D roomswitch_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, roomTransitionRaycastMask);
+                    RaycastHit2D roomswitch_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, roomTransitionRaycastMask);
+
+                    if (roomswitch_x_ray)
+                        switchIntoRoom(roomswitch_x_ray);
+                    else if (roomswitch_y_ray)
+                        switchIntoRoom(roomswitch_y_ray);
+                    else
+                        steppedOnRoomTransition = false;
+                }
+                if (legsAnim.gameObject.activeInHierarchy) {
+                    legsAnim.SetFloat("xLegs", xOffset.x);
+                    legsAnim.SetFloat("yLegs", yOffset.y);
+                }
+            }
+            if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
+                torsoAnim.SetBool("isWalking", isWalking);
+                legsAnim.SetBool("isWalking", isWalking);
             }
         }
 
@@ -206,6 +285,8 @@ namespace SeaOfGreed {
             transform.position = location;
             transform.SetParent(ship.transform);
             shipBorded = ship;
+            topDownParent.SetActive(true);                            // enable the top-down boat sprite
+            legsAnim.transform.parent.gameObject.SetActive(false);    // diable the 3/4ths sprites by diabling the parent of the legsanim
         }
 
         public void boardedShipToSteeringShip() {
@@ -229,9 +310,12 @@ namespace SeaOfGreed {
             Assert.IsTrue(state == states.jumpingToLand);
             shipBorded = null;
             transform.SetParent(null);
-            transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            sprite.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             newState = states.onLand;
             shipBorded = null;
+            topDownParent.SetActive(false);                          // disable the top-down boat sprite
+            legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim
         }
     }
 }

@@ -7,12 +7,14 @@ namespace SeaOfGreed {
 
     public class PauseMenu : MonoBehaviour {
         public bool paused = false;
-        private Canvas canvas;
+        public Canvas canvas;
         public Canvas optionsCanvas;
         public Canvas gameCanvas;
         public Canvas videoCanvas;
         public Canvas audioCanvas;
         public Canvas controlsCanvas;
+
+        public LogBook logBook;
 
         private void Start() {
             canvas = GetComponent<Canvas>();
@@ -25,18 +27,14 @@ namespace SeaOfGreed {
         }
 
         private void Update() {
-            if (InputManager.GetButtonDown("Exit")) {
-                if (!paused) {
-                    ShowPause();
-                } else if (canvas.enabled || optionsCanvas.enabled) {
-                    Unpause();
-                } else if (!controlsCanvas.GetComponent<ControlOptions>().isEditing) {
+            if (InputManager.GetButtonDown("Pause")) {
+                if (!controlsCanvas.GetComponent<ControlOptions>().isEditing && (gameCanvas.enabled || videoCanvas.enabled || audioCanvas.enabled || controlsCanvas.enabled)) {
                     ToOptions();
                 }
             }
         }
 
-        private void ShowPause() {
+        public void ShowPause() {
             canvas.enabled = true;
             Pause();
         }

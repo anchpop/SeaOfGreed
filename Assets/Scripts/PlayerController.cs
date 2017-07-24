@@ -3,21 +3,13 @@ using UnityEngine;
 
 namespace SeaOfGreed {
 
-    public class PlayerController : MonoBehaviour {
-
-        private enum helpText {
-            boardText,
-            dockText,
-            wheelText,
-            none,
-        }
-
-        private helpText helpTextToDisplay = helpText.none;
-
-        public GameObject boardText;
-        public GameObject dockText;
-        public GameObject wheelText;
-
+    public class PlayerController : MonoBehaviour
+    { 
+        
+        public GameObject helpText;
+        HelpTextDisplayer helpTextObject;
+        [SerializeField] private GameObject frontChild;
+        private static bool canMove;
         public Camera mainCamera;
         public float walkingCameraSize = 4;
         public float interactingCameraSize = 6;
@@ -25,9 +17,18 @@ namespace SeaOfGreed {
 
         public CharacterDriver driver;
 
+        Canvas canvas;
+
+
         // Use this for initialization
         private void Start() {
-            driver = gameObject.GetComponent<CharacterDriver>();
+            driver = GetComponent<CharacterDriver>();
+            mainCamera =  GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().player = gameObject;
+            canvas = GameObject.Find("UI Canvas").GetComponent<Canvas>();
+
+            helpTextObject = Instantiate(helpText, canvas.transform).GetComponent<HelpTextDisplayer>();
+            canMove = true;
         }
 
         private void walkAccordingToUserInput() {
@@ -61,31 +62,31 @@ namespace SeaOfGreed {
                 driver.steeringShipToBoardedShip();
             }
         }
-
+        private Vector3 getCursorDiff(){
+            var mousePos = mainCamera.ScreenToWorldPoint(new Vector2(InputManager.mousePosition.x, InputManager.mousePosition.y));
+            return(mousePos - driver.transform.position);
+        }
         private void lookTowardsMouse() {
             if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
-                var mousePos = mainCamera.ScreenToWorldPoint(new Vector3(InputManager.mousePosition.x, InputManager.mousePosition.y, mainCamera.transform.position.z - transform.position.z));
-                Vector3 diff = (mousePos - driver.sprite.transform.position);
-                driver.lookInDirection(diff);
+                driver.lookInDirection(getCursorDiff());
             }
         }
 
         private void displayHelpText() {
-            boardText.SetActive(false);
-            dockText.SetActive(false);
-            wheelText.SetActive(false);
-
+            var helpToShow = HelpTextDisplayer.helpText.none;
             if (driver.state == states.boardedShip && driver.canGrabWheel())
-                wheelText.SetActive(true);
+                helpToShow = HelpTextDisplayer.helpText.steerText;
             else if (driver.state == states.onLand && driver.canBoardShip())
-                boardText.SetActive(true);
+                helpToShow = HelpTextDisplayer.helpText.boardText;
             else if (driver.state == states.boardedShip && driver.canDockShip())
-                dockText.SetActive(true);
-        }
+                helpToShow = HelpTextDisplayer.helpText.dockText;
 
-        // Update is called once per frame
+            helpTextObject.textToShow = helpToShow;
+        }
+        //used to not instantly interpret a continue "E" press as an interact "E" press, trapping you in a loop of conversation.
+        private static bool wasActiveLastFrame;
         private void Update() {
-            if (Time.timeScale != 0f) {
+            if (Time.timeScale != 0f && canMove == true) {
                 if (driver.state == states.boardedShip || driver.state == states.onLand) {
                     walkAccordingToUserInput();
                 }
@@ -111,7 +112,27 @@ namespace SeaOfGreed {
                 } else if (InputManager.GetButtonUp("Sprint")) {
                     driver.isSprinting = false;
                 }
+                if(InputManager.GetButtonDown("Use") && wasActiveLastFrame){
+                    //not sure if you actually have to normalize, but it makes me feel like it's less likely to break lol
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, getCursorDiff().normalized, 2);
+                    for(int i  = 0; i<hits.Length; i++){
+                        if(hits[i].transform.gameObject.tag == "interactable"){
+                            hits[i].transform.gameObject.GetComponent<NPCPassiveController>().OnInteract();
+                            break;
+                        }
+                    }
+                } else{
+                    wasActiveLastFrame = true;
+                }
             }
+        }
+        public static void setMove(bool a){
+            if(!a)
+                wasActiveLastFrame = false;
+            canMove = a;
+        }
+        public static bool getMove(){
+            return canMove;
         }
     }
 }
