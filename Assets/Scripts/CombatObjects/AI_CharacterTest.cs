@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI_CharacterTest : MonoBehaviour {
     private CharacterDriverNoAnimTest driver;
+    private CombatObject combat;
     [SerializeField] private GameObject childProjectile;
     [SerializeField] private GameObject player;
     public damage weapon;
@@ -18,6 +19,7 @@ public class AI_CharacterTest : MonoBehaviour {
 
     private void Start() {
         driver = gameObject.GetComponent<CharacterDriverNoAnimTest>(); //gameObject.GetComponent<CharacterDriver>()
+        combat = gameObject.GetComponent<CombatObject>();
         player = GameObject.FindGameObjectWithTag("Player"); //GameManager.gameManager.player;
         weapon = childProjectile.GetComponent<damage>();
         left = UnityEngine.Random.value >= .5;
@@ -28,7 +30,7 @@ public class AI_CharacterTest : MonoBehaviour {
     private void Update() {
         rangeToPlayer = (player.transform.position - transform.position).magnitude;
 
-        if (driver.health <= driver.maxHealth * escapeAtHealthPercent) {
+        if (combat.Health <= combat.MaxHealth * escapeAtHealthPercent) {
             //Escape
             direction = (player.transform.position - transform.position);
             direction.Scale(new Vector3(-5, -5));

@@ -54,16 +54,16 @@ namespace SeaOfGreed {
 
         private Vector2 lastLookDirection;
 
-        public int maxHealth; //Readonly
-        public int health;
-
-        public object leftHand; //Structs
-        public object rightHand;
+        public WeaponHandItem leftHand;
+        public WeaponHandItem rightHand;
+        public CombatObject combatObject;
 
         // Use this for initialization
         private void Start() {
             controller = gameObject.GetComponent<PlayerController>();
             manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+            currentRoom = manager.getRoomAtLocation(transform.position);
+            combatObject = gameObject.GetComponent<CombatObject>();
 
             topDownParent.SetActive(false);
         }

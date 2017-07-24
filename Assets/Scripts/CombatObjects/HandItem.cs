@@ -1,9 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Assets.Scripts.CombatObjects {
-    class HandItem {
+namespace SeaOfGreed {
+
+    public struct MeleeWeaponHandItem {
+        public string name;
+        public float range;
+        public float damage;
+        public float refireRate;
+    }
+
+    public struct RangedWeaponHandItem {
+        public string name;
+        public float range;
+        public float damage;
+        public float roundsPerMinute;
+        public float roundsPerMagazine;
+    }
+
+    public struct WeaponHandItem {
+        public string name;
+        public float range;
+        public float damage;
+        public float fireRate;
+        public float rounds;
+
+        public bool ranged;
+        public bool projectile;
     }
 }

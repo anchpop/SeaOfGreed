@@ -3,11 +3,9 @@ using UnityEngine;
 
 namespace SeaOfGreed {
 
-    public class PlayerController : MonoBehaviour
-    { 
-        
+    public class PlayerController : MonoBehaviour {
         public GameObject helpText;
-        HelpTextDisplayer helpTextObject;
+        private HelpTextDisplayer helpTextObject;
         [SerializeField] private GameObject frontChild;
         private static bool canMove;
         public Camera mainCamera;
@@ -17,13 +15,12 @@ namespace SeaOfGreed {
 
         public CharacterDriver driver;
 
-        Canvas canvas;
-
+        private Canvas canvas;
 
         // Use this for initialization
         private void Start() {
             driver = GetComponent<CharacterDriver>();
-            mainCamera =  GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().player = gameObject;
             canvas = GameObject.Find("UI Canvas").GetComponent<Canvas>();
 
@@ -62,10 +59,12 @@ namespace SeaOfGreed {
                 driver.steeringShipToBoardedShip();
             }
         }
-        private Vector3 getCursorDiff(){
+
+        private Vector3 getCursorDiff() {
             var mousePos = mainCamera.ScreenToWorldPoint(new Vector2(InputManager.mousePosition.x, InputManager.mousePosition.y));
-            return(mousePos - driver.transform.position);
+            return (mousePos - driver.transform.position);
         }
+
         private void lookTowardsMouse() {
             if (driver.state == states.boardedShip || driver.state == states.onLand || driver.state == states.jumpingToLand || driver.state == states.jumpingToShip) {
                 driver.lookInDirection(getCursorDiff());
@@ -83,10 +82,19 @@ namespace SeaOfGreed {
 
             helpTextObject.textToShow = helpToShow;
         }
+
         //used to not instantly interpret a continue "E" press as an interact "E" press, trapping you in a loop of conversation.
         private static bool wasActiveLastFrame;
+
         private void Update() {
             if (Time.timeScale != 0f && canMove == true) {
+                if (driver.state == states.onLand) {
+                    if (InputManager.GetButtonDown("LFire")) {
+                        driver.combatObject.Fire(driver.leftHand);
+                    } else if (InputManager.GetButtonDown("RFire")) {
+                        driver.combatObject.Fire(driver.rightHand);
+                    }
+                }
                 if (driver.state == states.boardedShip || driver.state == states.onLand) {
                     walkAccordingToUserInput();
                 }
@@ -112,26 +120,28 @@ namespace SeaOfGreed {
                 } else if (InputManager.GetButtonUp("Sprint")) {
                     driver.isSprinting = false;
                 }
-                if(InputManager.GetButtonDown("Use") && wasActiveLastFrame){
+                if (InputManager.GetButtonDown("Use") && wasActiveLastFrame) {
                     //not sure if you actually have to normalize, but it makes me feel like it's less likely to break lol
                     RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, getCursorDiff().normalized, 2);
-                    for(int i  = 0; i<hits.Length; i++){
-                        if(hits[i].transform.gameObject.tag == "interactable"){
+                    for (int i = 0; i < hits.Length; i++) {
+                        if (hits[i].transform.gameObject.tag == "interactable") {
                             hits[i].transform.gameObject.GetComponent<NPCPassiveController>().OnInteract();
                             break;
                         }
                     }
-                } else{
+                } else {
                     wasActiveLastFrame = true;
                 }
             }
         }
-        public static void setMove(bool a){
-            if(!a)
+
+        public static void setMove(bool a) {
+            if (!a)
                 wasActiveLastFrame = false;
             canMove = a;
         }
-        public static bool getMove(){
+
+        public static bool getMove() {
             return canMove;
         }
     }

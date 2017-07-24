@@ -1,51 +1,79 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TeamUtility.IO;
 using UnityEngine;
-public class CombatObject : MonoBehaviour {
-	//outlines the basic properties a combat object must have.
-	[SerializeField] private int maxHP;
-	private Vector3 currentKnockback;
-	[SerializeField] private int defense;
-	public  int HP;
-	void Start () {
-		HP = maxHP;
-	}
-	public int getMaxHP(){
-		return maxHP;
-	}
-	public int getDefense(){
-		return defense;
-	}
-	public int getHP(){
-		return HP;
-	}
-	public void damage(int amount, Vector3 knockback){
-		if(amount>defense){
-			HP -= (amount - defense);
-			onHPChange();
-		}
-		Debug.Log(knockback + "=kb");
-		currentKnockback += knockback;
-	}
-	protected virtual void onHPChange(){
-		Debug.Log("hpchange in object " + gameObject.name);
-		if(HP<=0){
-			onDeath();
-		}
-	}
-	protected virtual void onDeath(){
-		Destroy(gameObject);
-	}
-	//knockback is queued up, then applied at a speed of 8 per second.
-	void Update(){
-		if(currentKnockback.magnitude > 0){
-			Vector3 knockbackThisFrame = currentKnockback.normalized * Time.deltaTime * 8;
-			if(knockbackThisFrame.magnitude > currentKnockback.magnitude)
-				knockbackThisFrame = currentKnockback;
-			transform.position -= knockbackThisFrame;
-			currentKnockback -= knockbackThisFrame;
-		}
-		childUpdate();
-	}
-	protected virtual void childUpdate(){}
+
+namespace SeaOfGreed {
+
+    public class CombatObject : MonoBehaviour {
+
+        //outlines the basic properties a combat object must have.
+        [SerializeField] private int maxHealth;
+
+        private Vector3 currentKnockback;
+        [SerializeField] private int defense;
+        private int health;
+
+        public CharacterDriver driver;
+        public GameManager manager;
+
+        public Camera mainCamera;
+        public LayerMask playerMask;
+
+        private void Start() {
+            health = maxHealth;
+            driver = GetComponent<CharacterDriver>();
+            manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+            mainCamera = manager.mainCameraBlackout.GetComponent<Camera>();
+        }
+
+        public int MaxHealth { get { return maxHealth; } }
+        public int Health { get { return health; } }
+        public int Defense { get { return defense; } }
+
+        public void Fire(WeaponHandItem weapon) {
+            Debug.Log("Fired" + weapon.name);
+            Vector2 mousePoint = gameObject.transform.position - mainCamera.ScreenToWorldPoint(InputManager.mousePosition).normalized;
+            if (weapon.ranged) { //Guns
+            } else { //Melee
+                RaycastHit2D cast = Physics2D.Raycast(gameObject.transform.position, mousePoint, weapon.range, playerMask);
+                if (cast) {
+                    Debug.Log("Cast Hit by weapon" + weapon.name);
+                }
+            }
+        }
+
+        public void damage(int amount, Vector3 knockback) {
+            if (amount > defense) {
+                health -= (amount - defense);
+                onHPChange();
+            }
+            Debug.Log(knockback + "=kb");
+            currentKnockback += knockback;
+        }
+
+        protected virtual void onHPChange() {
+            Debug.Log("hpchange in object " + gameObject.name);
+            if (health <= 0) {
+                onDeath();
+            }
+        }
+
+        protected virtual void onDeath() {
+            Destroy(gameObject);
+        }
+
+        //knockback is queued up, then applied at a speed of 8 per second.
+        private void Update() {
+            if (currentKnockback.magnitude > 0) {
+                Vector3 knockbackThisFrame = currentKnockback.normalized * Time.deltaTime * 8;
+                if (knockbackThisFrame.magnitude > currentKnockback.magnitude)
+                    knockbackThisFrame = currentKnockback;
+                transform.position -= knockbackThisFrame;
+                currentKnockback -= knockbackThisFrame;
+            }
+            childUpdate();
+        }
+
+        protected virtual void childUpdate() {
+        }
+    }
 }

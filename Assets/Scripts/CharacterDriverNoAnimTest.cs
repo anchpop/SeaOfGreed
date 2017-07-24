@@ -53,11 +53,8 @@ namespace SeaOfGreed {
 
         private Vector2 lastLookDirection;
 
-        public int maxHealth; //Readonly
-        public int health;
-
-        public HandItem leftHand; //Structs
-        public HandItem rightHand;
+        public WeaponHandItem leftHand;
+        public WeaponHandItem rightHand;
 
         // Use this for initialization
         private void Start() {
