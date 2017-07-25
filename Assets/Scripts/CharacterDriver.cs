@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Rendering;
+using UnityEngine.Assertions;
 
 namespace SeaOfGreed {
-
     public class CharacterDriver : MonoBehaviour {
         public GameManager manager;
 
@@ -25,10 +26,10 @@ namespace SeaOfGreed {
         public float sprintSpeed = 9f;
         public float width = .12f;
         public float height = .12f;
-
-        public LayerMask groundRaycastMask;
-        public LayerMask dockRaycastMask;
-        public LayerMask boatRaycastMask;
+        
+		public LayerMask groundRaycastMask;
+		public LayerMask dockRaycastMask;
+		public LayerMask boatRaycastMask;
         public LayerMask borderRaycastMask;
         public LayerMask roomTransitionRaycastMask;
         public LayerMask uncrossableRaycastMask;
@@ -38,13 +39,15 @@ namespace SeaOfGreed {
         public bool isSprinting;
         public bool isWalking;
 
+
+
         public Animator torsoAnim;
         public Animator legsAnim;
         public GameObject topDownParent;
 
         public bool isPlayer = false;
         public bool canSwitchIntoRooms = true;
-        private bool steppedOnRoomTransition = false;
+        bool steppedOnRoomTransition = false;
         internal GameObject shipBorded;
         internal PlayerController controller;
 
@@ -52,24 +55,19 @@ namespace SeaOfGreed {
 
         public event StateChangedEventHandler StateChanged;
 
-        private Vector2 lastLookDirection;
-
-        public int maxHealth; //Readonly
-        public int health;
-
-        public object leftHand; //Structs
-        public object rightHand;
+        Vector2 lastLookDirection;
+        
 
         // Use this for initialization
-        private void Start() {
-            controller = gameObject.GetComponent<PlayerController>();
+        void Start () {
+			controller = gameObject.GetComponent<PlayerController> ();
             manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
             topDownParent.SetActive(false);
         }
-
-        // Update is called once per frame
-        private void Update() {
+		
+		// Update is called once per frame
+		void Update () {
             //Debug.Log(state);
             if (newState != states.noState) {
                 state = newState;
@@ -80,30 +78,35 @@ namespace SeaOfGreed {
             if (isPlayer)
                 manager.setupCameras(currentRoom);
 
-            if (state == states.onLand) {
+            if (state == states.onLand)
+            {
                 torsoAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y) + 1;
                 legsAnim.gameObject.GetComponent<SortingGroup>().sortingOrder = myMath.floatToSortingOrder(transform.position.y - currentRoom.position.y);
             }
         }
 
-        internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask) {
-            RaycastHit2D shortestHit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * 1 / iterations), range, mask);
-            for (int iteration = 1; iteration < iterations; iteration++) {
-                RaycastHit2D newhit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * iteration / iterations), range, mask);
-                if (newhit && (shortestHit.distance > newhit.distance || shortestHit.distance == 0)) shortestHit = newhit;
-            }
-            return shortestHit;
-        }
+		internal RaycastHit2D raysearch(Vector3 position, float range, int iterations, LayerMask mask)
+		{
+			RaycastHit2D shortestHit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * 1 / iterations), range, mask);
+			for (int iteration = 1; iteration < iterations;  iteration++)
+			{
+				RaycastHit2D newhit = Physics2D.Raycast(position, Vector2.right.Rotate(360 * iteration/iterations), range, mask);
+				if (newhit && (shortestHit.distance > newhit.distance || shortestHit.distance==0)) shortestHit = newhit;
+			}
+			return shortestHit;
+		}
 
-        internal RaycastHit2D boatSearch(int iterations) {
-            return raysearch(transform.position, boardShipRange, iterations, boatRaycastMask);
-        }
+		internal RaycastHit2D boatSearch(int iterations)
+		{
+			return raysearch(transform.position, boardShipRange, iterations, boatRaycastMask);
+		}
+		internal RaycastHit2D dockSearch(int iterations)
+		{
+			return raysearch(transform.position, dockShipRange, iterations, dockRaycastMask);
+		}
 
-        internal RaycastHit2D dockSearch(int iterations) {
-            return raysearch(transform.position, dockShipRange, iterations, dockRaycastMask);
-        }
-
-        public void boardShipHelper() {
+        public void boardShipHelper()
+        {
             Assert.IsTrue(state == states.onLand);
             onLandToBoardedShip(boatSearch(12).collider.gameObject);
         }
@@ -135,9 +138,11 @@ namespace SeaOfGreed {
 
             return closeEnoughToGrabWheel;
         }
-
-        public void switchIntoRoom(RaycastHit2D roomswitchRaycast) {
-            if (!steppedOnRoomTransition) {
+        
+        public void switchIntoRoom(RaycastHit2D roomswitchRaycast)
+        {
+            if (!steppedOnRoomTransition)
+            {
                 var marker = roomswitchRaycast.collider.gameObject.GetComponent<TransitionMarker>();
                 Debug.Log("Switch into " + marker.markerKey);
                 var assocs = manager.getAssociationsForKey(marker.markerKey);
@@ -151,21 +156,27 @@ namespace SeaOfGreed {
             }
         }
 
-        public void lookInDirection(Vector3 direction) {
+        public void lookInDirection(Vector3 direction)
+        {
             lastLookDirection = direction;
             var tan = Mathf.Atan2(direction.x, direction.y);
             if (state == states.boardedShip) topDownParent.transform.rotation = Quaternion.Euler(0f, 0f, tan * -Mathf.Rad2Deg);
-            else if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
+            else if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy)
+            {
                 torsoAnim.SetFloat("xTorso", direction.x);
                 torsoAnim.SetFloat("yTorso", direction.y);
                 legsAnim.SetFloat("xTorso", direction.x);
                 legsAnim.SetFloat("yTorso", direction.y);
             }
         }
+        
 
-        public void walkInDirection(Vector3 direction) {
+        public void walkInDirection(Vector3 direction)
+        {
             bool isWalking = (direction.x != 0) || (direction.y != 0);
-            if (isWalking) {
+            if (isWalking)
+            {
+
                 var xToOffset = transform.right * direction.x;
                 var yToOffset = transform.up * direction.y;
 
@@ -173,21 +184,22 @@ namespace SeaOfGreed {
                 // This way the player won't be able to slide past some walls
                 RaycastHit2D x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
                 RaycastHit2D y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, (state == states.onLand) ? groundRaycastMask : boatRaycastMask);
-
-                RaycastHit2D border_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask | uncrossableRaycastMask);
+                
+                RaycastHit2D border_x_ray = Physics2D.Raycast   (transform.position + xToOffset / 10, xToOffset, width, borderRaycastMask | uncrossableRaycastMask);
                 RaycastHit2D border_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, borderRaycastMask | uncrossableRaycastMask);
 
                 //Debug.DrawRay(transform.position, xToOffset/50  , Color.green);
                 var xOffset = (x_ray && !border_x_ray) ? xToOffset : Vector3.zero;
                 var yOffset = (y_ray && !border_y_ray) ? yToOffset : Vector3.zero;
 
-                if (isSprinting) {
-                    transform.position += ((xOffset) + (yOffset)).normalized * sprintSpeed * Time.deltaTime;
-                } else {
-                    transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
-                }
+				if (isSprinting) {
+					transform.position += ((xOffset) + (yOffset)).normalized * sprintSpeed * Time.deltaTime;
+				} else {
+					transform.position += ((xOffset) + (yOffset)).normalized * walkSpeed * Time.deltaTime;
+				}
 
-                if (canSwitchIntoRooms && state == states.onLand) {
+                if (canSwitchIntoRooms && state == states.onLand)
+                {
                     RaycastHit2D roomswitch_x_ray = Physics2D.Raycast(transform.position + xToOffset / 10, xToOffset, width, roomTransitionRaycastMask);
                     RaycastHit2D roomswitch_y_ray = Physics2D.Raycast(transform.position + yToOffset / 10, yToOffset, height, roomTransitionRaycastMask);
 
@@ -198,24 +210,26 @@ namespace SeaOfGreed {
                     else
                         steppedOnRoomTransition = false;
                 }
-                if (legsAnim.gameObject.activeInHierarchy) {
+                if (legsAnim.gameObject.activeInHierarchy)
+                {
                     legsAnim.SetFloat("xLegs", xOffset.x);
                     legsAnim.SetFloat("yLegs", yOffset.y);
                 }
             }
-            if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy) {
+            if (legsAnim.gameObject.activeInHierarchy && torsoAnim.gameObject.activeInHierarchy)
+            {
                 torsoAnim.SetBool("isWalking", isWalking);
                 legsAnim.SetBool("isWalking", isWalking);
             }
         }
 
-        // state transitions
-        public void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
-        {
-            var fromLocation = transform.position;
-            // get the location to jump to by extending the line between fromLocation and closestDock
-            var jumpVector = closestDock - fromLocation;
-            var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
+		// state transitions
+		public void boardedShipToOnLand(Vector3 closestDock) // this was a test of the animations, didn't work lol
+		{
+			var fromLocation = transform.position;
+			// get the location to jump to by extending the line between fromLocation and closestDock
+			var jumpVector = closestDock - fromLocation;
+			var toLocation = fromLocation + (jumpVector.normalized * (jumpVector.magnitude + dockOffset));
             var jumpDistance = (fromLocation - toLocation).magnitude;
             var jumpTime = jumpDistance / jumpSpeed;
 
@@ -286,7 +300,7 @@ namespace SeaOfGreed {
             transform.SetParent(ship.transform);
             shipBorded = ship;
             topDownParent.SetActive(true);                            // enable the top-down boat sprite
-            legsAnim.transform.parent.gameObject.SetActive(false);    // diable the 3/4ths sprites by diabling the parent of the legsanim
+            legsAnim.transform.parent.gameObject.SetActive(false);    // diable the 3/4ths sprites by diabling the parent of the legsanim 
         }
 
         public void boardedShipToSteeringShip() {
@@ -315,7 +329,7 @@ namespace SeaOfGreed {
             newState = states.onLand;
             shipBorded = null;
             topDownParent.SetActive(false);                          // disable the top-down boat sprite
-            legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim
+            legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim 
         }
     }
 }
