@@ -18,6 +18,8 @@ namespace SeaOfGreed {
         public Camera mainCamera;
         public LayerMask playerMask;
 
+        public GameObject sprite;
+
         private void Start() {
             health = maxHealth;
             driver = GetComponent<CharacterDriver>();
@@ -29,15 +31,25 @@ namespace SeaOfGreed {
         public int Health { get { return health; } }
         public int Defense { get { return defense; } }
 
-        public void Fire(WeaponHandItem weapon) {
+        private void Fire(HandItem weapon) {
             Debug.Log("Fired" + weapon.name);
             Vector2 mousePoint = gameObject.transform.position - mainCamera.ScreenToWorldPoint(InputManager.mousePosition).normalized;
             if (weapon.ranged) { //Guns
             } else { //Melee
+                //Run melee animation
+                sprite.SetActive(true);
+
                 RaycastHit2D cast = Physics2D.Raycast(gameObject.transform.position, mousePoint, weapon.range, playerMask);
                 if (cast) {
                     Debug.Log("Cast Hit by weapon" + weapon.name);
                 }
+            }
+        }
+
+        public void TryFire(HandItem weapon) {
+            if (weapon.timeLeftForFire <= 0) {
+                Fire(weapon);
+                weapon.timeLeftForFire = weapon.TimeBetweenFire;
             }
         }
 

@@ -90,9 +90,13 @@ namespace SeaOfGreed {
             if (Time.timeScale != 0f && canMove == true) {
                 if (driver.state == states.onLand) {
                     if (InputManager.GetButtonDown("LFire")) {
-                        driver.combatObject.Fire(driver.leftHand);
+                        Debug.Log("LFire Received");
+                        var direction = gameObject.transform.position - mainCamera.ScreenToWorldPoint(InputManager.mousePosition).normalized;
+                        driver.TryFire(driver.hands[0], direction);
                     } else if (InputManager.GetButtonDown("RFire")) {
-                        driver.combatObject.Fire(driver.rightHand);
+                        Debug.Log("RFire Received");
+                        var direction = gameObject.transform.position - mainCamera.ScreenToWorldPoint(InputManager.mousePosition).normalized;
+                        driver.TryFire(driver.hands[1], direction);
                     }
                 }
                 if (driver.state == states.boardedShip || driver.state == states.onLand) {

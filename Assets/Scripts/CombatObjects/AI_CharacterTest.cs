@@ -30,34 +30,34 @@ public class AI_CharacterTest : MonoBehaviour {
     private void Update() {
         rangeToPlayer = (player.transform.position - transform.position).magnitude;
 
-        if (combat.Health <= combat.MaxHealth * escapeAtHealthPercent) {
-            //Escape
-            direction = (player.transform.position - transform.position);
-            direction.Scale(new Vector3(-5, -5));
-            driver.lookInDirection(direction);
-            driver.walkInDirection(direction);
+        if (rangeToPlayer > sightRange) {
+            // idle
         } else {
-            if (rangeToPlayer > sightRange) {
-                // idle
-            }
-            if (rangeToPlayer <= weapon.range) {
-                driver.lookInDirection(player.transform.position - transform.position);
-                if (rangeToPlayer <= weapon.range / 4) {
-                    direction = (player.transform.position - transform.position);
-                    direction.Scale(new Vector3(-5, -5));
-                } else if (timePassed >= timeToNext) {
-                    direction = GetNewVector(rangeToPlayer);
-                    timePassed = 0;
-                    timeToNext = UnityEngine.Random.Range(1, 3);
-                }
+            if (driver.Health <= driver.MaxHealth * escapeAtHealthPercent) {
+                //Escape
+                direction = (player.transform.position - transform.position);
+                direction.Scale(new Vector3(-5, -5));
+                driver.lookInDirection(direction);
                 driver.walkInDirection(direction);
-                TryFire();
+            } else {
+                if (rangeToPlayer <= weapon.range) {
+                    driver.lookInDirection(player.transform.position - transform.position);
+                    if (rangeToPlayer <= weapon.range / 4) {
+                        direction = (player.transform.position - transform.position);
+                        direction.Scale(new Vector3(-5, -5));
+                    } else if (timePassed >= timeToNext) {
+                        direction = GetNewVector(rangeToPlayer);
+                        timePassed = 0;
+                        timeToNext = UnityEngine.Random.Range(1, 3);
+                    }
+                    driver.walkInDirection(direction);
+                    TryFire();
 
-                timePassed += Time.deltaTime;
-                timeSinceLastAttack += Time.deltaTime;
-            } else if (rangeToPlayer <= sightRange) {
-                driver.lookInDirection(player.transform.position - transform.position);
-                if (rangeToPlayer >= weapon.range - 1) {
+                    timePassed += Time.deltaTime;
+                    timeSinceLastAttack += Time.deltaTime;
+                } else if (rangeToPlayer <= sightRange) {
+                    driver.lookInDirection(player.transform.position - transform.position);
+
                     driver.walkInDirection(player.transform.position - transform.position);
                 }
             }
@@ -106,13 +106,6 @@ public class AI_CharacterTest : MonoBehaviour {
     }
 
     private void TryFire() {
-        if (timeSinceLastAttack >= 1.5f) {
-            timeSinceLastAttack = 0;
-            Fire();
-        }
-    }
-
-    private void Fire() {
-        childProjectile.SetActive(true);
+        //driver.TryFire
     }
 }

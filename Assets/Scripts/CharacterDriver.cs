@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Rendering;
@@ -54,17 +55,25 @@ namespace SeaOfGreed {
 
         private Vector2 lastLookDirection;
 
-        public WeaponHandItem leftHand;
-        public WeaponHandItem rightHand;
-        public CombatObject combatObject;
+        //Combat
+        public List<HandItem> hands;
+
+        [SerializeField] private int maxHealth;
+
+        private Vector3 currentKnockback;
+        [SerializeField] private int defense;
+        private int health;
+
+        public int MaxHealth { get { return maxHealth; } }
+        public int Health { get { return health; } }
+        public int Defense { get { return defense; } }
 
         // Use this for initialization
         private void Start() {
             controller = gameObject.GetComponent<PlayerController>();
             manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
             currentRoom = manager.getRoomAtLocation(transform.position);
-            combatObject = gameObject.GetComponent<CombatObject>();
-
+            health = maxHealth;
             topDownParent.SetActive(false);
         }
 
@@ -74,6 +83,14 @@ namespace SeaOfGreed {
             if (newState != states.noState) {
                 state = newState;
                 newState = states.noState;
+            }
+
+            foreach (var hand in hands) {
+                hand.timeLeftForFire -= Time.deltaTime;
+                if (hand.timeLeftForFire <= hand.TimeBetweenFire / 2) {
+                    //1 second after firing...
+                    hand.sprite.SetActive(false);
+                }
             }
 
             currentRoom = manager.getRoomAtLocation(transform.position); // ugly! do this in switchintoroom()!
@@ -316,6 +333,32 @@ namespace SeaOfGreed {
             shipBorded = null;
             topDownParent.SetActive(false);                          // disable the top-down boat sprite
             legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim
+        }
+
+        public void TryFire(HandItem weapon, Vector2 direction) {
+            //See if character is fit to fire based ion its current state
+            Debug.Log("Try Fire");
+            if (state == states.onLand || state == states.boardedShip) {
+                if (weapon.timeLeftForFire <= 0) {
+                    Fire(weapon, direction);
+                    weapon.timeLeftForFire = weapon.TimeBetweenFire;
+                }
+            }
+        }
+
+        private void Fire(HandItem weapon, Vector2 direction) {
+            Debug.Log("Fired" + weapon.name);
+
+            if (weapon.ranged) { //Guns
+            } else { //Melee
+                //Run melee animation
+                weapon.sprite.SetActive(true);
+
+                RaycastHit2D cast = Physics2D.Raycast(gameObject.transform.position, direction, weapon.range, groundRaycastMask);
+                if (cast) {
+                    Debug.Log("Cast Hit by weapon" + weapon.name);
+                }
+            }
         }
     }
 }

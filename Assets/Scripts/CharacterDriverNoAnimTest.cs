@@ -37,6 +37,9 @@ namespace SeaOfGreed {
         public bool isSprinting;
         public bool isWalking;
 
+        public float Health;
+        public float MaxHealth;
+
         //public Animator torsoAnim;
         //public Animator legsAnim;
         public GameObject topDownParent;
@@ -53,8 +56,8 @@ namespace SeaOfGreed {
 
         private Vector2 lastLookDirection;
 
-        public WeaponHandItem leftHand;
-        public WeaponHandItem rightHand;
+        public HandItem leftHand;
+        public HandItem rightHand;
 
         // Use this for initialization
         private void Start() {

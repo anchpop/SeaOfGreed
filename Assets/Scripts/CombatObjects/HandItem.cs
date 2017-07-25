@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Linq;
+using UnityEngine;
 
 namespace SeaOfGreed {
 
-    public struct MeleeWeaponHandItem {
-        public string name;
-        public float range;
-        public float damage;
-        public float refireRate;
+    public class MeleeWeaponHandItem : HandItem {
     }
 
-    public struct RangedWeaponHandItem {
-        public string name;
-        public float range;
-        public float damage;
-        public float roundsPerMinute;
-        public float roundsPerMagazine;
+    public class RangedWeaponHandItem : HandItem {
     }
 
-    public struct WeaponHandItem {
+    public class HandItem : MonoBehaviour {
+        public GameObject sprite;
         public string name;
         public float range;
         public float damage;
@@ -27,5 +20,12 @@ namespace SeaOfGreed {
 
         public bool ranged;
         public bool projectile;
+
+        public float timeLeftForFire;
+        public float TimeBetweenFire { get { return 1 / fireRate; } }
+
+        private void Start() {
+            timeLeftForFire = 0;
+        }
     }
 }
