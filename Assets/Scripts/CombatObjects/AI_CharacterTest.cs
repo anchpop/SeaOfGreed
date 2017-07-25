@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class AI_CharacterTest : MonoBehaviour {
     private CharacterDriverNoAnimTest driver;
-    private CombatObject combat;
+
     [SerializeField] private GameObject childProjectile;
     [SerializeField] private GameObject player;
-    public damage weapon;
     private float timePassed = 3;
     private bool left;
     public int sightRange;
     private int timeToNext = 3;
     private Vector3 direction = Vector3.zero;
     private float rangeToPlayer;
+    private HandItem weapon;
 
     public float escapeAtHealthPercent;
 
     private void Start() {
         driver = gameObject.GetComponent<CharacterDriverNoAnimTest>(); //gameObject.GetComponent<CharacterDriver>()
-        combat = gameObject.GetComponent<CombatObject>();
         player = GameObject.FindGameObjectWithTag("Player"); //GameManager.gameManager.player;
-        weapon = childProjectile.GetComponent<damage>();
+        weapon = driver.hands[0];
         left = UnityEngine.Random.value >= .5;
     }
 
