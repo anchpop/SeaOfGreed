@@ -35,6 +35,8 @@ namespace SeaOfGreed
 {
 	public class GameManager : MonoBehaviour
     {
+        public bool onlyShowProgrammerMaps = false;
+
         List<RoomData> rooms;
 
         public CameraBlackout mainCameraBlackout;
@@ -44,6 +46,7 @@ namespace SeaOfGreed
         Dictionary<String, List<GameObject>> TileAssociations = new Dictionary<string, List<GameObject>>();
 
         public GameObject player;
+        public GameObject playerPrefab;
 
         public static GameManager gameManager;
 		public static Options options;
@@ -102,7 +105,7 @@ namespace SeaOfGreed
 
         void getRooms()
         {
-            rooms = Resources.LoadAll("", typeof(GameObject)).Where(prefab => (prefab as GameObject).GetComponent<Tiled2Unity.TiledMap>() != null).Select(prefab => new RoomData(prefab as GameObject)).ToList();
+            rooms = Resources.LoadAll("", typeof(GameObject)).Where(prefab => (prefab as GameObject).GetComponent<Tiled2Unity.TiledMap>() != null).Where(prefab => (prefab as GameObject).name.ToLower().Contains("programmer") == onlyShowProgrammerMaps).Select(prefab => new RoomData(prefab as GameObject)).ToList();
         }
 
         void placeRooms()
@@ -137,7 +140,7 @@ namespace SeaOfGreed
 
         void getTransitionAssociations()
         {
-            var markers = GameObject.FindGameObjectsWithTag("TransitionMarker");
+            var markers = GameObject.FindGameObjectsWithTag("MapImportObject").Where(obj => obj.GetComponent<TransitionMarker>() != null).ToArray();
             for (int markerIndex = 0; markerIndex < markers.Length; markerIndex++)
             {
                 var marker = markers[markerIndex];
@@ -147,7 +150,25 @@ namespace SeaOfGreed
             }
         }
 
-		void Start(){
+
+        void spawnCharacters()
+        {
+            bool alreadySpawnedWally = false;
+            var markers = GameObject.FindGameObjectsWithTag("MapImportObject").Where(obj => obj.GetComponent<SpawnMarkers.CharacterSpawnMarker>() != null).ToArray();
+            for (int markerIndex = 0; markerIndex < markers.Length; markerIndex++)
+            {
+                var spawnMarker = markers[markerIndex].GetComponent<SpawnMarkers.CharacterSpawnMarker>();
+                if (spawnMarker.characterName == "Wally")
+                {
+                    Assert.IsFalse(alreadySpawnedWally, "You can only have one wally! You have at least 2!");
+                    Debug.Log("Add wally at " + spawnMarker.transform.position);
+                    Instantiate(playerPrefab, spawnMarker.transform.position, Quaternion.identity);
+                    alreadySpawnedWally = true;
+                }
+            }
+        }
+
+        void Start(){
 			options = new Options ();
 			Load ();
         }
@@ -159,6 +180,7 @@ namespace SeaOfGreed
                 getRooms();
                 placeRooms();
                 getTransitionAssociations();
+                spawnCharacters();
             }
         }
 
@@ -200,10 +222,10 @@ namespace SeaOfGreed
             return null;
         }
 
-        public List<GameObject> getTileAssociations(string markerKey)
+        public List<GameObject> getAssociationsForKey(string markerKey)
         {
             var assocs = TileAssociations[markerKey];
-            Assert.IsTrue(assocs.Count == 2);
+            Assert.IsTrue(assocs.Count == 2, markerKey + " had " + assocs.Count + " entries, not 2");
             return assocs;
         }
 

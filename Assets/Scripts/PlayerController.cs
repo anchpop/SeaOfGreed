@@ -3,20 +3,11 @@ using UnityEngine;
 
 namespace SeaOfGreed {
 
-    public class PlayerController : MonoBehaviour {
+    public class PlayerController : MonoBehaviour
+    { 
 
-        private enum helpText {
-            boardText,
-            dockText,
-            wheelText,
-            none,
-        }
-
-        private helpText helpTextToDisplay = helpText.none;
-
-        public GameObject boardText;
-        public GameObject dockText;
-        public GameObject wheelText;
+        public GameObject helpText;
+        HelpTextDisplayer helpTextObject;
 
         public Camera mainCamera;
         public float walkingCameraSize = 4;
@@ -25,10 +16,17 @@ namespace SeaOfGreed {
 
         public CharacterDriver driver;
 
+        Canvas canvas;
+
+
         // Use this for initialization
         private void Start() {
-            driver = gameObject.GetComponent<CharacterDriver>();
+            driver = GetComponent<CharacterDriver>();
+            mainCamera =  GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().player = gameObject;
+            canvas = GameObject.Find("UI Canvas").GetComponent<Canvas>();
+
+            helpTextObject = Instantiate(helpText, canvas.transform).GetComponent<HelpTextDisplayer>();
         }
 
         private void walkAccordingToUserInput() {
@@ -72,16 +70,15 @@ namespace SeaOfGreed {
         }
 
         private void displayHelpText() {
-            boardText.SetActive(false);
-            dockText.SetActive(false);
-            wheelText.SetActive(false);
-
+            var helpToShow = HelpTextDisplayer.helpText.none;
             if (driver.state == states.boardedShip && driver.canGrabWheel())
-                wheelText.SetActive(true);
+                helpToShow = HelpTextDisplayer.helpText.steerText;
             else if (driver.state == states.onLand && driver.canBoardShip())
-                boardText.SetActive(true);
+                helpToShow = HelpTextDisplayer.helpText.boardText;
             else if (driver.state == states.boardedShip && driver.canDockShip())
-                dockText.SetActive(true);
+                helpToShow = HelpTextDisplayer.helpText.dockText;
+
+            helpTextObject.textToShow = helpToShow;
         }
 
         // Update is called once per frame

@@ -1,11 +1,23 @@
 ﻿# Tiled2Unity generated file. Do not modify by hand.
 # Wavefront file for 'roomtest_mesh_0022.obj'
 
+<<<<<<< HEAD
 # Vertices (Count = 4)
 v -7 -3 0
 v -8 -3 0
 v -8 -2 0
 v -7 -2 0
+=======
+# Vertices (Count = 8)
+v 0 -3 0
+v -2 -3 0
+v -2 0 0
+v 0 0 0
+v -2 -3 0
+v -4 -3 0
+v -4 0 0
+v -2 0 0
+>>>>>>> a41ffa8d0975bd625a4c2f4e6cf0aa50f523f151
 
 # Texture cooridinates (Count = 4)
 vt 0.0001220703 0.0001220703
@@ -21,4 +33,8 @@ g roomtest_mesh_0022
 
 # Faces
 f 1/1/1 2/2/1 3/3/1 4/4/1
+<<<<<<< HEAD
+=======
+f 5/1/1 6/2/1 7/3/1 8/4/1
+>>>>>>> a41ffa8d0975bd625a4c2f4e6cf0aa50f523f151
 

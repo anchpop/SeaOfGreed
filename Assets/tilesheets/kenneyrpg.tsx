@@ -356,6 +356,60 @@
    <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
+ <tile id="482">
+  <objectgroup draworder="index">
+   <object id="2" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="483">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="522">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="523">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="524">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="32">
+    <polygon points="0,0 32,0 32,-32"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="527">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0">
+    <polygon points="0,0 0,32 32,32"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="562">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="563">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="564">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="567">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
  <tile id="568">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -384,6 +438,26 @@
  <tile id="573">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="602">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="603">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="604">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="607">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="608">
@@ -416,6 +490,26 @@
    <object id="1" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
+ <tile id="642">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="643">
+  <objectgroup draworder="index">
+   <object id="1" type="Ground" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="644">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="647">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
  <tile id="648">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="32" height="32"/>
@@ -446,9 +540,18 @@
    <object id="1" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
+ <tile id="684">
+  <objectgroup draworder="index">
+   <object id="1" type="Uncrossable" x="0" y="0">
+    <polygon points="0,0 32,0 32,8 8,32 0,32"/>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="687">
   <objectgroup draworder="index">
-   <object id="1" x="14" y="16"/>
+   <object id="2" type="Uncrossable" x="1" y="0">
+    <polygon points="0,0 31,0 31,32 23,32 -1,9 -1,0"/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="688">

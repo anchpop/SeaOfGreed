@@ -3,9 +3,15 @@
 
 # Vertices (Count = 4)
 v -2 -6 0
+<<<<<<< HEAD
 v -4 -6 0
 v -4 -4 0
 v -2 -4 0
+=======
+v -3 -6 0
+v -3 -5 0
+v -2 -5 0
+>>>>>>> a41ffa8d0975bd625a4c2f4e6cf0aa50f523f151
 
 # Texture cooridinates (Count = 4)
 vt 0.0001220703 0.0001220703
