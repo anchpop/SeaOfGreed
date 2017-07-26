@@ -1,0 +1,18 @@
+[{
+    "name": "bob the bartender",
+
+    "strafing": false,
+    "canBoardShips": false,
+    "canDockShips": false,
+    "canChangeRooms": false,
+
+    "width": 0.15,
+    "height": 0.15,
+
+    "walkSpeed": 2,
+    "sprintSpeed": 4,
+    
+    "hostility": "peaceful",
+
+    "animations": "assets/characters/bob"
+}]
