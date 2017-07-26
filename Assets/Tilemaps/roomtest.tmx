@@ -4,7 +4,7 @@
   <property name="unity:resource" value="True"/>
  </properties>
  <tileset firstgid="1" source="../tilesheets/kenneyrpg.tsx"/>
- <tileset firstgid="1041" source="tavern1.tsx"/>
+ <tileset firstgid="1041" source="../tilesheets/tavern1.tsx"/>
  <layer name="Tile Layer 1" width="12" height="10">
   <data encoding="csv">
 1044,1043,1043,1044,1042,1042,1042,1047,1048,1049,1050,1047,
