@@ -266,7 +266,7 @@
   <object id="4" x="5408" y="4000" width="96" height="32">
    <properties>
     <property name="Transition" value="island_to_forest"/>
-    <property name="unity:isTrigger" value="True"/>
+    <property name="unity:isTrigger" value="False"/>
    </properties>
   </object>
  </objectgroup>

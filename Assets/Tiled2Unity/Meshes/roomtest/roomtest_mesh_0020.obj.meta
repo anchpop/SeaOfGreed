@@ -1,17 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: feb42d13281cbaf48a7fb713a378cc39
-timeCreated: 1499935382
-licenseType: Free
 ModelImporter:
   serializedVersion: 21
-=======
-guid: 86d6813f3891a7b4986fbb796b262576
-timeCreated: 1499976962
-licenseType: Free
-ModelImporter:
-  serializedVersion: 19
->>>>>>> a41ffa8d0975bd625a4c2f4e6cf0aa50f523f151
   fileIDToRecycleName:
     100000: roomtest_mesh_0020
     100002: //RootNode
@@ -20,12 +10,13 @@ ModelImporter:
     2300000: roomtest_mesh_0020
     3300000: roomtest_mesh_0020
     4300000: roomtest_mesh_0020
+    9500000: //RootNode
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
-    legacyGenerateAnimations: 0
+    legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
@@ -42,10 +33,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-<<<<<<< HEAD
     extraUserProperties: []
-=======
->>>>>>> a41ffa8d0975bd625a4c2f4e6cf0aa50f523f151
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -53,19 +41,15 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-<<<<<<< HEAD
     importVisibility: 1
-    importBlendShapes: 0
+    importBlendShapes: 1
     importCameras: 1
     importLights: 1
-=======
-    importBlendShapes: 0
->>>>>>> a41ffa8d0975bd625a4c2f4e6cf0aa50f523f151
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -75,11 +59,8 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 2
-<<<<<<< HEAD
+    tangentImportMode: 3
     normalCalculationMode: 4
-=======
->>>>>>> a41ffa8d0975bd625a4c2f4e6cf0aa50f523f151
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -99,7 +80,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
