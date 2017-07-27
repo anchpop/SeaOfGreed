@@ -1287,11 +1287,5 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Characterspawns">
-  <object id="2" x="4352" y="6880" width="32" height="32">
-   <properties>
-    <property name="Character name" value="Wally"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="Characterspawns"/>
 </map>
