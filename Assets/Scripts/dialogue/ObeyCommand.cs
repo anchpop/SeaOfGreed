@@ -34,7 +34,7 @@ public class ObeyCommand : MonoBehaviour {
 }
 public class WaitForSecondsInterruptable : CustomYieldInstruction{
 	private float waitCountDown;
-	private BasicInkExample commandCaller;
+	private InkProcessor commandCaller;
 	public override bool keepWaiting{
 		get {
 			if(!commandCaller.pauseCoroutines){
@@ -44,13 +44,13 @@ public class WaitForSecondsInterruptable : CustomYieldInstruction{
 			return true;
 		}
 	}
-	public WaitForSecondsInterruptable(float cd, BasicInkExample caller){
+	public WaitForSecondsInterruptable(float cd, InkProcessor caller){
 		waitCountDown = cd;
 		commandCaller = caller;
 	}
 }
 public class WaitForFixedUpdateInterruptable : CustomYieldInstruction{
-	private BasicInkExample commandCaller;
+	private InkProcessor commandCaller;
 	private bool hasRunForAFrame = false;
 	public override bool keepWaiting{
 		get {
@@ -61,7 +61,7 @@ public class WaitForFixedUpdateInterruptable : CustomYieldInstruction{
 			return true;
 		}
 	}
-	public WaitForFixedUpdateInterruptable(BasicInkExample caller){
+	public WaitForFixedUpdateInterruptable(InkProcessor caller){
 		commandCaller = caller;
 	}
 }

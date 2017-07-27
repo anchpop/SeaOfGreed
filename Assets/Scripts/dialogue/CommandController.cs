@@ -48,5 +48,5 @@ public class CommandController : MonoBehaviour {
 public struct CommandArgs{
 		public bool isSequential;
 		public string args;
-		public BasicInkExample commandCaller;
+		public InkProcessor commandCaller;
 }

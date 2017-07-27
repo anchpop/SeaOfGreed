@@ -8,12 +8,12 @@ public class NPCPassiveController : MonoBehaviour {
 	[SerializeField] private TextAsset inkJSONAsset;
 	[SerializeField] private string knot;
 	[SerializeField] private bool isRunningWorldScript;
-	private BasicInkExample inkScriptRef;
+	private InkProcessor inkScriptRef;
 	void Start(){
-		inkScriptRef = inkHolder.GetComponent<BasicInkExample>();
+		inkScriptRef = inkHolder.GetComponent<InkProcessor>();
 		if(isRunningWorldScript){
-			gameObject.GetComponent<BasicInkExample>().isCommandSlave = true;
-			gameObject.GetComponent<BasicInkExample>().StartStory(inkJSONAsset.text, "WorldScript");
+			gameObject.GetComponent<InkProcessor>().isCommandSlave = true;
+			gameObject.GetComponent<InkProcessor>().StartStory(inkJSONAsset.text, "WorldScript");
 		}
 	}
 	public void OnInteract(){
@@ -21,11 +21,11 @@ public class NPCPassiveController : MonoBehaviour {
 		inkScriptRef.StartStory(inkJSONAsset.text);
 		inkScriptRef.setEndAction(this.onInteractEnd);
 		if(isRunningWorldScript)
-			gameObject.GetComponent<BasicInkExample>().pauseCoroutines = true;
+			gameObject.GetComponent<InkProcessor>().pauseCoroutines = true;
 	}
 	public void onInteractEnd(){
 		if(isRunningWorldScript)
-			gameObject.GetComponent<BasicInkExample>().pauseCoroutines = false;
+			gameObject.GetComponent<InkProcessor>().pauseCoroutines = false;
 	}
 	void Update(){
 	}

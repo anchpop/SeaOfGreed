@@ -1,17 +1,19 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Ink.Runtime;
 using SeaOfGreed;
+using TeamUtility.IO;
 
-public class BasicInkExample : MonoBehaviour {
+public class InkProcessor : MonoBehaviour {
 	private Action onEndAction;
 	public bool pauseCoroutines = false;
 	[SerializeField] private Story story;
 	[SerializeField] private GameObject textRef;
-	[SerializeField] private Text textCompRef;
+	private Text textCompRef;
 	private List<string> tags;
 	public bool isCommandSlave = false;
 	private List<string> queue = new List<string>();
@@ -29,23 +31,24 @@ public class BasicInkExample : MonoBehaviour {
 	void Update(){
 		if(!isCommandSlave && getTextBoxActive()){
 		if(!isChoosing){
-		if(Input.GetKeyDown(KeyCode.E))
+		if(InputManager.GetButtonDown("Use"))
 			NextInQueue();
 		} else {
-			string tempText = "";
+			string optionsText = "";
 			for(int i = 0; i < story.currentChoices.Count; i++){
 				if(selectedChoiceIndex == i)
-					tempText += "▶";
-				tempText += story.currentChoices[i].text;
-				tempText += "\n"; 
+					optionsText += "▶";
+				optionsText += story.currentChoices[i].text;
+				optionsText += "\n"; 
 			}
-			textCompRef.text = tempText;
+			textCompRef.text = optionsText;
+			//TODO: fix hardcoding if we ever decide we care enough.
 			if(Input.GetKeyDown(KeyCode.UpArrow) && selectedChoiceIndex != 0)
 				selectedChoiceIndex--;
 			if(Input.GetKeyDown(KeyCode.DownArrow) && selectedChoiceIndex < story.currentChoices.Count - 1)
 				selectedChoiceIndex++;
 			Debug.Log("selectedchoiceindex = " + selectedChoiceIndex);
-			if(Input.GetKeyDown(KeyCode.E)){
+			if(InputManager.GetButtonDown("Use")){
 				story.ChooseChoiceIndex(selectedChoiceIndex);
 				RefreshView();
 			}
@@ -138,10 +141,10 @@ public class BasicInkExample : MonoBehaviour {
 	public void endOfCommand(CommandArgs arg){
 		if(arg.isSequential) NextInQueue();
 	}
-	public void setTextBoxActive(bool b){
+	private void setTextBoxActive(bool b){
 		if(textRef != null)textRef.transform.parent.gameObject.SetActive(b);
 	}
-	public bool getTextBoxActive(){
+	private bool getTextBoxActive(){
 		return textRef.transform.parent.gameObject.activeInHierarchy;
 	}
 }
