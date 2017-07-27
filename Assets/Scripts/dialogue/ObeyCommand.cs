@@ -20,7 +20,7 @@ public class ObeyCommand : MonoBehaviour {
 		while(diff.magnitude > Time.deltaTime*3){
 			diff -= diff.normalized*Time.deltaTime*3;
 			transform.position += diff.normalized*Time.deltaTime*3;
-			yield return new WaitForFixedUpdateInterruptable(arrgs.commandCaller);
+			yield return new WaitForUpdateInterruptable(arrgs.commandCaller);
 		}
 		transform.position += diff;
 		arrgs.commandCaller.endOfCommand(arrgs);
@@ -61,7 +61,7 @@ public class WaitForUpdateInterruptable : CustomYieldInstruction{
 			return true;
 		}
 	}
-	public WaitForFixedUpdateInterruptable(InkProcessor caller){
+	public WaitForUpdateInterruptable(InkProcessor caller){
 		commandCaller = caller;
 	}
 }
