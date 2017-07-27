@@ -49,7 +49,7 @@ public class WaitForSecondsInterruptable : CustomYieldInstruction{
 		commandCaller = caller;
 	}
 }
-public class WaitForFixedUpdateInterruptable : CustomYieldInstruction{
+public class WaitForUpdateInterruptable : CustomYieldInstruction{
 	private InkProcessor commandCaller;
 	private bool hasRunForAFrame = false;
 	public override bool keepWaiting{
