@@ -341,30 +341,8 @@ namespace SeaOfGreed {
             Debug.Log("Try Fire");
             if (state == states.onLand || state == states.boardedShip) {
                 if (weapon.timeLeftForFire <= 0) {
-                    Fire(weapon, target);
+                    weapon.Fire(weapon, target);
                     weapon.timeLeftForFire = weapon.TimeBetweenFire;
-                }
-            }
-        }
-
-        private void Fire(HandItem weapon, Vector3 target) {
-            Debug.Log("Fired" + weapon.name);
-
-            if (weapon.ranged) { //Guns
-            } else { //Melee
-                     //Run melee animation
-                     //var ray = (target - transform.position).normalized;
-                     //ray.Scale(new Vector3(weapon.range, weapon.range));
-                     //ray = transform.position + ray;
-                weapon.sprite.SetPositions(new Vector3[] { transform.position, target });
-
-                weapon.sprite.enabled = true;
-
-                var direction = target - transform.position;
-                RaycastHit2D cast = Physics2D.Raycast(gameObject.transform.position, direction, weapon.range, shootableRaycastMask);
-
-                if (cast) {
-                    Debug.Log("Cast Hit by weapon" + weapon.name);
                 }
             }
         }

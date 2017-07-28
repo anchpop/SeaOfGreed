@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 709756626}
-  name: RHand
+  name: 5248616e64
   range: 1
   damage: 10
   fireRate: 120
@@ -6958,24 +6958,31 @@ Transform:
 --- !u!114 &953450662
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114781423892895134, guid: 4aa2279ee3ffe8b4cb5a95dd23735a8a,
+  m_PrefabParentObject: {fileID: 114142025173030620, guid: 4aa2279ee3ffe8b4cb5a95dd23735a8a,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 953450660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7545c664f663fee4fb924761be646af3, type: 3}
+  m_Script: {fileID: 11500000, guid: 00f662aee69c0624b91f31a292cbecc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 1857846979}
-  name: RightWeapon
-  range: 1
+  name: Sword
+  range: 0
   damage: 20
-  fireRate: 240
+  fireRate: 80
   rounds: 0
   ranged: 0
   projectile: 0
+  shootableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 34816
+  uncrossableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 10240
   timeLeftForFire: 0
+  coneOfFire: 1
 --- !u!1 &953773654
 GameObject:
   m_ObjectHideFlags: 0
@@ -11698,8 +11705,8 @@ MonoBehaviour:
   isPlayer: 0
   canSwitchIntoRooms: 0
   hands:
-  - {fileID: 1636391479}
-  - {fileID: 285391442}
+  - {fileID: 0}
+  - {fileID: 0}
   maxHealth: 50
   defense: 5
 --- !u!4 &1569033590
@@ -12581,7 +12588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 1612867596}
-  name: LHand
+  name: 4c48616e64
   range: 5
   damage: 20
   fireRate: 60
@@ -17554,23 +17561,29 @@ Transform:
 --- !u!114 &1994545106
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114712856711258248, guid: 4aa2279ee3ffe8b4cb5a95dd23735a8a,
+  m_PrefabParentObject: {fileID: 114039954423624814, guid: 4aa2279ee3ffe8b4cb5a95dd23735a8a,
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1994545104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7545c664f663fee4fb924761be646af3, type: 3}
+  m_Script: {fileID: 11500000, guid: dcd2f000a5379514e8fbf46163420e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 838752156}
-  name: Left Weapon
-  range: 5
-  damage: 20
-  fireRate: 60
-  rounds: 0
-  ranged: 0
+  name: SMG
+  range: 7
+  damage: 5
+  fireRate: 240
+  rounds: 30
+  ranged: 1
   projectile: 0
+  shootableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 34816
+  uncrossableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 10240
   timeLeftForFire: 0
 --- !u!1 &2002320227
 GameObject:

@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
 
 namespace SeaOfGreed {
 
-    public class MeleeWeaponHandItem : HandItem {
-    }
-
-    public class RangedWeaponHandItem : HandItem {
-    }
-
-    public class HandItem : MonoBehaviour {
+    public abstract class HandItem : MonoBehaviour {
         public LineRenderer sprite; //Line Renderer for temporary sprite usage
         public string name;
         public float range;
@@ -21,11 +14,12 @@ namespace SeaOfGreed {
         public bool ranged;
         public bool projectile;
 
+        public LayerMask shootableRaycastMask;
+        public LayerMask uncrossableRaycastMask;
+
         public float timeLeftForFire;
         public float TimeBetweenFire { get { return 60 / fireRate; } }
 
-        private void Start() {
-            timeLeftForFire = 0;
-        }
+        public abstract void Fire(HandItem weapon, Vector3 target);
     }
 }

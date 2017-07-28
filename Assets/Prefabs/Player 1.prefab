@@ -35,7 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4587727107410142}
-  - component: {fileID: 114712856711258248}
+  - component: {fileID: 114039954423624814}
   m_Layer: 0
   m_Name: Lefthand
   m_TagString: Untagged
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4320026036433020}
-  - component: {fileID: 114781423892895134}
+  - component: {fileID: 114142025173030620}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -557,6 +557,59 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114039954423624814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1427974034644480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd2f000a5379514e8fbf46163420e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 120240769959883652}
+  name: SMG
+  range: 7
+  damage: 5
+  fireRate: 240
+  rounds: 30
+  ranged: 1
+  projectile: 0
+  shootableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 34816
+  uncrossableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 10240
+  timeLeftForFire: 0
+--- !u!114 &114142025173030620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463105191727446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f662aee69c0624b91f31a292cbecc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 120443026383232454}
+  name: Sword
+  range: 0
+  damage: 20
+  fireRate: 80
+  rounds: 0
+  ranged: 0
+  projectile: 0
+  shootableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 34816
+  uncrossableRaycastMask:
+    serializedVersion: 2
+    m_Bits: 10240
+  timeLeftForFire: 0
+  coneOfFire: 1
 --- !u!114 &114383125312798730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -614,8 +667,8 @@ MonoBehaviour:
   isPlayer: 1
   canSwitchIntoRooms: 1
   hands:
-  - {fileID: 114712856711258248}
-  - {fileID: 114781423892895134}
+  - {fileID: 114039954423624814}
+  - {fileID: 114142025173030620}
   maxHealth: 50
   defense: 5
 --- !u!114 &114624772646716494
@@ -652,26 +705,6 @@ MonoBehaviour:
   HP: 0
   childObjectL: {fileID: 1896910902037216}
   childObjectR: {fileID: 1717015470132862}
---- !u!114 &114712856711258248
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1427974034644480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7545c664f663fee4fb924761be646af3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 120240769959883652}
-  name: Left Weapon
-  range: 5
-  damage: 20
-  fireRate: 60
-  rounds: 0
-  ranged: 0
-  projectile: 0
-  timeLeftForFire: 0
 --- !u!114 &114778405652010222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -686,26 +719,6 @@ MonoBehaviour:
   damageAmount: 10
   hitTag: 
   range: 0
---- !u!114 &114781423892895134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1463105191727446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7545c664f663fee4fb924761be646af3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 120443026383232454}
-  name: RightWeapon
-  range: 1
-  damage: 20
-  fireRate: 240
-  rounds: 0
-  ranged: 0
-  projectile: 0
-  timeLeftForFire: 0
 --- !u!114 &114896764363898034
 MonoBehaviour:
   m_ObjectHideFlags: 1
