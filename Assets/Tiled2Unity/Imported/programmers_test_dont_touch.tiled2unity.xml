@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 7/26/2017 8:28:51 PM-->
+<!--Last exported: 7/27/2017 5:47:19 PM-->
 <Tiled2Unity version="1.0.12.2">
   <AssignMaterial mesh="programmers_test_dont_touch_mesh_0001" material="RPGpack_sheet" />
   <AssignMaterial mesh="programmers_test_dont_touch_mesh_0002" material="RPGpack_sheet" />
@@ -49,9 +49,9 @@
     </GameObject>
     <GameObject name="CharacterMarkers" x="0" y="0" z="0">
       <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
-      <GameObject name="RectangleObject" x="43" y="-31" rotation="0" layer="">
+      <GameObject name="RectangleObject" x="43" y="-32" rotation="0" layer="">
         <Property name="Character name" value="Wally" />
-        <RectangleObjectComponent tmx-object-id="18" tmx-object-name="" tmx-object-type="" tmx-object-x="1376" tmx-object-y="992" tmx-object-width="32" tmx-object-height="32" tmx-object-rotation="0" />
+        <RectangleObjectComponent tmx-object-id="39601" tmx-object-name="" tmx-object-type="" tmx-object-x="1376" tmx-object-y="1024" tmx-object-width="32" tmx-object-height="32" tmx-object-rotation="0" />
         <BoxCollider2D width="1" height="1" />
       </GameObject>
     </GameObject>

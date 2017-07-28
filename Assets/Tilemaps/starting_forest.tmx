@@ -119,15 +119,9 @@
   <object id="1" x="608" y="0" width="128" height="32">
    <properties>
     <property name="Transition" value="island_to_forest"/>
-    <property name="unity:isTrigger" value="True"/>
+    <property name="unity:isTrigger" value="true"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="CharacterMarkers">
-  <object id="2" x="800" y="128" width="32" height="32">
-   <properties>
-    <property name="Character name" value="Wally"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="CharacterMarkers"/>
 </map>
