@@ -1,6 +1,6 @@
 # SeaOfGreed
 
-Sea of Greed is a open-world story rpg following Wally G on his search for treasure.
+This is the latest public version of Sea of Greed, an open-world story rpg following Wally G on his search for treasure. You can keep track of what we're doing on our Trello, linked below
 
 Join our public discord for announcements and suggestions:
 https://discord.gg/yrCya5J
