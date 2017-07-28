@@ -32,30 +32,31 @@ public class AI_NewTest : MonoBehaviour {
         rangeToPlayer = (dirToPlayer).magnitude;
 
         if (rangeToPlayer > sightRange) {
-            Debug.Log("Idle");
+            //Debug.Log("Idle");
             //idle
             timePassed = 3;
         } else { // in sight range
             if ((rangeToPlayer <= weaponRange / 4) && runAwayIfTooClose) { //Closer than quarter of weapon range
                 //back up
-                Debug.Log("Too Close");
+                //Debug.Log("Too Close");
                 driver.lookInDirection(dirToPlayer);
-                dirToPlayer.Scale(new Vector3(-1, -1));
-                driver.walkInDirection(dirToPlayer);
+                var dirAwayFromPlayer = dirToPlayer;
+                dirAwayFromPlayer.Scale(new Vector3(-1, -1));
+                driver.walkInDirection(dirAwayFromPlayer);
 
                 timePassed = 3;
             } else { // farther than quarter of weapon range
                 dirToLook = dirToPlayer;
 
                 if (rangeToPlayer > weaponRange) { //farther than weapon range
-                    Debug.Log("In Sight");
+                    //Debug.Log("In Sight");
                 } else { // in weapon range
-                    Debug.Log("In Weapon Range");
+                    //Debug.Log("In Weapon Range");
                 }
 
                 if (timePassed >= 3) {
                     if (rangeToPlayer > weaponRange) { //farther than weapon range
-                        Debug.Log("New Vector: In Sight");
+                        //Debug.Log("New Vector: In Sight");
                         dirToWalk = dirToPlayer;
                     } else { // in weapon range
                         Debug.Log("New Vector: In Weapon Range");

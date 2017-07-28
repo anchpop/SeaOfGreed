@@ -32,6 +32,7 @@ namespace SeaOfGreed {
         public LayerMask borderRaycastMask;
         public LayerMask roomTransitionRaycastMask;
         public LayerMask uncrossableRaycastMask;
+        public LayerMask shootableRaycastMask;
 
         public GameObject sprite;
 
@@ -87,7 +88,7 @@ namespace SeaOfGreed {
                 hand.timeLeftForFire -= Time.deltaTime;
                 if (hand.timeLeftForFire <= hand.TimeBetweenFire / 2) {
                     //1 second after firing...
-                    hand.sprite.SetActive(false);
+                    hand.sprite.gameObject.SetActive(true);
                 }
             }
 
@@ -333,9 +334,9 @@ namespace SeaOfGreed {
             //legsAnim.transform.parent.gameObject.SetActive(true);    // enable the 3/4ths sprites by enabling the parent of the legsanim
         }
 
-        public void TryFire(HandItem weapon, Vector2 direction) {
+        public void TryFire(HandItem weapon, Vector3 direction) {
             //See if character is fit to fire based ion its current state
-            Debug.Log("Try Fire");
+            //Debug.Log("Try Fire");
             if (state == states.onLand || state == states.boardedShip) {
                 if (weapon.timeLeftForFire <= 0) {
                     Fire(weapon, direction);
@@ -344,15 +345,18 @@ namespace SeaOfGreed {
             }
         }
 
-        private void Fire(HandItem weapon, Vector2 direction) {
+        private void Fire(HandItem weapon, Vector3 target) {
             Debug.Log("Fired" + weapon.name);
 
             if (weapon.ranged) { //Guns
             } else { //Melee
                 //Run melee animation
-                weapon.sprite.SetActive(true);
+                weapon.sprite.SetPositions(new Vector3[] { transform.position, target });
+                weapon.sprite.gameObject.SetActive(true);
 
-                RaycastHit2D cast = Physics2D.Raycast(gameObject.transform.position, direction, weapon.range, groundRaycastMask);
+                var direction = target - transform.position;
+                RaycastHit2D cast = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.position + direction, weapon.range, shootableRaycastMask);
+
                 if (cast) {
                     Debug.Log("Cast Hit by weapon" + weapon.name);
                 }

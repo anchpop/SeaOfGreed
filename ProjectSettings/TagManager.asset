@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - enemy
   - MapImportObject
   - interactable
+  - character
   layers:
   - Default
   - TransparentFX
@@ -23,7 +23,7 @@ TagManager:
   - RoomTransitions
   - Border
   - mainCameraOnly
-  - 
+  - shootable
   - 
   - 
   - 

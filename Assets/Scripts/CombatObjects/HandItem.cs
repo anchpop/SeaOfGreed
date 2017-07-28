@@ -11,7 +11,7 @@ namespace SeaOfGreed {
     }
 
     public class HandItem : MonoBehaviour {
-        public GameObject sprite;
+        public LineRenderer sprite; //Line Renderer for temporary sprite usage
         public string name;
         public float range;
         public float damage;
@@ -22,7 +22,7 @@ namespace SeaOfGreed {
         public bool projectile;
 
         public float timeLeftForFire;
-        public float TimeBetweenFire { get { return 1 / fireRate; } }
+        public float TimeBetweenFire { get { return 60 / fireRate; } }
 
         private void Start() {
             timeLeftForFire = 0;

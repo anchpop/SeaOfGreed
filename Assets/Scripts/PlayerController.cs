@@ -91,11 +91,11 @@ namespace SeaOfGreed {
                 if (driver.state == states.onLand) {
                     if (InputManager.GetButtonDown("LFire")) {
                         Debug.Log("LFire Received");
-                        var direction = gameObject.transform.position - mainCamera.ScreenToWorldPoint(InputManager.mousePosition).normalized;
+                        var direction = mainCamera.ScreenToWorldPoint(InputManager.mousePosition); // - transform.position;
                         driver.TryFire(driver.hands[0], direction);
                     } else if (InputManager.GetButtonDown("RFire")) {
                         Debug.Log("RFire Received");
-                        var direction = gameObject.transform.position - mainCamera.ScreenToWorldPoint(InputManager.mousePosition).normalized;
+                        var direction = mainCamera.ScreenToWorldPoint(InputManager.mousePosition); // - transform.position;
                         driver.TryFire(driver.hands[1], direction);
                     }
                 }
