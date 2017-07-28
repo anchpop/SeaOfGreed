@@ -89,12 +89,10 @@ namespace SeaOfGreed {
         private void Update() {
             if (Time.timeScale != 0f && canMove == true) {
                 if (driver.state == states.onLand) {
-                    if (InputManager.GetButtonDown("LFire")) {
-                        Debug.Log("LFire Received");
+                    if (InputManager.GetButton("LFire")) {
                         var direction = mainCamera.ScreenToWorldPoint(InputManager.mousePosition); // - transform.position;
                         driver.TryFire(driver.hands[0], direction);
-                    } else if (InputManager.GetButtonDown("RFire")) {
-                        Debug.Log("RFire Received");
+                    } else if (InputManager.GetButton("RFire")) {
                         var direction = mainCamera.ScreenToWorldPoint(InputManager.mousePosition); // - transform.position;
                         driver.TryFire(driver.hands[1], direction);
                     }
