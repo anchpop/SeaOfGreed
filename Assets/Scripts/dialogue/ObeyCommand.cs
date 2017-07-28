@@ -20,7 +20,7 @@ public class ObeyCommand : MonoBehaviour {
 		while(diff.magnitude > Time.deltaTime*3){
 			diff -= diff.normalized*Time.deltaTime*3;
 			transform.position += diff.normalized*Time.deltaTime*3;
-			yield return new WaitForFixedUpdateInterruptable(arrgs.commandCaller);
+			yield return new WaitForUpdateInterruptable(arrgs.commandCaller);
 		}
 		transform.position += diff;
 		arrgs.commandCaller.endOfCommand(arrgs);
@@ -34,7 +34,7 @@ public class ObeyCommand : MonoBehaviour {
 }
 public class WaitForSecondsInterruptable : CustomYieldInstruction{
 	private float waitCountDown;
-	private BasicInkExample commandCaller;
+	private InkProcessor commandCaller;
 	public override bool keepWaiting{
 		get {
 			if(!commandCaller.pauseCoroutines){
@@ -44,13 +44,13 @@ public class WaitForSecondsInterruptable : CustomYieldInstruction{
 			return true;
 		}
 	}
-	public WaitForSecondsInterruptable(float cd, BasicInkExample caller){
+	public WaitForSecondsInterruptable(float cd, InkProcessor caller){
 		waitCountDown = cd;
 		commandCaller = caller;
 	}
 }
-public class WaitForFixedUpdateInterruptable : CustomYieldInstruction{
-	private BasicInkExample commandCaller;
+public class WaitForUpdateInterruptable : CustomYieldInstruction{
+	private InkProcessor commandCaller;
 	private bool hasRunForAFrame = false;
 	public override bool keepWaiting{
 		get {
@@ -61,7 +61,7 @@ public class WaitForFixedUpdateInterruptable : CustomYieldInstruction{
 			return true;
 		}
 	}
-	public WaitForFixedUpdateInterruptable(BasicInkExample caller){
+	public WaitForUpdateInterruptable(InkProcessor caller){
 		commandCaller = caller;
 	}
 }

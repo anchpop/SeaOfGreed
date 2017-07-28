@@ -18,7 +18,7 @@ public class AI_NewTest : MonoBehaviour {
     public float escapeAtHealthPercent;
 
     private void Start() {
-        driver = gameObject.GetComponent<CharacterDriverNoAnimTest>(); //gameObject.GetComponent<CharacterDriver>()
+        //driver = gameObject.GetComponent<CharacterDriverNoAnimTest>(); //gameObject.GetComponent<CharacterDriver>()
         player = GameObject.FindGameObjectWithTag("Player"); //GameManager.gameManager.player;
         left = UnityEngine.Random.value >= .5;
         //Weapon with least range

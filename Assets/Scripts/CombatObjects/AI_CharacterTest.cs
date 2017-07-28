@@ -18,7 +18,7 @@ public class AI_CharacterTest : MonoBehaviour {
     public float escapeAtHealthPercent;
 
     private void Start() {
-        driver = gameObject.GetComponent<CharacterDriverNoAnimTest>(); //gameObject.GetComponent<CharacterDriver>()
+        //driver = gameObject.GetComponent<CharacterDriverNoAnimTest>(); //gameObject.GetComponent<CharacterDriver>()
         player = GameObject.FindGameObjectWithTag("Player"); //GameManager.gameManager.player;
         weapon = driver.hands[0];
         left = UnityEngine.Random.value >= .5;
